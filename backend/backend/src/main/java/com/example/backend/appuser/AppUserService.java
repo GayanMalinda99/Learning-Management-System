@@ -36,6 +36,7 @@ public class AppUserService implements UserDetailsService {
         //Here we have to send confirmation token
 
         appUser.setPassword(encodedPassword);
+        appUserRepository.save(appUser);
         return "It also Works";
     }
 
