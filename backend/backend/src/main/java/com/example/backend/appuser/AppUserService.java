@@ -19,4 +19,10 @@ public class AppUserService implements UserDetailsService {
                 orElseThrow(()->
                         new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG,email)));
     }
+
+
+    public String signUpUser(AppUser appUser){
+        return "";
+    }
+
 }
