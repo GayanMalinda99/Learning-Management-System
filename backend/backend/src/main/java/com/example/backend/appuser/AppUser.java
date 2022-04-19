@@ -14,9 +14,6 @@ import java.util.Collections;
 
 //For the sake of security we use UserDetails
 
-
-
-
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -29,8 +26,9 @@ public class AppUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "student_sequence")
     private long id;
     private String name;
-    private String username;
+
     private String password;
+    private String email;
 
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
@@ -38,13 +36,13 @@ public class AppUser implements UserDetails {
     private Boolean enabled;
 
     public AppUser(String name,
-                   String username,
+                   String email,
                    String password,
                    AppUserRole appUserRole,
                    Boolean locked,
                    Boolean enabled) {
         this.name = name;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
         this.locked = locked;
@@ -64,7 +62,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
