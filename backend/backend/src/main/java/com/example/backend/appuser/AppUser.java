@@ -67,10 +67,9 @@ public class AppUser implements UserDetails {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getLastName() {
+        return lastName;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {
