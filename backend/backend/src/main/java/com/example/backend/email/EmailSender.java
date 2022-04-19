@@ -1,10 +1,7 @@
 package com.example.backend.email;
 
-public class EmailSender {
+public interface EmailSender {
 
 
-    public void send(String email, String buildEmail) {
-
-        
-    }
+    void send(String to, String email);
 }
