@@ -1,6 +1,7 @@
 package com.example.backend.appuser;
 
 import com.example.backend.registration.token.ConfirmationToken;
+import com.example.backend.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.apache.tomcat.jni.Local;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,8 @@ public class AppUserService implements UserDetailsService {
     private final AppUserRepository appUserRepository;
     private final static String USER_NOT_FOUND_MSG="User with email %s not found";
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    
+    private final ConfirmationTokenService confirmationTokenService;
+
 
 
     @Override
@@ -54,8 +56,10 @@ public class AppUserService implements UserDetailsService {
         );
 
 
+confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-        return "It also Works";
+//Here We have to send email
+        return token;
     }
 
 }

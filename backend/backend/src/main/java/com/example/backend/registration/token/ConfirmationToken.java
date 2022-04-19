@@ -33,6 +33,7 @@ public class ConfirmationToken {
             nullable = false,
             name = "app_user_id"
     )
+    private AppUser appUser;
 
 
     @Column(nullable = false)
@@ -45,7 +46,7 @@ public class ConfirmationToken {
     private LocalDateTime expiredAt;
 
     private LocalDateTime confirmedAt;
-    private AppUser appUser;
+
 
     public ConfirmationToken(String token,
                              LocalDateTime createdAt,
