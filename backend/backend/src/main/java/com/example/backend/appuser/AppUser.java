@@ -67,8 +67,14 @@ public class AppUser implements UserDetails {
         return firstName;
     }
 
+
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

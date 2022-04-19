@@ -31,7 +31,7 @@ public class AppUserService implements UserDetailsService {
         if (userExists){
             throw new IllegalStateException("Email already taken!");
         }
-        String encodedPassword=bCryptPasswordEncoder.encode(appUser.getPassword());
+        String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
 
         //Here we have to send confirmation token
 
