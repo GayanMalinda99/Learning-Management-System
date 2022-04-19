@@ -24,10 +24,8 @@ public class ConfirmationToken {
             strategy = GenerationType.SEQUENCE,
             generator = "confirmation_token_sequence"
     )
-
-
-
     private Long id;
+
     @ManyToOne //Because Application User can have many application tokens
     @JoinColumn(
             nullable = false,
@@ -50,11 +48,11 @@ public class ConfirmationToken {
 
     public ConfirmationToken(String token,
                              LocalDateTime createdAt,
-                             LocalDateTime expiresAt,
+                             LocalDateTime expiredAt,
                              AppUser appUser) {
         this.token = token;
         this.createdAt = createdAt;
-        this.expiredAt = expiresAt;
+        this.expiredAt = expiredAt;
         this.appUser = appUser;
     }
 

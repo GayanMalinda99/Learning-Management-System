@@ -62,4 +62,8 @@ confirmationTokenService.saveConfirmationToken(confirmationToken);
         return token;
     }
 
+    public int enableAppUser(String email) {
+        return appUserRepository.enableAppUser(email);
+    }
+
 }
