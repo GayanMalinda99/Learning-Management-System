@@ -1,7 +1,8 @@
 package com.example.backend.appuser;
-/*
+
 import com.example.backend.registration.token.ConfirmationToken;
-import com.example.backend.registration.token.ConfirmationTokenService;*/
+import com.example.backend.registration.token.ConfirmationTokenService;
+import com.example.backend.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.apache.tomcat.jni.Local;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +22,7 @@ public class AppUserService implements UserDetailsService {
     private final AppUserRepository appUserRepository;
     private final static String USER_NOT_FOUND_MSG="User with email %s not found";
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-   // private final ConfirmationTokenService confirmationTokenService;
+    private final ConfirmationTokenService confirmationTokenService;
 
 
 
@@ -41,7 +42,7 @@ public class AppUserService implements UserDetailsService {
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
 
-            //
+
             throw new IllegalStateException("Email already taken!");
         }
         String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
@@ -52,7 +53,7 @@ public class AppUserService implements UserDetailsService {
         //Here we have to send confirmation token
 
         String token = UUID.randomUUID().toString();
-   /*     ConfirmationToken confirmationToken =new ConfirmationToken(
+        ConfirmationToken confirmationToken =new ConfirmationToken(
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
@@ -62,7 +63,7 @@ public class AppUserService implements UserDetailsService {
 
 confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-//Here We have to send email*/
+//Here We have to send email
         return token;
     }
 

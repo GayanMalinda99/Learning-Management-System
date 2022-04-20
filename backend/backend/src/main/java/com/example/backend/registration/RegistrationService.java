@@ -2,10 +2,11 @@ package com.example.backend.registration;
 
 import com.example.backend.appuser.AppUser;
 import com.example.backend.appuser.AppUserRole;
-import com.example.backend.appuser.AppUserService;/*
+import com.example.backend.appuser.AppUserService;
 import com.example.backend.email.EmailSender;
 import com.example.backend.registration.token.ConfirmationToken;
-import com.example.backend.registration.token.ConfirmationTokenService;*/
+import com.example.backend.registration.token.ConfirmationTokenService;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class RegistrationService {
 
     private final AppUserService appUserService;
     private final EmailValidator emailValidator;
-   // private final ConfirmationTokenService confirmationTokenService;
-   // private final EmailSender emailSender;
+    private final ConfirmationTokenService confirmationTokenService;
+    private final EmailSender emailSender;
 
     public String register(RegistrationRequest request) {
 
@@ -40,12 +41,12 @@ public class RegistrationService {
                 )
         );
 
-      //  String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
-     //   emailSender.send(request.getEmail(),buildEmail(request.getFirstName(), link));
+        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+       emailSender.send(request.getEmail(),buildEmail(request.getFirstName(), link));
 
         return token;
     }
-/*
+
     @Transactional
     public String confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(() ->
@@ -136,6 +137,6 @@ public class RegistrationService {
                 "</div></div>";
     }
 
-*/
+
 
     }

@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-/*
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -55,4 +55,3 @@ public class ConfirmationToken {
 
 
 }
-*/

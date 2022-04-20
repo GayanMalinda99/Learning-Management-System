@@ -1,6 +1,6 @@
 package com.example.backend.registration;
 
-/*
+
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ public class RegistrationController {
     private final RegistrationService registrationService;
     @PostMapping
     public String register(@RequestBody RegistrationRequest request){
-        //System.out.println(registrationService.register(request));
+
         return registrationService.register(request);
     }
 
@@ -23,4 +23,3 @@ public class RegistrationController {
     }
 
 }
-*/
