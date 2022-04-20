@@ -1,4 +1,4 @@
-package com.example.backend.security.config;
+package com.example.backend.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,12 +7,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class PasswordEncoder {
 
-
-@Bean//Will be available for free use(@Bean)
+    //Will be available for free use(@Bean)
+@Bean
 public BCryptPasswordEncoder bCryptPasswordEncoder(){
     return new BCryptPasswordEncoder();
 }
-
 
 
 
