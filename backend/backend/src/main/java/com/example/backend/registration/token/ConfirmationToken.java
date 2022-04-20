@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
+/*
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,10 +27,7 @@ public class ConfirmationToken {
     private Long id;
 
     @ManyToOne //Because Application User can have many application tokens
-    @JoinColumn(
-            nullable = false,
-            name = "app_user_id"
-    )
+    @JoinColumn(nullable = false,name = "app_user_id")
     private AppUser appUser;
 
 
@@ -58,3 +55,4 @@ public class ConfirmationToken {
 
 
 }
+*/
