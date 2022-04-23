@@ -24,7 +24,6 @@ export default function AddCourse() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const URL =`http://localhost:8080/addcourse`;
-  const cors = require('cors');
 
   
   const handleChange = (e) => {
@@ -36,14 +35,14 @@ export default function AddCourse() {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
-    Axios.post(URL, formValues)
-    .then(res =>console.log(res)).catch(err => console.log(err));
   };
 
   useEffect(() => {
     // console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
+      Axios.post(URL, formValues)
+      .then(res =>console.log(res)).catch(err => console.log(err));
     }
   }, [formErrors]);
 
