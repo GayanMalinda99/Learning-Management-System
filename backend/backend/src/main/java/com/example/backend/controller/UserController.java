@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+
 @CrossOrigin
 @RestController
 @RequestMapping("api/v1/user")
@@ -26,7 +27,5 @@ public class UserController {
     public String deleteUser(){
         return "delete User";
     }
-
-
 
 }

@@ -47,6 +47,8 @@ public class AppUser implements UserDetails {
         this.appUserRole = appUserRole;
     }
 
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority =new SimpleGrantedAuthority(appUserRole.name());
@@ -75,6 +77,14 @@ public class AppUser implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setAppUserRole(AppUserRole appUserRole){
+        this.appUserRole = appUserRole;
+    }
+
+    public AppUserRole getAppUserRole(){
+        return appUserRole;
     }
 
     @Override

@@ -13,6 +13,6 @@ public class EmailValidator implements Predicate<String> {
     public boolean test(String s) {
 
         //Validate the Email
-        return false;
+        return true;
     }
 }

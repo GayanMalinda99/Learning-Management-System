@@ -8,9 +8,12 @@ import com.example.backend.registration.token.ConfirmationToken;
 import com.example.backend.registration.token.ConfirmationTokenService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EnumType;
 import java.time.LocalDateTime;
 
 @Service
@@ -22,13 +25,30 @@ public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
 
-    public String register(RegistrationRequest request) {
 
+    public AppUserRole getRole(RegistrationRequest request){
+        String email = request.getEmail();
+        String parts[] = email.split("@");
+
+        String domain = parts[1];
+        String identifier = domain.substring(0,3);
+
+        if(identifier.equals("stu")){
+            return AppUserRole.STUDENT;
+        }else if(identifier.equals("lec")){
+            return AppUserRole.LECTURE;
+        }else {
+            return null;
+        }
+    }
+
+
+
+    public String register(RegistrationRequest request) {
         boolean isValidEmail =emailValidator.test(request.getEmail());
         if (!isValidEmail) {
             throw new IllegalStateException("Email is not valid");
         }
-
 
         String token = appUserService.signUpUser(
                 new AppUser(
@@ -36,10 +56,10 @@ public class RegistrationService {
                         request.getLastName(),
                         request.getEmail(),
                         request.getPassword(),
-                        AppUserRole.USER
-
+                        getRole(request)
                 )
         );
+
 
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
        emailSender.send(request.getEmail(),buildEmail(request.getFirstName(), link));
