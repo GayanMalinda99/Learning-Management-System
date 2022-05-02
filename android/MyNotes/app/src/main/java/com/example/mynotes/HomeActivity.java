@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
 
         navigationView=(NavigationView)findViewById(R.id.navmenu);
