@@ -1,5 +1,6 @@
 package com.example.backend.appuser;
 
+import com.example.backend.course.model.Course;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 //For the sake of security we use UserDetails
 
@@ -34,6 +36,10 @@ public class AppUser implements UserDetails {
     private AppUserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;
+    @OneToMany(mappedBy = "lecturer")
+    private List<Course> courses;
+    @ManyToMany
+    private List<Course> course;
 
     public AppUser(String firstName,
                    String lastName,

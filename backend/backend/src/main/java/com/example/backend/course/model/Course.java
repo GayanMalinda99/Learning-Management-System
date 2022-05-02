@@ -4,9 +4,8 @@ import com.example.backend.appuser.AppUser;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,8 +14,10 @@ public class Course {
 
     @Id
     private String code;
-    private String course_name;
-    private String course_description;
-    @OneToOne
+    private String title;
+    private String description;
+    @ManyToOne
     private AppUser lecturer;
+    @ManyToMany
+    private List<AppUser> students;
 }
