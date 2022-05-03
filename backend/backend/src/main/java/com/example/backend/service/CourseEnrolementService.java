@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.dto.CourseEnrolementDTO;
 import com.example.backend.repository.CourseEnrolementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public class CourseEnrolementService {
 
     @Autowired
     private CourseEnrolementRepository courseEnrolementRepository;
-    public String saveStudentEnrolledCourse() {
-        courseEnrolementRepository.save();
+    public String saveStudentEnrolledCourse(CourseEnrolementDTO courseEnrolementDTO) {
+        courseEnrolementRepository.save(courseEnrolementDTO);
     }
 }
