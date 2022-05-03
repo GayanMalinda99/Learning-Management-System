@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,6 +19,9 @@ public class Course {
     private String description;
     @ManyToOne
     private AppUser lecturer;
-    @ManyToMany
-    private List<AppUser> students;
+    @ManyToMany(mappedBy = "course")
+    private Set<AppUser> students;
+
+    @OneToMany(mappedBy = "course")
+    Set<Marks> Marks;
 }

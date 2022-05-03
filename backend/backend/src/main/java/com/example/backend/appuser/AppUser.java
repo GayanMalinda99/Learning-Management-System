@@ -1,6 +1,7 @@
 package com.example.backend.appuser;
 
 import com.example.backend.course.model.Course;
+import com.example.backend.course.model.Marks;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 //For the sake of security we use UserDetails
 
@@ -39,7 +41,15 @@ public class AppUser implements UserDetails {
     @OneToMany(mappedBy = "lecturer")
     private List<Course> courses;
     @ManyToMany
-    private List<Course> course;
+    @JoinTable(
+            name = "enroll_course",
+            joinColumns = @JoinColumn(name="student_id"),
+            inverseJoinColumns = @JoinColumn(name= "course_code"))
+    private Set<Course> course;
+
+    @OneToMany(mappedBy = "student")
+    Set<Marks> marks;
+
 
     public AppUser(String firstName,
                    String lastName,
