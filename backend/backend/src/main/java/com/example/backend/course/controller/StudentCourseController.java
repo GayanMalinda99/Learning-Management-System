@@ -10,6 +10,6 @@ public class StudentCourseController {
 
     @GetMapping("/enrolecourse")
     public String enroleCourse(){
-        return "Successfully enrolled";
+        return "Successfully enrolled to course";
     }
 }
