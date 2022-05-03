@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,11 +18,20 @@ public class Course {
     private String code;
     private String title;
     private String description;
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private AppUser lecturer;
-    @ManyToMany(mappedBy = "course")
-    private Set<AppUser> students;
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_enrolled")
+    public
+    Set<AppUser> enrolledStudents = new HashSet<>();
 
     @OneToMany(mappedBy = "course")
     Set<Marks> Marks;
+
+    public Set<AppUser> getEnrolledStudents() {
+        return enrolledStudents;
+    }
 }

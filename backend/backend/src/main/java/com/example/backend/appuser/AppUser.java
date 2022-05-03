@@ -2,6 +2,7 @@ package com.example.backend.appuser;
 
 import com.example.backend.course.model.Course;
 import com.example.backend.course.model.Marks;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 //For the sake of security we use UserDetails
 
@@ -38,14 +36,14 @@ public class AppUser implements UserDetails {
     private AppUserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "lecturer")
-    private List<Course> courses;
-    @ManyToMany
-    @JoinTable(
-            name = "enroll_course",
-            joinColumns = @JoinColumn(name="student_id"),
-            inverseJoinColumns = @JoinColumn(name= "course_code"))
-    private Set<Course> course;
+    private Set<Course> courses;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy="enrolledStudents")
+    private Set<Course> course = new HashSet<>();
 
     @OneToMany(mappedBy = "student")
     Set<Marks> marks;
