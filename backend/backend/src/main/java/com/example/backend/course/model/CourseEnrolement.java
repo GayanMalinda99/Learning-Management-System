@@ -8,5 +8,8 @@ public class CourseEnrolement {
 
     @Id
     private int studentId;
+    private String code;
+    private String course_name;
+    private String course_description;
 
 }
