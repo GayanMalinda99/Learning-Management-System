@@ -1,14 +1,14 @@
 package com.example.backend.course.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
+@RequestMapping("/api/v1/")
 public class AnnouncementController {
 
-    @GetMapping("/announcement/{announce}")
-    public void getAnnouncement(@RequestParam String announce){
+    @PostMapping("announcement/{announce}")
+    public void getAnnouncement(@PathVariable String announce){
 
         System.out.println(announce);
     }
