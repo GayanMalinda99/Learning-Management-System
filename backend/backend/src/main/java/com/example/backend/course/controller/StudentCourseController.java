@@ -1,17 +1,19 @@
 package com.example.backend.course.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.backend.dto.CourseEnrolementDTO;
+import com.example.backend.service.CourseEnrolementService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1")
 public class StudentCourseController {
+    @Autowired
+    private CourseEnrolementService courseEnrolementService;
 
     @PostMapping("/enrolecourse")
-    public String enroleCourse(){
-        return "Successfully enrolled to course";
+    public CourseEnrolementDTO enroleCourse(@RequestBody CourseEnrolementDTO courseEnrolementDTO){
+        return courseEnrolementService.saveStudentEnrolledCourse(courseEnrolementDTO);
     }
 
     @GetMapping("/dropcourse")
