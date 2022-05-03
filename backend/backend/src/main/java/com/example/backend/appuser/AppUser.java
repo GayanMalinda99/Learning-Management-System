@@ -69,8 +69,6 @@ public class AppUser implements UserDetails {
         return firstName;
     }
 
-
-
     public String getLastName() {
         return lastName;
     }
