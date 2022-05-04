@@ -18,12 +18,7 @@ public class StudentCourseController {
         System.out.println("Enrollment Success!");
         return courseEnrolementService.saveStudentEnrolledCourse(courseEnrolementDTO);
     }
-
-    @GetMapping("/registeredcourses")
-    public List<CourseEnrolementDTO> getEnrolledCourses(){
-
-    }
-
+    
     @GetMapping("/dropcourse")
     public String dropCourse(){
         return "Successfully unenrolled";
