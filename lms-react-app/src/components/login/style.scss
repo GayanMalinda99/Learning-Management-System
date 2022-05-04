@@ -30,6 +30,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 2px;
 
             .form-group{
                 display: flex;
@@ -37,12 +38,12 @@
                 align-items: flex-start;
                 width: fit-content;
                 label{
-                    font-size: 21px;
+                    font-size: 18px;
                 }
                 input{
                     margin-top: 5px;
                     min-width: 15em;
-                    height: 40px;
+                    height: 35px;
                     padding: 0px 10px;
                     font-size: 16px;
                     font-family: 'Open Sans' ,sans-serif;
