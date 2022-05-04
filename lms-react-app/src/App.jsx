@@ -2,8 +2,7 @@ import React from "react";
 import "./App.scss";
 import { Login, Register } from "./components/login/index";
 
-import { Login } from "./components/login";
-import { Register } from "./components/login";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +16,7 @@ class App extends React.Component {
 
     this.rightSide.classList.add("right");
 
-    
+
   }
   changeState(){
 
