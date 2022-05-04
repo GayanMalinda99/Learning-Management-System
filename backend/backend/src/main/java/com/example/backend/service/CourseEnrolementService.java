@@ -4,10 +4,13 @@ import com.example.backend.course.model.CourseEnrolement;
 import com.example.backend.dto.CourseEnrolementDTO;
 import com.example.backend.repository.CourseEnrolementRepository;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -22,5 +25,10 @@ public class CourseEnrolementService {
     public CourseEnrolementDTO saveStudentEnrolledCourse(CourseEnrolementDTO courseEnrolementDTO) {
         courseEnrolementRepository.save(modelMapper.map(courseEnrolementDTO, CourseEnrolement.class));
         return courseEnrolementDTO;
+    }
+
+    public List<CourseEnrolementDTO> getEnrolledCourses(){
+        List<CourseEnrolement>courseList=courseEnrolementRepository.findAll();
+        return modelMapper.map(courseList, new TypeToken<List<CourseEnrolementDTO>>(){}.getType());
     }
 }
