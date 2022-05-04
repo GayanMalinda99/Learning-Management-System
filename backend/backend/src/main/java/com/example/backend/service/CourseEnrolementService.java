@@ -33,5 +33,6 @@ public class CourseEnrolementService {
 
     public boolean dropCourse(CourseEnrolementDTO courseEnrolementDTO) {
         courseEnrolementRepository.delete(modelMapper.map(courseEnrolementDTO, CourseEnrolement.class));
+        return true;
     }
 }
