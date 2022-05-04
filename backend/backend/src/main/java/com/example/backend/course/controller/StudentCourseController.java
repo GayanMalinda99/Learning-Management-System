@@ -13,6 +13,7 @@ public class StudentCourseController {
 
     @PostMapping("/enrolecourse")
     public CourseEnrolementDTO enroleCourse(@RequestBody CourseEnrolementDTO courseEnrolementDTO){
+        System.out.println("Enrollment Success!");
         return courseEnrolementService.saveStudentEnrolledCourse(courseEnrolementDTO);
     }
 
