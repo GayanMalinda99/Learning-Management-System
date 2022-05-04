@@ -25,7 +25,7 @@ public class StudentCourseController {
     }
 
     @DeleteMapping("/dropcourse")
-    public String dropCourse(){
+    public String dropCourse(@RequestBody CourseEnrolementDTO courseEnrolementDTO){
         return "Successfully unenrolled";
     }
 }
