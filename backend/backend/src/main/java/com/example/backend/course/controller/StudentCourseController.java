@@ -24,7 +24,7 @@ public class StudentCourseController {
         return courseEnrolementService.getEnrolledCourses();
     }
 
-    @GetMapping("/dropcourse")
+    @DeleteMapping("/dropcourse")
     public String dropCourse(){
         return "Successfully unenrolled";
     }
