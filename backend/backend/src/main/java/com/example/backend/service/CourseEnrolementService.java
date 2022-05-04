@@ -30,4 +30,8 @@ public class CourseEnrolementService {
         List<CourseEnrolement>courseList=courseEnrolementRepository.findAll();
         return modelMapper.map(courseList, new TypeToken<List<CourseEnrolementDTO>>(){}.getType());
     }
+
+    public boolean dropCourse(CourseEnrolementDTO courseEnrolementDTO) {
+
+    }
 }
