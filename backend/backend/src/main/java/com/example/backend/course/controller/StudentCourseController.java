@@ -13,7 +13,7 @@ public class StudentCourseController {
     @Autowired
     private CourseEnrolementService courseEnrolementService;
 
-    @PostMapping("/enrolecourse")
+    @PostMapping("/enrolCourse")
     public CourseEnrolementDTO enroleCourse(@RequestBody CourseEnrolementDTO courseEnrolementDTO){
         System.out.println("Enrollment Success!");
         return courseEnrolementService.saveStudentEnrolledCourse(courseEnrolementDTO);
@@ -24,7 +24,7 @@ public class StudentCourseController {
         return courseEnrolementService.getEnrolledCourses();
     }
 
-    @DeleteMapping("/dropcourse")
+    @DeleteMapping("/dropCourse")
     public boolean dropCourse(@RequestBody CourseEnrolementDTO courseEnrolementDTO){
         return courseEnrolementService.dropCourse(courseEnrolementDTO);
     }
