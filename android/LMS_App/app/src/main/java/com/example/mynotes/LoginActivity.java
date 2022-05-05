@@ -11,20 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mynotes.model.Student;
-import com.example.mynotes.retrofit.RetrofitService;
-import com.example.mynotes.retrofit.StudentApi;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import okhttp3.Response;
 
 
 public class  LoginActivity extends AppCompatActivity {
@@ -32,6 +23,8 @@ public class  LoginActivity extends AppCompatActivity {
     EditText etEmail,etPassword,etName;
     TextView tvRegister;
     Button btnLogin;
+
+    final String url_Login =  "" ;
 
 
 
@@ -55,11 +48,67 @@ public class  LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i2 = new Intent(LoginActivity.this,
-                        HomeActivity.class);
-                startActivity(i2);
+
+                String Email = etEmail.getText().toString();
+                String Password = etPassword.getText().toString();
+
+                new LoginUser().execute(Email,Password);
+
             }
         });
+
+    }
+
+    public class LoginUser extends AsyncTask<String , Void , String>
+    {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            String Email = strings[0];
+            String Password = strings[1];
+
+            OkHttpClient okHttpClient = new OkHttpClient();
+
+            RequestBody formBody = new FormBody.Builder()
+                    .add("user_id",Email)
+                    .add("user_password",Password)
+                    .build();
+
+            Request request = new Request.Builder()
+                    .url(url_Login)
+                    .post(formBody)
+                    .build();
+
+            Response response = null;
+
+            try {
+
+                response = okHttpClient.newCall(request).execute();
+                if (response.isSuccessful())
+                {
+                    String result = response.body().string();
+                    if (result.equalsIgnoreCase("login"))
+                    {
+
+                        Intent i = new Intent(LoginActivity.this,
+                                DashboardActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(LoginActivity.this, "Email Password missmatch",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 
 
