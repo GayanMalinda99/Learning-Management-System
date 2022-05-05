@@ -10,8 +10,8 @@
 
     <include
         layout="@layout/register_layout"
-        android:layout_width="385dp"
-        android:layout_height="647dp"
+        android:layout_width="392dp"
+        android:layout_height="667dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         app:layout_constraintBottom_toBottomOf="parent"

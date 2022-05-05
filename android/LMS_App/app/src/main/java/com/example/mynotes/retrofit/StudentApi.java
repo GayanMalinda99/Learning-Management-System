@@ -10,6 +10,6 @@ import retrofit2.http.POST;
 
 public interface StudentApi {
 
-    @POST("/student/save")
+    @POST("api/v1/registration")
     Call<Student> save(@Body Student student);
 }

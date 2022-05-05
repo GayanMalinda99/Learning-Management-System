@@ -8,6 +8,7 @@ public class Student {
 
     private int id;
     private String name;
+    private String Lname;
     private String email;
     private String password;
 
@@ -15,16 +16,21 @@ public class Student {
         return id;
     }
 
-    public void setId(int id) {
+   /* public void setId(int id) {
         this.id = id;
     }
-
+*/
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setLname(String Lname)
+    {
+        this.Lname=Lname;
     }
 
     public String getEmail() {
@@ -46,8 +52,8 @@ public class Student {
     @Override
     public String toString() {
         return "student{" +
-                //"id=" + id +
-                ", name='" + name + '\'' +
+                "firstName =" + name +
+                ", lastName='" + Lname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
