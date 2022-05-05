@@ -4,7 +4,7 @@ package com.example.backend.registration;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-
+@CrossOrigin(origins = "http://localhost:3000/")
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/v1/registration")
