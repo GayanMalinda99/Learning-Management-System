@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText etEmail,etPassword,etName;
+    EditText etEmail,etPassword,etName,etLname;
     Button btnRegister;
 
     @Override
@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void intializeComponents() {
 
         etName = (EditText) findViewById(R.id.et_name);
+        etLname = (EditText) findViewById(R.id.et_Lname);
         etEmail = (EditText) findViewById(R.id.et_email);
         etPassword = (EditText) findViewById(R.id.et_password);
         btnRegister = (Button) findViewById(R.id.btn_register);
@@ -45,18 +46,22 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener( View ->
                 {
                     String name = String.valueOf(etName.getText());
+                    String lname = String.valueOf(etLname.getText());
                     String email = String.valueOf(etEmail.getText());
                     String password = String.valueOf(etPassword.getText());
 
 
                     Student student = new Student();
                     student.setName(name);
+                    student.setLname(lname);
                     student.setEmail(email);
                     student.setPassword(password);
 
 
                     studentApi.save(student)
                             .enqueue(new Callback<Student>() {
+
+
                                 @Override
                                 public void onResponse(Call<Student> call, Response<Student> response) {
                                     Toast.makeText(RegisterActivity.this,"Save Success",Toast.LENGTH_SHORT).show();
