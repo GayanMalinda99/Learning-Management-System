@@ -53,7 +53,7 @@ export class Login extends React.Component {
           
               <div className="image"><img src={loginImg} /> </div>
 
-          <form onSubmit={this.submitHandler} action="login" method="post">
+          <form onSubmit={this.submitHandler} action="/login" method="post">
             <div className="form">
 
               <div className="form-group">
