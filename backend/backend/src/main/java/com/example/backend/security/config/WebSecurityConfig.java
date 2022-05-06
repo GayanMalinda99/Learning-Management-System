@@ -21,7 +21,6 @@ import java.util.Arrays;
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
-@CrossOrigin(origins = "http://localhost:3000/")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final AppUserService appUserService;
