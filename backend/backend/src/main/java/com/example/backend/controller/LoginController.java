@@ -1,31 +1,13 @@
 package com.example.backend.controller;
-
-
-import com.example.backend.registration.RegistrationRequest;
-import com.example.backend.registration.RegistrationService;
 import lombok.AllArgsConstructor;
-
 import org.springframework.web.bind.annotation.*;
-
-
 
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/login")
+@RequestMapping("api/v1/login")
 public class LoginController {
-
-
-/*
-  @GetMapping("/login")
-    public String login(){
-
-    return "login";
-  }
-*/
-
-
 
   private final LoginService loginService;
   @PostMapping
