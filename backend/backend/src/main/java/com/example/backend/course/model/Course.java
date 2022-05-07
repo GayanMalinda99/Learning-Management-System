@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+
 @Getter
 @Setter
 @Entity
@@ -19,4 +20,5 @@ public class Course {
     private String course_description;
     @OneToOne
     private AppUser lecturer;
+
 }

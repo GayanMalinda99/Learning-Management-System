@@ -29,6 +29,22 @@ public class RegistrationService {
             throw new IllegalStateException("Email is not valid");
         }
 
+//      Define user type using email
+        String email = request.getEmail();
+        String domain = "";
+        String[] parts = email.split("@");
+        if (parts.length == 2)
+            domain = parts[1];
+        String userType = domain.substring(0,3);
+
+        AppUserRole role;
+        if(userType.equals("stu")){
+            role = AppUserRole.STUDENT;
+        } else if(userType.equals("lec")){
+            role = AppUserRole.LECTURER;
+        }else{
+            role = null;
+        }
 
         String token = appUserService.signUpUser(
                 new AppUser(
@@ -37,6 +53,7 @@ public class RegistrationService {
                         request.getEmail(),
                         request.getPassword(),
                         AppUserRole.STUDENT
+
 
                 )
         );
