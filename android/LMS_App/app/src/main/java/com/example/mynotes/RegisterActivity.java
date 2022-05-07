@@ -3,6 +3,7 @@ package com.example.mynotes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText etEmail,etPassword,etName,etLname;
     Button btnRegister;
 
+    final String url_Login =  "" ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,42 +43,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-        RetrofitService retrofitService = new RetrofitService();
-        StudentApi studentApi = retrofitService.getRetrofit().create(StudentApi.class);
+        btnRegister.setOnClickListener( new View.OnClickListener()
+                                           {
+                                               @Override
+                                               public void onClick(View v) {
 
-        btnRegister.setOnClickListener( View ->
-                {
-                    String name = String.valueOf(etName.getText());
-                    String lname = String.valueOf(etLname.getText());
-                    String email = String.valueOf(etEmail.getText());
-                    String password = String.valueOf(etPassword.getText());
-
-
-                    Student student = new Student();
-                    student.setName(name);
-                    student.setLname(lname);
-                    student.setEmail(email);
-                    student.setPassword(password);
-
-
-                    studentApi.save(student)
-                            .enqueue(new Callback<Student>() {
-
-
-                                @Override
-                                public void onResponse(Call<Student> call, Response<Student> response) {
-                                    Toast.makeText(RegisterActivity.this,"Save Success",Toast.LENGTH_SHORT).show();
-
-                                }
-
-                                @Override
-                                public void onFailure(Call<Student> call, Throwable t) {
-
-                                    Toast.makeText(RegisterActivity.this,"Save Failed",Toast.LENGTH_SHORT).show();
-                                    Logger.getLogger(RegisterActivity.class.getName()).log(Level.SEVERE,"Error",t);
-                                }
-                            });
-                }
-        );
+                                               }
+                                           });
     }
 }
