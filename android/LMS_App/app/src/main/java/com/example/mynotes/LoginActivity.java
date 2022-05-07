@@ -35,9 +35,12 @@ public class  LoginActivity extends AppCompatActivity {
 
         tvRegister = (TextView) findViewById(R.id.tv_register);
 
+
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent i = new Intent(LoginActivity.this,
                         RegisterActivity.class);
                 startActivity(i);
