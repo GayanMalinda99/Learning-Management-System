@@ -24,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText etEmail,etPassword,etName,etLname;
     Button btnRegister;
 
-    final String url_Login =  "" ;
+    final String url_Login =  "http:/" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

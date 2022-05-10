@@ -24,7 +24,7 @@ public class  LoginActivity extends AppCompatActivity {
     TextView tvRegister;
     Button btnLogin;
 
-    final String url_Login =  "" ;
+    final String url_Login =  "http:/" ;
 
 
 
