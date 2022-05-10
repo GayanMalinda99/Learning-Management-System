@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.scss";
 import { Login, Register } from './components/login/index';
+import AddCourse from "./components/course/AddCourse";
 
 
 class App extends React.Component {
@@ -39,10 +40,6 @@ class App extends React.Component {
 
   }
 
-
-
-
-
   render() {
     const { isLogginActive } = this.state;
     const current = isLogginActive ? "Register" : "Login";
@@ -65,6 +62,10 @@ class App extends React.Component {
             onClick={this.changeState.bind(this)}
           />
         </div>
+        {/* <div className= "AddCourse">
+          <AddCourse />
+        </div> */}
+        
       </div>
     );
   }

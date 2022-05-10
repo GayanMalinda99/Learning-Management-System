@@ -23,7 +23,7 @@ export class Register extends React.Component {
     e.preventDefault();
     console.log(this.state);
     axios
-    .post('http://localhost:8080/api/v1/registration',this.state)
+    .post(`http://localhost:8080/api/v1/registration/`,this.state)
     .then(response=>{
         console.log(response)
         alert("Registration Successful! Verify Your Email To Login ");
@@ -85,7 +85,7 @@ export class Register extends React.Component {
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   placeholder="Password"
                   value={password}

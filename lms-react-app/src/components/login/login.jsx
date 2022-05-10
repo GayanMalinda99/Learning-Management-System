@@ -26,7 +26,7 @@ export class Login extends React.Component {
     e.preventDefault();
     console.log(this.state);
     axios
-    .post('http://localhost:8080/login',this.state)
+    .post('http://localhost:8080/api/v1/login',this.state)
     .then(response=>{
         console.log(response)
         alert("Login Success!!");

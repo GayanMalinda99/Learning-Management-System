@@ -10,7 +10,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { useState, useEffect } from "react";
-import "../App.css";
+import "./AddCourse.css";
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Axios from 'axios';
@@ -19,11 +19,11 @@ import Axios from 'axios';
 const theme = createTheme();
 
 export default function AddCourse() {
-  const initialValues = { code: "", name: "", description: "" };
+  const initialValues = { code: "", title: "", description: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const URL =`http://localhost:8080/addcourse`;
+  const URL =`http://localhost:8080/api/v1/course/addcourse`;
 
   
   const handleChange = (e) => {
@@ -53,8 +53,8 @@ export default function AddCourse() {
     } else if (values.code.length < 9 || values.code.length > 9) {
       errors.code = "CourseCode must be in 9 characters!";
     } 
-    if (!values.name) {
-      errors.name = "CourseName is required!";
+    if (!values.title) {
+      errors.title = "CourseName is required!";
     }
     if (!values.description) {
       errors.description = "Description is required!";
@@ -112,11 +112,11 @@ export default function AddCourse() {
                 <TextField
                   required
                   fullWidth
-                  id="name"
+                  id="title"
                   label="Course Name"
-                  name="name"
+                  name="title"
                   autoComplete="course-name"
-                  value={formValues.name}
+                  value={formValues.title}
                   onChange={handleChange}
                 />
               </Grid>
