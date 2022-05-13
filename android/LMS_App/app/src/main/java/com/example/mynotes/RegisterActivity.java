@@ -41,10 +41,6 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = (EditText) findViewById(R.id.et_password);
         btnRegister = (Button) findViewById(R.id.btn_register);
 
-
-
-
-
         btnRegister.setOnClickListener( new View.OnClickListener()
                                            {
                                                @Override
@@ -114,6 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 }
+
             }
             catch (Exception e)
             {
