@@ -2,51 +2,53 @@ import React from "react";
 import "./App.scss";
 import { Login, Register } from './components/login/index';
 import AddCourse from "./components/course/AddCourse";
-
+import ResponsiveAppBar from "./components/dashboard/LecturerDashboard";
+import ViewCourses from "./components/course/ViewCourses";
+import { Routes,Route } from "react-router";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogginActive: true,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     isLogginActive: true,
+  //   };
+  // }
 
-  componentDidMount(){
+  // componentDidMount(){
 
-    this.rightSide.classList.add("right");
+  //   this.rightSide.classList.add("right");
 
     
-  }
-  changeState(){
+  // }
+  // changeState(){
 
 
-    const { isLogginActive } = this.state;
+  //   const { isLogginActive } = this.state;
 
 
-    if (isLogginActive) {
-        this.rightSide.classList.remove("right");
-        this.rightSide.classList.add("left");
+  //   if (isLogginActive) {
+  //       this.rightSide.classList.remove("right");
+  //       this.rightSide.classList.add("left");
       
-    } 
-    else 
-    {
-        this.rightSide.classList.remove("left");
-        this.rightSide.classList.add("right");
-    }
+  //   } 
+  //   else 
+  //   {
+  //       this.rightSide.classList.remove("left");
+  //       this.rightSide.classList.add("right");
+  //   }
     
-    this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
+  //   this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
 
 
-  }
+  // }
 
   render() {
-    const { isLogginActive } = this.state;
-    const current = isLogginActive ? "Register" : "Login";
-    const currentActive = isLogginActive ? "login" : "register";
+    // const { isLogginActive } = this.state;
+    // const current = isLogginActive ? "Register" : "Login";
+    // const currentActive = isLogginActive ? "login" : "register";
     return (
       <div className="App">
-        <div className="login">
+        {/* <div className="login">
           <div className="container" ref={(ref) => (this.container = ref)}>
             {isLogginActive && (
               <Login containerRef={(ref) => (this.current = ref)} />
@@ -61,10 +63,12 @@ class App extends React.Component {
             containerRef={(ref) => (this.rightSide = ref)}
             onClick={this.changeState.bind(this)}
           />
-        </div>
-        {/* <div className= "AddCourse">
-          <AddCourse />
         </div> */}
+        <ResponsiveAppBar/>
+        <Routes>
+          <Route path="/dashboard" element={<ViewCourses/>} />
+          <Route path="/course" element={<AddCourse/>} />
+        </Routes>
         
       </div>
     );

@@ -4,6 +4,7 @@
 .App {
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: "Open Sans", sans-serif;
@@ -123,8 +124,4 @@
   &:focus {
     outline: none;
   }
-}
-
-.AddCourse{
-  display: block;
 }

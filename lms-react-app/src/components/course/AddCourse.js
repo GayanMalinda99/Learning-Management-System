@@ -63,17 +63,20 @@ export default function AddCourse() {
   };
 
   return (
+    <div className="main">
+      <h1>Add Course</h1>
     <ThemeProvider theme={theme}>
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+        {/* <Box sx={{ flexGrow: 1 }} className="title"> */}
+            {/* <AppBar position="static">
             <Toolbar>
                 <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
                     Add Course
                 </Typography>
             </Toolbar>
-            </AppBar>
-        </Box>
-      <Container component="main" maxWidth="xs">
+            </AppBar> */}
+            
+        {/* </Box> */}
+      <Container component="main" maxWidth="xs" className="content">
         <CssBaseline />
         <div className="msg">
             {Object.keys(formErrors).length === 0 && isSubmit ?(
@@ -147,5 +150,6 @@ export default function AddCourse() {
         </Box>
       </Container>
     </ThemeProvider>
+    </div>
   );
 }
