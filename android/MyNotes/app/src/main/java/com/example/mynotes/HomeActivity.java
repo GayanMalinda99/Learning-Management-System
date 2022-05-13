@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,8 +59,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_courses :
-                        Toast.makeText(getApplicationContext(),"Call Panel is Open",Toast.LENGTH_LONG).show();
-                        drawerLayout.closeDrawer(GravityCompat.START);
+                        openCourseActivity() ;
+                        /*Toast.makeText(getApplicationContext(),"Call Panel is Open",Toast.LENGTH_LONG).show();
+                        drawerLayout.closeDrawer(GravityCompat.START);*/
                         break;
 
                     case R.id.profile :
@@ -73,9 +75,10 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-
-
     }
-
-
+    public void openCourseActivity(){
+        Intent intent = new Intent(this, CourseActivity.class) ;
+        startActivity(intent);
+    }
 }
+
