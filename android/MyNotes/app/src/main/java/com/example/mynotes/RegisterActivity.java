@@ -102,7 +102,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 "User Already Exist",Toast.LENGTH_LONG).show();
 
                     }
-
                     else
                     {
                         Toast.makeText(RegisterActivity.this,
