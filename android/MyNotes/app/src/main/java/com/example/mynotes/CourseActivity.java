@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseActivity extends AppCompatActivity {
+    public static final String COURSE_NAME = "com.example.mynotes.COURSE_NAME" ;
 
     Toolbar toolbar;
 
@@ -41,13 +42,15 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("Course", courses.get(position)) ;
-                openSelectedCourseActivity();
+                String courseName = courses.get(position) ;
+                openSelectedCourseActivity(courseName);
             }
         });
     }
 
-    public void openSelectedCourseActivity(){
+    public void openSelectedCourseActivity(String courseName){
         Intent intent = new Intent(this, SelectedCourseActivity.class) ;
+        intent.putExtra(COURSE_NAME, courseName) ;
         startActivity(intent);
     }
 }
