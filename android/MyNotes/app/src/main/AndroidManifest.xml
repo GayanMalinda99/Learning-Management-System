@@ -14,6 +14,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AllCources"
+            android:exported="false" />
+        <activity
             android:name=".SelectedCourseActivity"
             android:exported="false" />
         <activity

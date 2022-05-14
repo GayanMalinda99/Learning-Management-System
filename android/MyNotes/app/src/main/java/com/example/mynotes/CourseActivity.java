@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toolbar;
 
@@ -46,6 +47,19 @@ public class CourseActivity extends AppCompatActivity {
                 openSelectedCourseActivity(courseName);
             }
         });
+
+        ImageButton imageButton = findViewById(R.id.imageButton1) ;
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAllCoursesActivity();
+            }
+        }) ;
+    }
+
+    public void openAllCoursesActivity(){
+        Intent intent = new Intent(this, AllCources.class) ;
+        startActivity(intent);
     }
 
     public void openSelectedCourseActivity(String courseName){
