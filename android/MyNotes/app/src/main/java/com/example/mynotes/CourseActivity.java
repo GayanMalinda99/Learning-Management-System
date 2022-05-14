@@ -2,7 +2,11 @@ package com.example.mynotes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toolbar;
@@ -32,6 +36,19 @@ public class CourseActivity extends AppCompatActivity {
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, courses) ;
         listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("Course", courses.get(position)) ;
+                openSelectedCourseActivity();
+            }
+        });
+    }
+
+    public void openSelectedCourseActivity(){
+        Intent intent = new Intent(this, SelectedCourseActivity.class) ;
+        startActivity(intent);
     }
 }
 
