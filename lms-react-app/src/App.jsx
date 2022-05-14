@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.scss";
-import { Login, Register } from './components/login/index';
+import { Login, Register } from "./components/login/index";
 import AddCourse from "./components/course/AddCourse";
 import ResponsiveAppBar from "./components/dashboard/LecturerDashboard";
 import ViewCourses from "./components/course/ViewCourses";
-import { Routes,Route } from "react-router";
+import { Routes, Route } from "react-router";
+import Panel from "./components/AnnouncementPalet/Panel";
 
 class App extends React.Component {
   // constructor(props) {
@@ -18,27 +19,23 @@ class App extends React.Component {
 
   //   this.rightSide.classList.add("right");
 
-    
   // }
   // changeState(){
 
-
   //   const { isLogginActive } = this.state;
-
 
   //   if (isLogginActive) {
   //       this.rightSide.classList.remove("right");
   //       this.rightSide.classList.add("left");
-      
-  //   } 
-  //   else 
+
+  //   }
+  //   else
   //   {
   //       this.rightSide.classList.remove("left");
   //       this.rightSide.classList.add("right");
   //   }
-    
-  //   this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
 
+  //   this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
 
   // }
 
@@ -64,30 +61,29 @@ class App extends React.Component {
             onClick={this.changeState.bind(this)}
           />
         </div> */}
-        <ResponsiveAppBar/>
+        <ResponsiveAppBar />
         <Routes>
-          <Route path="/dashboard" element={<ViewCourses/>} />
-          <Route path="/course" element={<AddCourse/>} />
+          <Route path="/dashboard" element={<ViewCourses />} />
+          <Route path="/course" element={<AddCourse />} />
+          <Route path="/announcement" element={<Panel />} />
         </Routes>
-        
       </div>
     );
   }
 }
 
-
-const RightSide = props => {
-    return (
-      <div
-        className="right-side"
-        ref={props.containerRef}
-        onClick={props.onClick}
-      >
-        <div className="inner-container">
-            <div className="text">{props.current}</div>
-        </div>
+const RightSide = (props) => {
+  return (
+    <div
+      className="right-side"
+      ref={props.containerRef}
+      onClick={props.onClick}
+    >
+      <div className="inner-container">
+        <div className="text">{props.current}</div>
       </div>
-    );
-  };
-  
-  export default App;
+    </div>
+  );
+};
+
+export default App;
