@@ -3,7 +3,7 @@ package com.example.backend.controller;
 import com.example.backend.registration.EmailValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
+/*
 @Service
 @AllArgsConstructor
 public class LoginService {
@@ -20,3 +20,4 @@ public class LoginService {
     }
 
 }
+*/
