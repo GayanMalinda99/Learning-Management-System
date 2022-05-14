@@ -99,6 +99,7 @@ public class  LoginActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     }
+
                     else
                     {
                         Toast.makeText(LoginActivity.this, "Email Password missmatch",

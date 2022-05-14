@@ -1,8 +1,5 @@
 package com.example.mynotes.model;
 
-
-
-
 public class Student {
 
 
@@ -16,10 +13,10 @@ public class Student {
         return id;
     }
 
-   /* public void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
-*/
+
     public String getName() {
         return name;
     }
@@ -52,7 +49,8 @@ public class Student {
     @Override
     public String toString() {
         return "student{" +
-                "firstName =" + name +
+                "id =" +id+ '\''+
+                "firstName =" + name + '\''+
                 ", lastName='" + Lname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +

@@ -13,12 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HomeActivity"/>
+        <activity
+            android:name=".SelectedCourseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CourseActivity"
+            android:exported="false" />
         <activity android:name=".DashboardActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity
-            android:name=".LoginActivity"
-            android:label="YourAppName"
+            android:name=".HomeActivity"
+            android:exported="true"
+            android:label="@string/DashBoard"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
