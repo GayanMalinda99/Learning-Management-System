@@ -54,6 +54,7 @@ public class RegistrationService {
                         request.getPassword(),
                         AppUserRole.STUDENT
 
+
                 )
         );
 
