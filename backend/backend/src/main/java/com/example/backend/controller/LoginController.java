@@ -1,38 +1,34 @@
 package com.example.backend.controller;
-
-
-import com.example.backend.registration.RegistrationRequest;
-import com.example.backend.registration.RegistrationService;
+import com.example.backend.appuser.AppUser;
 import lombok.AllArgsConstructor;
-
 import org.springframework.web.bind.annotation.*;
 
 
-
-
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin
 @AllArgsConstructor
 @RestController
-@RequestMapping("/login")
+@RequestMapping("api/v1/login")
 public class LoginController {
 
+ // private final LoginService loginService;
 
-/*
-  @GetMapping("/login")
-    public String login(){
+  @GetMapping
+  public void getLoginDetails(@RequestBody AppUser appUser){
 
-    return "login";
+    System.out.println("User FirstName is:"+appUser.getFirstName());
+    System.out.println("User LastName is:"+appUser.getLastName());
+    System.out.println("User Email is:"+appUser.getEmail());
+    System.out.println("User Password is:"+appUser.getPassword());
+    System.out.println("User Role is:"+appUser.getAppUserRole());
+
+
+
   }
-*/
 
 
 
-  private final LoginService loginService;
-  @PostMapping
-  public String login(@RequestBody LoginRequest request){
 
-    return loginService.login(request);
-  }
+
 
 
 }
