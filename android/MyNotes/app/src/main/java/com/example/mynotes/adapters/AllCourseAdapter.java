@@ -1,6 +1,7 @@
 package com.example.mynotes.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,13 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.textView2) ;
             imageButton = itemView.findViewById(R.id.imageButton2) ;
+
+            itemView.findViewById(R.id.imageButton2).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("Name" , textView.getText().toString()) ;
+                }
+            });
 
         }
     }
