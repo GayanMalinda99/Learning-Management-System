@@ -1,6 +1,8 @@
 package com.example.mynotes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toolbar;
+
+import com.example.mynotes.adapters.CourseAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +32,8 @@ public class CourseActivity extends AppCompatActivity {
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-        ListView listView = findViewById(R.id.courseList) ;
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
+
         List<String> courses = new ArrayList<>() ;
         courses.add("Web Development") ;
         courses.add("Mobile Development") ;
@@ -36,17 +41,10 @@ public class CourseActivity extends AppCompatActivity {
         courses.add("Descrete Mathematics") ;
         courses.add("Software Validation") ;
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, courses) ;
-        listView.setAdapter(arrayAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("Course", courses.get(position)) ;
-                String courseName = courses.get(position) ;
-                openSelectedCourseActivity(courseName);
-            }
-        });
+        CourseAdapter courseAdapter = new CourseAdapter(this, courses) ;
+        recyclerView.setAdapter(courseAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        courseAdapter.getItemCount() ;
 
         ImageButton imageButton = findViewById(R.id.imageButton1) ;
         imageButton.setOnClickListener(new View.OnClickListener() {

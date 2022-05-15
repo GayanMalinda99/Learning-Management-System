@@ -20,15 +20,15 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="15dp"
             android:text="Item"
-            android:textSize="20sp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="41dp"
+        android:layout_height="34dp"
         android:layout_marginStart="250dp"
         android:layout_marginLeft="100dp"
         app:srcCompat="@android:drawable/ic_input_add" />
