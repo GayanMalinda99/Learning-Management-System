@@ -1,19 +1,22 @@
 import './CourseCard.css';
 import { Button } from '@mui/material';
+import img from '../../image/img.jpg'
 
 const CourseCard = ({ courseData }) => {
     return (
         <div className="card">
+            <div className="card__image"><img src={img} alt="image"/></div>
             <div className="card__title">{courseData.title}</div>
             <div className="card__body">
+                
                 <div>{courseData.code}</div>
                 <div>{courseData.description}</div>
                 <div>{courseData.lecture_id}</div>
-                <Button variant="contained" color="primary">
-                    Enroll
-                </Button>
+                
             </div>
-
+            <Button variant="contained" color="primary" className="card__btn">
+                Enroll
+            </Button>
         </div>
     )
 };
