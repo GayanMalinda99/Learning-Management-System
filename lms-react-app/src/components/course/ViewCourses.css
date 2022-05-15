@@ -1,0 +1,18 @@
+.Main {
+    padding: 2rem;
+    width: 75%;
+  }
+  
+  .cards-container {
+    display: flex;
+    flex-wrap: column;
+  }
+  
+  .search-box {
+    outline: none;
+    width: 100%;
+    border: 1px solid grey;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: .5rem;
+  }
