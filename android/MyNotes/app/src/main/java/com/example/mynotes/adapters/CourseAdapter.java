@@ -54,6 +54,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             textView = (TextView) itemView.findViewById(R.id.course_text) ;
             imageButton = itemView.findViewById(R.id.course_delete_button) ;
             itemView.setOnClickListener(this);
+            itemView.findViewById(R.id.course_delete_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("Course name : ", textView.getText().toString()) ;
+                }
+            });
         }
 
         @Override

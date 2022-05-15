@@ -31,7 +31,8 @@
         android:layout_width="46dp"
         android:layout_height="32dp"
         android:layout_marginStart="300dp"
-        app:srcCompat="@android:drawable/ic_delete" />
+        app:srcCompat="@android:drawable/ic_delete"
+        android:layout_marginLeft="300dp" />
 
 
 </androidx.cardview.widget.CardView>
