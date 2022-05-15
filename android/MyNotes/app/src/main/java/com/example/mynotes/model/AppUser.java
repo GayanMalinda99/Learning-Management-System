@@ -1,33 +1,40 @@
 package com.example.mynotes.model;
 
-public class Student {
+public class AppUser {
 
 
     private int id;
-    private String name;
-    private String Lname;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
+
+    public AppUser(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getName() {
-        return name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLname(String Lname)
+    public void setLastName(String Lname)
     {
-        this.Lname=Lname;
+        this.lastName =Lname;
     }
 
     public String getEmail() {
@@ -50,8 +57,8 @@ public class Student {
     public String toString() {
         return "student{" +
                 "id =" +id+ '\''+
-                "firstName =" + name + '\''+
-                ", lastName='" + Lname + '\'' +
+                "firstName =" + firstName + '\''+
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
