@@ -23,16 +23,18 @@ public class CourseActivity extends AppCompatActivity {
     public static final String COURSE_NAME = "com.example.mynotes.COURSE_NAME" ;
 
     Toolbar toolbar;
+    private RecyclerView recyclerView ;
+    private CourseAdapter.RecycleViewClickListner listner ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
 
+        recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
+
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
-
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
 
         List<String> courses = new ArrayList<>() ;
         courses.add("Web Development") ;
@@ -41,7 +43,16 @@ public class CourseActivity extends AppCompatActivity {
         courses.add("Descrete Mathematics") ;
         courses.add("Software Validation") ;
 
-        CourseAdapter courseAdapter = new CourseAdapter(this, courses) ;
+        listner = new CourseAdapter.RecycleViewClickListner() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getApplicationContext(), SelectedCourseActivity.class) ;
+                intent.putExtra(COURSE_NAME, courses.get(position)) ;
+                startActivity(intent);
+            }
+        } ;
+
+        CourseAdapter courseAdapter = new CourseAdapter(this, courses, listner) ;
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         courseAdapter.getItemCount() ;

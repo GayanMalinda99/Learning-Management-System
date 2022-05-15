@@ -1,6 +1,7 @@
 package com.example.mynotes.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     Context context ;
     List<String> allEnrolledCourses;
+    private RecycleViewClickListner itemClickListner ;
 
-    public CourseAdapter(Context ct , List<String> courses){
+    public CourseAdapter(Context ct , List<String> courses, RecycleViewClickListner listner){
         context = ct;
         allEnrolledCourses = courses ;
+        itemClickListner = listner ;
     }
 
     @NonNull
@@ -42,7 +45,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         return allEnrolledCourses.size();
     }
 
-    public class CourseViewHolder extends RecyclerView.ViewHolder {
+    public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textView ;
         ImageButton imageButton ;
 
@@ -50,7 +53,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.course_text) ;
             imageButton = itemView.findViewById(R.id.course_delete_button) ;
+            itemView.setOnClickListener(this);
+        }
 
+        @Override
+        public void onClick(View view) {
+            itemClickListner.onItemClick(itemView, getAdapterPosition());
         }
     }
+
+   public interface RecycleViewClickListner{
+        void onItemClick(View view, int position) ;
+   }
 }
