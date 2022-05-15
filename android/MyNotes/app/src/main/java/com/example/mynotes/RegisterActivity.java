@@ -24,18 +24,18 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
 
 
-    final String url_Register =  "http:/" ;
+//    final String url_Register =  "http:/" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etFirstName = (EditText) findViewById(R.id.et_name);
-        etLastName = (EditText) findViewById(R.id.et_Lname);
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etPassword = (EditText) findViewById(R.id.et_password);
-        btnRegister = (Button) findViewById(R.id.btn_register);
+        etFirstName = findViewById(R.id.etFirstName);
+        etLastName = findViewById(R.id.etLastName);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        btnRegister = findViewById(R.id.btnRegister);
 
         btnRegister.setOnClickListener( new View.OnClickListener()
        {
@@ -44,9 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
                String firstName = etFirstName.getText().toString();
                String lastName = etLastName.getText().toString();
                String email = etEmail.getText().toString();
-//               String password =etPassword.getText().toString();
-               String password = "1234";
-               Log.i("msg",firstName+ " "+ lastName+" "+ email+" "+password);
+               String password =etPassword.getText().toString().trim();
+//               Log.i("msg",firstName+ " "+ lastName+" "+ email+" "+password);
 
                AppUser user = new AppUser(firstName,lastName,email,password);
 
