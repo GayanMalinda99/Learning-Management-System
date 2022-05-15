@@ -17,39 +17,29 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
+            android:layout_width="409dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="822dp"
-            android:background="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="20dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
 
-            app:title="@string/course_activity_title"
-            app:titleTextAppearance="@style/Toolbar.TitleText"
-            app:titleTextColor="@color/cardview_light_background" />
+            app:title="ALL Courses" />
 
-        <ListView
-            android:id="@+id/courseList"
-            android:layout_width="386dp"
-            android:layout_height="365dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/course_recycle_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar2"
             android:layout_marginStart="50dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="20dp"
-            android:rotationX="-4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="11dp" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="136dp"
             android:layout_height="41dp"
-            android:layout_below="@id/courseList"
+            android:layout_below="@id/course_recycle_view"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="33dp"
@@ -59,11 +49,11 @@
             android:id="@+id/imageButton1"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_below="@id/courseList"
+            android:layout_below="@id/course_recycle_view"
             android:layout_marginStart="190dp"
+            android:layout_marginLeft="180dp"
             android:layout_marginTop="33dp"
-            app:srcCompat="@android:drawable/ic_input_add"
-            android:layout_marginLeft="180dp" />
+            app:srcCompat="@android:drawable/ic_input_add" />
 
     </RelativeLayout>
 
