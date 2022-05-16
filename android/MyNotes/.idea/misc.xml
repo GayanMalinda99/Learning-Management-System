@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.1335" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1335" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable/button_rectangle_pink.xml" value="0.1335" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable/cal.xml" value="0.1055" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable/courses.xml" value="0.1055" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable/delete_icon_background.xml" value="0.1335" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1335" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable/login.xml" value="0.1055" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_all_cources.xml" value="0.17239583333333333" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_course.xml" value="0.25" />
@@ -12,12 +17,15 @@
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_home.xml" value="0.10989583333333333" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_login.xml" value="0.17239583333333333" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_selected_course.xml" value="0.264" />
-        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/all_cources_list_item.xml" value="0.17239583333333333" />
-        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/course_list_item.xml" value="0.17239583333333333" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/all_cources_list_item.xml" value="0.264" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/course_list_item.xml" value="0.264" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/header.xml" value="0.10989583333333333" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/register_layout.xml" value="0.10989583333333333" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/styles.xml" value="0.17239583333333333" />
         <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/menu/main_menu.xml" value="0.2" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/mipmap-anydpi-v26/delete_icon.xml" value="0.1335" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/mipmap-anydpi-v26/delete_icon_round.xml" value="0.1335" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1335" />
       </map>
     </option>
   </component>
