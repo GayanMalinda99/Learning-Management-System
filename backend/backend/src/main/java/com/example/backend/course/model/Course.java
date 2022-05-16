@@ -4,9 +4,9 @@ import com.example.backend.appuser.AppUser;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -20,5 +20,10 @@ public class Course {
     private String course_description;
     @OneToOne
     private AppUser lecturer;
+
+    @ManyToMany
+    @JoinTable(name = "course_enrolled_students",
+            joinColumns = @JoinColumn(name = "course_code", referencedColumnName = "enrolled_students_id"))
+    private List<AppUser> appUsers = new ArrayList<>();
 
 }
