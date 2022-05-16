@@ -1,8 +1,8 @@
 package com.example.backend.service;
 
-import com.example.backend.course.model.CourseEnrolement;
-import com.example.backend.dto.CourseEnrolementDTO;
-import com.example.backend.repository.CourseEnrolementRepository;
+import com.example.backend.course.model.CourseEnrollment;
+import com.example.backend.dto.CourseEnrollmentDTO;
+import com.example.backend.repository.CourseEnrollmentRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,23 +16,23 @@ import java.util.List;
 public class CourseEnrolementService {
 
     @Autowired
-    private CourseEnrolementRepository courseEnrolementRepository;
+    private CourseEnrollmentRepository courseEnrollmentRepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
-    public CourseEnrolementDTO saveStudentEnrolledCourse(CourseEnrolementDTO courseEnrolementDTO) {
-        courseEnrolementRepository.save(modelMapper.map(courseEnrolementDTO, CourseEnrolement.class));
-        return courseEnrolementDTO;
+    public CourseEnrollmentDTO saveStudentEnrolledCourse(CourseEnrollmentDTO courseEnrollmentDTO) {
+        courseEnrollmentRepository.save(modelMapper.map(courseEnrollmentDTO, CourseEnrollment.class));
+        return courseEnrollmentDTO;
     }
 
-    public List<CourseEnrolementDTO> getEnrolledCourses(){
-        List<CourseEnrolement>courseList=courseEnrolementRepository.findAll();
-        return modelMapper.map(courseList, new TypeToken<List<CourseEnrolementDTO>>(){}.getType());
+    public List<CourseEnrollmentDTO> getEnrolledCourses(){
+        List<CourseEnrollment>courseList= courseEnrollmentRepository.findAll();
+        return modelMapper.map(courseList, new TypeToken<List<CourseEnrollmentDTO>>(){}.getType());
     }
 
-    public boolean dropCourse(CourseEnrolementDTO courseEnrolementDTO) {
-        courseEnrolementRepository.delete(modelMapper.map(courseEnrolementDTO, CourseEnrolement.class));
+    public boolean dropCourse(CourseEnrollmentDTO courseEnrollmentDTO) {
+        courseEnrollmentRepository.delete(modelMapper.map(courseEnrollmentDTO, CourseEnrollment.class));
         return true;
     }
 }
