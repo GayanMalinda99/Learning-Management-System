@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
                String lastName = etLastName.getText().toString();
                String email = etEmail.getText().toString();
                String password =etPassword.getText().toString().trim();
-//               Log.i("msg",firstName+ " "+ lastName+" "+ email+" "+password);
+
 
                AppUser user = new AppUser(firstName,lastName,email,password);
 
