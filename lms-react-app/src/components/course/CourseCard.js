@@ -1,6 +1,23 @@
 import './CourseCard.css';
 import { Button } from '@mui/material';
 import img from '../../image/img.jpg'
+import Axios from 'axios';
+import React, { useState } from 'react';
+
+function enrollment(){
+    let courseCode = "fwrgwrg";
+    let studentId = "fwrgwrg";
+
+    var params = {
+        courseCode: courseCode,
+        StudentId: studentId
+    }
+
+    console.log(params);
+    // Axios.put('http://localhost:8080/api/v1/course/',{
+    //     params: params
+    // }).then(res => console.log(res)).catch(err => console.log(err));
+}
 
 const CourseCard = ({ courseData }) => {
     return (
@@ -14,7 +31,7 @@ const CourseCard = ({ courseData }) => {
                 <div>{courseData.lecture_id}</div>
                 
             </div>
-            <Button variant="contained" color="primary" className="card__btn">
+            <Button variant="contained" color="primary" className="card__btn" onClick={enrollment}>
                 Enroll
             </Button>
         </div>
