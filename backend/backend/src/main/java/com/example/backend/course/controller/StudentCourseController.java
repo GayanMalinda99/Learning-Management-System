@@ -1,6 +1,6 @@
 package com.example.backend.course.controller;
 
-import com.example.backend.dto.CourseEnrolementDTO;
+import com.example.backend.dto.CourseEnrollmentDTO;
 import com.example.backend.service.CourseEnrolementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,18 +14,18 @@ public class StudentCourseController {
     private CourseEnrolementService courseEnrolementService;
 
     @PostMapping("/enrolCourse")
-    public CourseEnrolementDTO enroleCourse(@RequestBody CourseEnrolementDTO courseEnrolementDTO){
+    public CourseEnrollmentDTO enroleCourse(@RequestBody CourseEnrollmentDTO courseEnrollmentDTO){
         System.out.println("Enrollment Success!");
-        return courseEnrolementService.saveStudentEnrolledCourse(courseEnrolementDTO);
+        return courseEnrolementService.saveStudentEnrolledCourse(courseEnrollmentDTO);
     }
 
     @GetMapping("/registeredCourses")
-    public List<CourseEnrolementDTO> getRegisteredCourses() {
+    public List<CourseEnrollmentDTO> getRegisteredCourses() {
         return courseEnrolementService.getEnrolledCourses();
     }
 
     @DeleteMapping("/dropCourse")
-    public boolean dropCourse(@RequestBody CourseEnrolementDTO courseEnrolementDTO){
-        return courseEnrolementService.dropCourse(courseEnrolementDTO);
+    public boolean dropCourse(@RequestBody CourseEnrollmentDTO courseEnrollmentDTO){
+        return courseEnrolementService.dropCourse(courseEnrollmentDTO);
     }
 }
