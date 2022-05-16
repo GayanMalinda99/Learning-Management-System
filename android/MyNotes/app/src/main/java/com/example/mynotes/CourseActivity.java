@@ -3,6 +3,7 @@ package com.example.mynotes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,11 +34,14 @@ public class CourseActivity extends AppCompatActivity {
     Toolbar toolbar;
     private RecyclerView recyclerView ;
     private CourseAdapter.RecycleViewClickListner listner ;
+    SwipeRefreshLayout swipeRefreshLayout ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
+
+        Log.i("Messege", "Rendered") ;
 
         recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -102,6 +106,15 @@ public class CourseActivity extends AppCompatActivity {
                 openAllCoursesActivity();
             }
         }) ;
+
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                courseAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     public void openAllCoursesActivity(){
