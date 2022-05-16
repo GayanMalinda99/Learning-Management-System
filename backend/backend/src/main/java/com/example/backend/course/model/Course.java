@@ -18,6 +18,7 @@ public class Course {
     private String code;
     private String course_name;
     private String course_description;
+
     @OneToOne
     private AppUser lecturer;
 

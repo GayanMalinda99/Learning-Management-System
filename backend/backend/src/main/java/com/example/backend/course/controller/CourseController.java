@@ -30,15 +30,15 @@ public class CourseController {
         courseRepository.save(courseData);
     }
 
-//    @PutMapping("/{courseCode}/students/{studentId}")
-//    public Course addStudentToCourse(
-//            @PathVariable String courseCode,
-//            @PathVariable Long studentId){
-//        Course course = courseRepository.findById(courseCode).get();
-//        AppUser student = appUserRepository.findById(studentId).get();
-//        course.enrolledStudents.add(student);
-//        return courseRepository.save(course);
-//    }
+    @PutMapping("/{courseCode}/students/{studentId}")
+    public Course addStudentToCourse(
+            @PathVariable String courseCode,
+            @PathVariable Long studentId){
+        Course course = courseRepository.findById(courseCode).get();
+        AppUser student = appUserRepository.findById(studentId).get();
+        course.enrolledStudents.add(student);
+        return courseRepository.save(course);
+    }
 
     @PutMapping("/{courseCode}/lecturer/{lecturerId}")
     public Course assignLecturerToCourse(
