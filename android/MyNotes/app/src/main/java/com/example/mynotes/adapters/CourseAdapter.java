@@ -48,6 +48,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textView ;
         ImageButton imageButton ;
+        String id = "1" ;
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,7 +58,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             itemView.findViewById(R.id.course_delete_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i("Course name : ", textView.getText().toString()) ;
+                    Log.i(id, textView.getText().toString()) ;
                 }
             });
         }

@@ -15,11 +15,15 @@ import android.widget.ListView;
 import android.widget.Toolbar;
 
 import com.example.mynotes.adapters.CourseAdapter;
+import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.RetrofitService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CourseActivity extends AppCompatActivity {
@@ -35,12 +39,40 @@ public class CourseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course);
 
         recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-        Retrofit retrofit = new RetrofitService().getRetrofit() ;
+        //Initializing retrofit and getting the course list
+        /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
+        final CoursesApi courseApi = retrofit.create(CoursesApi.class) ;
+        String id = "1" ;
+        Call<List<String>> call = courseApi.getEnrolledCourses(id) ;
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                List<String> courseList = response.body() ;
 
+                CourseAdapter courseAdapter = new CourseAdapter(CourseActivity.this, courseList, listner) ;
+                recyclerView.setAdapter(courseAdapter);
+                courseAdapter.getItemCount() ;
+
+                listner = new CourseAdapter.RecycleViewClickListner() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getApplicationContext(), SelectedCourseActivity.class) ;
+                        intent.putExtra(COURSE_NAME, list.get(position)) ;
+                        startActivity(intent);
+                    }
+                } ;
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                Log.i("Messege", "Error") ;
+            }
+        });*/
 
         List<String> courses = new ArrayList<>() ;
         courses.add("Web Development") ;
@@ -60,7 +92,6 @@ public class CourseActivity extends AppCompatActivity {
 
         CourseAdapter courseAdapter = new CourseAdapter(this, courses, listner) ;
         recyclerView.setAdapter(courseAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         courseAdapter.getItemCount() ;
 
         ImageButton imageButton = findViewById(R.id.imageButton1) ;
@@ -77,11 +108,6 @@ public class CourseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openSelectedCourseActivity(String courseName){
-        Intent intent = new Intent(this, SelectedCourseActivity.class) ;
-        intent.putExtra(COURSE_NAME, courseName) ;
-        startActivity(intent);
-    }
 }
 
 
