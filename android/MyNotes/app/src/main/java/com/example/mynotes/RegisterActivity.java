@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
                String lastName = etLastName.getText().toString();
                String email = etEmail.getText().toString();
                String password =etPassword.getText().toString().trim();
-//               Log.i("msg",firstName+ " "+ lastName+" "+ email+" "+password);
+
 
                AppUser user = new AppUser(firstName,lastName,email,password);
 
@@ -70,36 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AppUser> call, retrofit2.Response<AppUser> response) {
                 Log.i("save","working");
-//                String result = response.body().toString();
-//                Log.i("response",result);
-//                if(!result.isEmpty()){
-//                    Intent i = new Intent(RegisterActivity.this,
-//                                LoginActivity.class);
-//                        startActivity(i);
-//                        finish();
-//                }
-//                    if (result.equalsIgnoreCase("Registered Succesfully"))
-//                    {
-//                        Toast.makeText(RegisterActivity.this,
-//                                "Register succsess",Toast.LENGTH_LONG).show();
-//
-//                        Intent i = new Intent(RegisterActivity.this,
-//                                LoginActivity.class);
-//                        startActivity(i);
-//                        finish();
-//                    }
-//                    else if (result.equalsIgnoreCase("User Already Exist"))
-//                    {
-//                        Toast.makeText(RegisterActivity.this,
-//                                "User Already Exist",Toast.LENGTH_LONG).show();
-//
-//                    }
-//                    else
-//                    {
-//                        Toast.makeText(RegisterActivity.this,
-//                                "Try Again !!!",Toast.LENGTH_LONG).show();
-//
-//                    }
+
             }
 
             @Override
