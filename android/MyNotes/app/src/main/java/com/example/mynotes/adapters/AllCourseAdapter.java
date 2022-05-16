@@ -64,6 +64,20 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
                 @Override
                 public void onClick(View view) {
                     Log.i(id , textView.getText().toString()) ;
+                     Retrofit retrofit = new RetrofitService().getRetrofit() ;
+                    final CoursesApi addCourseApi = retrofit.create(CoursesApi.class) ;
+                    Call<Response> call = addCourseApi.addCourse(id, textView.getText().toString()) ;
+                    call.enqueue(new Callback<Response>() {
+                        @Override
+                        public void onResponse(Call<Response> call, Response<Response> response) {
+                            Log.i("messege", "Success") ;
+                        }
+
+                        @Override
+                        public void onFailure(Call<Response> call, Throwable t) {
+                            Log.i("Messege", "Error") ;
+                        }
+                    });
                 }
             });
 
