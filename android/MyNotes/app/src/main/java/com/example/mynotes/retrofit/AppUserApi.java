@@ -1,6 +1,6 @@
 package com.example.mynotes.retrofit;
 
-import com.example.mynotes.model.AppUser;
+import com.example.mynotes.model.*;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

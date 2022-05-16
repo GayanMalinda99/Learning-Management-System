@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.mynotes.model.AppUser;
-import com.example.mynotes.retrofit.AppUserApi;
+import com.example.mynotes.model.*;
+import com.example.mynotes.retrofit.*;
 import com.example.mynotes.retrofit.RetrofitClientInstance;
 
 import retrofit2.Call;
