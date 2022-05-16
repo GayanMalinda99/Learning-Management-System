@@ -37,7 +37,7 @@ public class SelectedCourseActivity extends AppCompatActivity {
 
         TextView textView_2 = findViewById(R.id.textView5) ;
 
-        Retrofit retrofit = new RetrofitService().getRetrofit() ;
+        /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
         final CoursesApi marksCourseApi = retrofit.create(CoursesApi.class) ;
         Call<Integer> call = marksCourseApi.getMarks(id, courseName) ;
         call.enqueue(new Callback<Integer>() {
@@ -51,7 +51,7 @@ public class SelectedCourseActivity extends AppCompatActivity {
             public void onFailure(Call<Integer> call, Throwable t) {
 
             }
-        });
+        });*/
 
         textView_2.setText(marks);
     }
