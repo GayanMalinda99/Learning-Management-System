@@ -66,7 +66,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 @Override
                 public void onClick(View view) {
                     Log.i(id, textView.getText().toString()) ;
-                    Retrofit retrofit = new RetrofitService().getRetrofit() ;
+                    /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
                     final CoursesApi deleteCourseApi = retrofit.create(CoursesApi.class) ;
                     Call<Response> call = deleteCourseApi.dropCourse(id, textView.getText().toString()) ;
                     call.enqueue(new Callback<Response>() {
@@ -79,7 +79,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                         public void onFailure(Call<Response> call, Throwable t) {
                             Log.i("Messege", "Error") ;
                         }
-                    });
+                    });*/
                 }
             });
         }
