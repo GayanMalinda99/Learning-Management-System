@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toolbar;
@@ -94,8 +95,8 @@ public class CourseActivity extends AppCompatActivity {
         recyclerView.setAdapter(courseAdapter);
         courseAdapter.getItemCount() ;
 
-        ImageButton imageButton = findViewById(R.id.imageButton1) ;
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        Button button = findViewById(R.id.add_course_button) ;
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openAllCoursesActivity();
