@@ -3,6 +3,7 @@ package com.example.mynotes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import retrofit2.Retrofit;
 
 public class AllCources extends AppCompatActivity {
 
+    SwipeRefreshLayout swipeRefreshLayout ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,16 @@ public class AllCources extends AppCompatActivity {
         AllCourseAdapter allCourseAdapter = new AllCourseAdapter(this, courses) ;
         recyclerView.setAdapter(allCourseAdapter);
         allCourseAdapter.getItemCount() ;
-        /*linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);*/
+
+        swipeRefreshLayout = findViewById(R.id.refresh_all_courses) ;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                allCourseAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
     }
 }
 
