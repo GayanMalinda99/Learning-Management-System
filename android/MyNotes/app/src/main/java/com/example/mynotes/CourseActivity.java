@@ -15,9 +15,12 @@ import android.widget.ListView;
 import android.widget.Toolbar;
 
 import com.example.mynotes.adapters.CourseAdapter;
+import com.example.mynotes.retrofit.RetrofitService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Retrofit;
 
 public class CourseActivity extends AppCompatActivity {
     public static final String COURSE_NAME = "com.example.mynotes.COURSE_NAME" ;
@@ -35,6 +38,9 @@ public class CourseActivity extends AppCompatActivity {
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+
+        Retrofit retrofit = new RetrofitService().getRetrofit() ;
+
 
         List<String> courses = new ArrayList<>() ;
         courses.add("Web Development") ;

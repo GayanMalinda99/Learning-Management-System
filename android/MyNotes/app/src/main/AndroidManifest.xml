@@ -18,7 +18,8 @@
             android:exported="false" />
         <activity
             android:name=".SelectedCourseActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".CourseActivity"/>
         <activity
             android:name=".CourseActivity"
             android:exported="false" />
