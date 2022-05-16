@@ -62,11 +62,22 @@ public class RegisterActivity extends AppCompatActivity {
         Call<AppUser> call = appUserApi.save(user);
 
         Log.i("call","function called");
+        Intent i = new Intent(RegisterActivity.this,
+                LoginActivity.class);
+        startActivity(i);
+        finish();
         call.enqueue(new Callback<AppUser>() {
             @Override
             public void onResponse(Call<AppUser> call, retrofit2.Response<AppUser> response) {
                 Log.i("save","working");
 //                String result = response.body().toString();
+//                Log.i("response",result);
+//                if(!result.isEmpty()){
+//                    Intent i = new Intent(RegisterActivity.this,
+//                                LoginActivity.class);
+//                        startActivity(i);
+//                        finish();
+//                }
 //                    if (result.equalsIgnoreCase("Registered Succesfully"))
 //                    {
 //                        Toast.makeText(RegisterActivity.this,
