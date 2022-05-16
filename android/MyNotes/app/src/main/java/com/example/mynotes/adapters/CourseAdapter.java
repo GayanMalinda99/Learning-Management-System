@@ -12,8 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mynotes.R;
+import com.example.mynotes.retrofit.CoursesApi;
+import com.example.mynotes.retrofit.RetrofitService;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
 
@@ -48,6 +55,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textView ;
         ImageButton imageButton ;
+        String id = "1" ;
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,7 +65,21 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             itemView.findViewById(R.id.course_delete_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i("Course name : ", textView.getText().toString()) ;
+                    Log.i(id, textView.getText().toString()) ;
+                    /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
+                    final CoursesApi deleteCourseApi = retrofit.create(CoursesApi.class) ;
+                    Call<Response> call = deleteCourseApi.dropCourse(id, textView.getText().toString()) ;
+                    call.enqueue(new Callback<Response>() {
+                        @Override
+                        public void onResponse(Call<Response> call, Response<Response> response) {
+                            Log.i("messege", "Success") ;
+                        }
+
+                        @Override
+                        public void onFailure(Call<Response> call, Throwable t) {
+                            Log.i("Messege", "Error") ;
+                        }
+                    });*/
                 }
             });
         }
