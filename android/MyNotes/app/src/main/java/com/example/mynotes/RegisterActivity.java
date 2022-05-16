@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.mynotes.model.AppUser;
-import com.example.mynotes.retrofit.AppUserApi;
+import com.example.mynotes.model.*;
+import com.example.mynotes.retrofit.*;
 import com.example.mynotes.retrofit.RetrofitClientInstance;
 
 import retrofit2.Call;
@@ -24,18 +24,18 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
 
 
-    final String url_Register =  "http:/" ;
+//    final String url_Register =  "http:/" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etFirstName = (EditText) findViewById(R.id.et_name);
-        etLastName = (EditText) findViewById(R.id.et_Lname);
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etPassword = (EditText) findViewById(R.id.et_password);
-        btnRegister = (Button) findViewById(R.id.btn_register);
+        etFirstName = findViewById(R.id.etFirstName);
+        etLastName = findViewById(R.id.etLastName);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        btnRegister = findViewById(R.id.btnRegister);
 
         btnRegister.setOnClickListener( new View.OnClickListener()
        {
@@ -44,9 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
                String firstName = etFirstName.getText().toString();
                String lastName = etLastName.getText().toString();
                String email = etEmail.getText().toString();
-//               String password =etPassword.getText().toString();
-               String password = "1234";
-               Log.i("msg",firstName+ " "+ lastName+" "+ email+" "+password);
+               String password =etPassword.getText().toString().trim();
+//               Log.i("msg",firstName+ " "+ lastName+" "+ email+" "+password);
 
                AppUser user = new AppUser(firstName,lastName,email,password);
 
@@ -63,11 +62,22 @@ public class RegisterActivity extends AppCompatActivity {
         Call<AppUser> call = appUserApi.save(user);
 
         Log.i("call","function called");
+        Intent i = new Intent(RegisterActivity.this,
+                LoginActivity.class);
+        startActivity(i);
+        finish();
         call.enqueue(new Callback<AppUser>() {
             @Override
             public void onResponse(Call<AppUser> call, retrofit2.Response<AppUser> response) {
                 Log.i("save","working");
 //                String result = response.body().toString();
+//                Log.i("response",result);
+//                if(!result.isEmpty()){
+//                    Intent i = new Intent(RegisterActivity.this,
+//                                LoginActivity.class);
+//                        startActivity(i);
+//                        finish();
+//                }
 //                    if (result.equalsIgnoreCase("Registered Succesfully"))
 //                    {
 //                        Toast.makeText(RegisterActivity.this,
