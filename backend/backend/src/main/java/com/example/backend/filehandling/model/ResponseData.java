@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseData {
-    
+
     private String filename;
     private String downloadURL;
     private String fileType;
