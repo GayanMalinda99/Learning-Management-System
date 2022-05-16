@@ -9,7 +9,7 @@ import android.util.Log;
 
 import com.example.mynotes.adapters.AllCourseAdapter;
 import com.example.mynotes.retrofit.CoursesApi;
-import com.example.mynotes.retrofit.RetrofitService;
+import com.example.mynotes.retrofit.*;
 
 import java.util.ArrayList;
 import java.util.List;

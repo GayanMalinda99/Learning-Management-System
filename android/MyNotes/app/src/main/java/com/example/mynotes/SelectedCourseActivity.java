@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.mynotes.retrofit.CoursesApi;
-import com.example.mynotes.retrofit.RetrofitService;
+import com.example.mynotes.retrofit.*;
 
 import java.util.List;
 
