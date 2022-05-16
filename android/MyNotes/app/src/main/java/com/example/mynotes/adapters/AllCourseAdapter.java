@@ -12,8 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mynotes.R;
+import com.example.mynotes.retrofit.CoursesApi;
+import com.example.mynotes.retrofit.RetrofitService;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.CourseViewHolder> {
 
@@ -51,11 +58,12 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.textView2) ;
             imageButton = itemView.findViewById(R.id.imageButton2) ;
+            String id = "1" ;
 
             itemView.findViewById(R.id.imageButton2).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i("Name" , textView.getText().toString()) ;
+                    Log.i(id , textView.getText().toString()) ;
                 }
             });
 
