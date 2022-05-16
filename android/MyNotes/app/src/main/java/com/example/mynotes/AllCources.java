@@ -5,11 +5,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.mynotes.adapters.AllCourseAdapter;
+import com.example.mynotes.retrofit.CoursesApi;
+import com.example.mynotes.retrofit.RetrofitService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AllCources extends AppCompatActivity {
 
@@ -20,6 +28,27 @@ public class AllCources extends AppCompatActivity {
         setContentView(R.layout.activity_all_cources);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycleview1) ;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
+        final CoursesApi allCoursesApi = retrofit.create(CoursesApi.class) ;
+        Call<List<String>> call = allCoursesApi.getCourses() ;
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                List<String> courseList = response.body() ;
+                AllCourseAdapter allCourseAdapter = new AllCourseAdapter(AllCources.this, courseList) ;
+                recyclerView.setAdapter(allCourseAdapter);
+                allCourseAdapter.getItemCount() ;
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                Log.i("Messege", "Error") ;
+            }
+        }) ;*/
+
+        //Call<Response> call = allCoursesApi.addCourse()
 
         List<String> courses = new ArrayList<>() ;
         courses.add("React") ;
@@ -27,10 +56,8 @@ public class AllCources extends AppCompatActivity {
         courses.add("Kotlin") ;
         courses.add("Java") ;
         courses.add("Python") ;
-
         AllCourseAdapter allCourseAdapter = new AllCourseAdapter(this, courses) ;
         recyclerView.setAdapter(allCourseAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         allCourseAdapter.getItemCount() ;
         /*linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);*/
