@@ -5,17 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mynotes.model.AppUser;
+import com.example.mynotes.retrofit.AppUserApi;
+import com.example.mynotes.retrofit.RetrofitClientInstance;
+
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
 
 
 public class  LoginActivity extends AppCompatActivity {
@@ -53,66 +61,42 @@ public class  LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String Email = etEmail.getText().toString();
-                String Password = etPassword.getText().toString();
+                String Password = etPassword.getText().toString().trim();
 
-                new LoginUser().execute(Email,Password);
+                AppUser user = new AppUser(Email,Password);
+                Log.i("btn","this is working");
+                CallRetrofit(user);
 
             }
         });
 
     }
 
-    public class LoginUser extends AsyncTask<String , Void , String>
-    {
+    public void CallRetrofit(AppUser user) {
+        Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
 
-        @Override
-        protected String doInBackground(String... strings) {
+        AppUserApi appUserApi = retrofit.create(AppUserApi.class);
+        //
+        Call<AppUser> call = appUserApi.login(user);
 
-            String Email = strings[0];
-            String Password = strings[1];
+        Log.i("call","function called");
+        Intent i = new Intent(LoginActivity.this,
+                DashboardActivity.class);
+        startActivity(i);
+        finish();
 
-            OkHttpClient okHttpClient = new OkHttpClient();
+        call.enqueue(new Callback<AppUser>() {
+            @Override
+            public void onResponse(Call<AppUser> call, retrofit2.Response<AppUser> response) {
+                Log.i("save","working");
 
-            RequestBody formBody = new FormBody.Builder()
-                    .add("user_id",Email)
-                    .add("user_password",Password)
-                    .build();
-
-            Request request = new Request.Builder()
-                    .url(url_Login)
-                    .post(formBody)
-                    .build();
-
-            Response response = null;
-
-            try {
-
-                response = okHttpClient.newCall(request).execute();
-                if (response.isSuccessful())
-                {
-                    String result = response.body().string();
-                    if (result.equalsIgnoreCase("login"))
-                    {
-
-                        Intent i = new Intent(LoginActivity.this,
-                                DashboardActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
-
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this, "Email Password missmatch",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }
             }
-            catch (Exception e)
-            {
-                e.printStackTrace();
+
+            @Override
+            public void onFailure(Call<AppUser> call, Throwable t) {
+//                Log.i("lost","not save");
             }
-            return null;
-        }
+        });
     }
 
 
