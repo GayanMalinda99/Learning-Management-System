@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class AttachmentController {
@@ -18,8 +19,13 @@ public class AttachmentController {
     }
 
     @PostMapping("/upload")
-    public ResponseData uploadFile(@RequestPart("file")MultipartFile file) {
+    public ResponseData uploadFile(@RequestPart("file")MultipartFile file) throws Exception {
         Attachment attachment = null;
+        String downloadURL = "";
         attachment = attachmentService.saveAttachment(file);
+        downloadURL = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/download/")
+                .path(attachment.getFileId())
+                .toUriString();
     }
 }
