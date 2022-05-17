@@ -35,7 +35,7 @@ public class AttachmentController {
     }
 
     @GetMapping("/download/{fileId}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileId){
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileId) throws Exception {
         Attachment attachment = null;
         attachment = attachmentService.getAttachment(fileId);
     }
