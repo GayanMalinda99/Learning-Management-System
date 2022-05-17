@@ -30,7 +30,7 @@ public class CourseController {
         courseRepository.save(courseData);
     }
 
-    @PutMapping("/{courseCode}/students/{studentId}")
+    @PutMapping("/student/{courseCode}/{studentId}")
     public Course addStudentToCourse(
             @PathVariable String courseCode,
             @PathVariable Long studentId){
@@ -40,7 +40,7 @@ public class CourseController {
         return courseRepository.save(course);
     }
 
-    @PutMapping("/{courseCode}/lecturer/{lecturerId}")
+    @PutMapping("/lecturer/{courseCode}/{lecturerId}")
     public Course assignLecturerToCourse(
             @PathVariable String courseCode,
             @PathVariable Long lecturerId){

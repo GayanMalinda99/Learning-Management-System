@@ -31,7 +31,4 @@ public class Course {
     @OneToMany(mappedBy = "course")
     Set<Marks> Marks;
 
-    public Set<AppUser> getEnrolledStudents() {
-        return enrolledStudents;
-    }
 }
