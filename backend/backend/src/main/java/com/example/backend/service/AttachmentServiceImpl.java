@@ -20,8 +20,8 @@ public class AttachmentServiceImpl implements AttachmentService{
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         try {
 
-        } catch {
-            
+        } catch (Exception e) {
+
         }
     }
 }
