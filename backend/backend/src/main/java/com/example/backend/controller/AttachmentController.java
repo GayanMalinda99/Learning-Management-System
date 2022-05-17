@@ -20,5 +20,6 @@ public class AttachmentController {
     @PostMapping("/upload")
     public ResponseData uploadFile(@RequestPart("file")MultipartFile file) {
         Attachment attachment = null;
+        attachment = attachmentService.saveAttachment(file);
     }
 }
