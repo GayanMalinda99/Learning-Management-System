@@ -15,21 +15,21 @@ public class UserController {
     @Autowired
     AppUserRepository appUserRepository;
 
-    @GetMapping("/getUser")
+    @GetMapping("/getuser")
     public List<AppUser> getUser(){
         return appUserRepository.findAll();
     }
 
-    @PostMapping("/saveUser")
+    @PostMapping("/saveuser")
     public String saveUser(){
         return "save User";
     }
 
-    @PutMapping("/updateUser")
+    @PutMapping("/updateuser")
     public String updateUser(){
         return "update User";
     }
-    @DeleteMapping("/deleteUser")
+    @DeleteMapping("/deleteuser")
     public String deleteUser(){
         return "delete User";
     }
