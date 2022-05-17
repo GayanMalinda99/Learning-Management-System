@@ -29,6 +29,22 @@ public class RegistrationService {
             throw new IllegalStateException("Email is not valid");
         }
 
+//      Define user type using email
+        String email = request.getEmail();
+        String domain = "";
+        String[] parts = email.split("@");
+        if (parts.length == 2)
+            domain = parts[1];
+        String userType = domain.substring(0,3);
+
+        AppUserRole role;
+        if(userType.equals("stu")){
+            role = AppUserRole.STUDENT;
+        } else if(userType.equals("lec")){
+            role = AppUserRole.LECTURER;
+        }else{
+            role = null;
+        }
 
         String token = appUserService.signUpUser(
                 new AppUser(
@@ -37,6 +53,7 @@ public class RegistrationService {
                         request.getEmail(),
                         request.getPassword(),
                         AppUserRole.STUDENT
+
 
                 )
         );
@@ -64,7 +81,45 @@ public class RegistrationService {
 
         confirmationTokenService.setConfirmedAt(token);
         appUserService.enableAppUser(confirmationToken.getAppUser().getEmail());
-        return "Email Confirmation Successful!";
+        return "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<style>\n" +
+                "\n" +
+                "h1,h4 { \n" +
+                "  display: block;\n" +
+                "\n" +
+                "  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;\n" +
+                "  margin-top: 0.97em;\n" +
+                "  margin-bottom: 0.47em;\n" +
+                "  margin-left: 0;\n" +
+                "  margin-right: 0;\n" +
+                "  font-weight: bold;\n" +
+                "  color: rgb(20, 47, 165);\n" +
+                "}\n" +
+                "\n" +
+                "\n" +
+                "img{\n" +
+                "  width: 120px;\n" +
+                "height: 120px;\n" +
+                "align-content: center;\n" +
+                "display: block;\n" +
+                "margin-top: 2.97em;\n" +
+                "  margin-left: auto;\n" +
+                "  margin-right: auto;\n" +
+                "  width: 50%;\n" +
+                "\n" +
+                "}\n" +
+                "</style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "  \n" +
+                "<img src=\"https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg\" alt=\"\" srcset=\"\"  >\n" +
+                "<h1 style=\"text-align:center\">Email Verified</h1>\n" +
+                "<h4 style=\"text-align:center\">Login To Continue</h4>\n" +
+                "\n" +
+                "</body>\n" +
+                "</html>\n";
     }
 
     private String buildEmail(String name, String link) {
