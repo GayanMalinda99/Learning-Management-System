@@ -43,9 +43,12 @@ public class LecturerActivity extends AppCompatActivity {
         addCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //openNewCourseActivity();
+                openNewCourseActivity();
             }
         });
     }
-
+    public void openNewCourseActivity(){
+        Intent intent = new Intent(this, NewCourseActivity.class) ;
+        startActivity(intent);
+    }
 }
