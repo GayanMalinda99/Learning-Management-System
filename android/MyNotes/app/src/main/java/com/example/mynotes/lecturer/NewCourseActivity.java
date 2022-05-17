@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.mynotes.R;
+import com.example.mynotes.model.Course;
 
 public class NewCourseActivity extends AppCompatActivity {
 
@@ -27,6 +28,11 @@ public class NewCourseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i("messege", code.getText().toString()+" / "+
                         title.getText().toString()+" / "+discription.getText().toString()) ;
+                Course course = new Course(
+                        code.getText().toString(),
+                        title.getText().toString(),
+                        discription.getText().toString()
+                ) ;
             }
         });
     }
