@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable/cal.xml" value="0.1055" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable/courses.xml" value="0.1055" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/drawable/login.xml" value="0.1055" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_course.xml" value="0.25" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_dashboard.xml" value="0.10989583333333333" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_home.xml" value="0.10989583333333333" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_login.xml" value="0.17239583333333333" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/activity_selected_course.xml" value="0.264" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/header.xml" value="0.10989583333333333" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/register_layout.xml" value="0.10989583333333333" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/layout/styles.xml" value="0.17239583333333333" />
+        <entry key="..\:/STU/UNI/Year 2/Semester 2/SENG 22212 - Software Architecture and Design/LMS/Learning-Management-System/android/MyNotes/app/src/main/res/menu/main_menu.xml" value="0.2" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
