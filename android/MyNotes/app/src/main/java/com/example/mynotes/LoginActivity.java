@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.example.mynotes.model.AppUser;
 import com.example.mynotes.retrofit.AppUserApi;
 import com.example.mynotes.retrofit.RetrofitClientInstance;
+
+import java.util.regex.Pattern;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -28,6 +31,8 @@ import retrofit2.Retrofit;
 
 public class  LoginActivity extends AppCompatActivity {
 
+
+
     EditText etEmail,etPassword,etName;
     TextView tvRegister;
     Button btnLogin;
@@ -40,6 +45,9 @@ public class  LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        etPassword = (EditText) findViewById(R.id.etPassword);
 
         tvRegister = (TextView) findViewById(R.id.tv_register);
 
@@ -69,6 +77,30 @@ public class  LoginActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private boolean validateEmail()
+    {
+        String emailInput = etEmail.getText().toString().trim();
+
+        if (emailInput.isEmpty())
+        {
+            etEmail.setError("Can not be Empty !");
+            return false;
+        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches())
+        {
+
+            etEmail.setError("Enter Correct Email");
+            return false;
+        }
+
+        else
+        {
+            etEmail.setError(null);
+            return true;
+        }
 
     }
 
