@@ -1,6 +1,7 @@
 package com.example.mynotes.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mynotes.AllCources;
+import com.example.mynotes.CourseActivity;
 import com.example.mynotes.R;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.RetrofitService;
@@ -66,6 +69,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 @Override
                 public void onClick(View view) {
                     Log.i(id, textView.getText().toString()) ;
+
                     /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
                     final CoursesApi deleteCourseApi = retrofit.create(CoursesApi.class) ;
                     Call<Response> call = deleteCourseApi.dropCourse(id, textView.getText().toString()) ;

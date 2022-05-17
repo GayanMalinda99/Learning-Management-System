@@ -1,24 +1,12 @@
-package com.example.mynotes;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.mynotes.Courses;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.example.mynotes.retrofit.CoursesApi;
-import com.example.mynotes.retrofit.*;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import com.example.mynotes.R;
 
 public class SelectedCourseActivity extends AppCompatActivity {
 
