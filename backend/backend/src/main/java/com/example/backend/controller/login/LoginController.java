@@ -1,4 +1,4 @@
-package com.example.backend.controller;
+package com.example.backend.controller.login;
 import com.example.backend.appuser.AppUser;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +20,8 @@ public class LoginController {
     System.out.println("User Email is:"+appUser.getEmail());
     System.out.println("User Password is:"+appUser.getPassword());
     System.out.println("User Role is:"+appUser.getAppUserRole());
+
+
 
 
 
