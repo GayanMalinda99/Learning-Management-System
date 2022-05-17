@@ -1,19 +1,39 @@
 import './CourseCard.css';
 import { Button } from '@mui/material';
+import img from '../../image/img.jpg'
+import Axios from 'axios';
+import React, { useState } from 'react';
+
+function enrollment(){
+    let courseCode = "fwrgwrg";
+    let studentId = "fwrgwrg";
+
+    var params = {
+        courseCode: courseCode,
+        StudentId: studentId
+    }
+
+    console.log(params);
+    // Axios.put('http://localhost:8080/api/v1/course/',{
+    //     params: params
+    // }).then(res => console.log(res)).catch(err => console.log(err));
+}
 
 const CourseCard = ({ courseData }) => {
     return (
         <div className="card">
+            <div className="card__image"><img src={img} alt="image"/></div>
             <div className="card__title">{courseData.title}</div>
             <div className="card__body">
+                
                 <div>{courseData.code}</div>
                 <div>{courseData.description}</div>
                 <div>{courseData.lecture_id}</div>
-                <Button variant="contained" color="primary">
-                    Enroll
-                </Button>
+                
             </div>
-
+            <Button variant="contained" color="primary" className="card__btn" onClick={enrollment}>
+                Enroll
+            </Button>
         </div>
     )
 };
