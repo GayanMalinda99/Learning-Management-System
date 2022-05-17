@@ -5,6 +5,7 @@ import com.example.backend.filehandling.model.ResponseData;
 import com.example.backend.service.AttachmentService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,5 +37,8 @@ public class AttachmentController {
                 file.getSize());
     }
 
-    public ResponseEntity<Resource>
+    @GetMapping("/download/{fileId}")
+    public ResponseEntity<Resource> downloadFile(){
+
+    }
 }
