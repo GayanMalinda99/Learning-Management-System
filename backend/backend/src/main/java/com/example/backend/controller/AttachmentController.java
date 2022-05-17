@@ -3,6 +3,8 @@ package com.example.backend.controller;
 import com.example.backend.filehandling.Attachment;
 import com.example.backend.filehandling.model.ResponseData;
 import com.example.backend.service.AttachmentService;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +29,12 @@ public class AttachmentController {
                 .path("/download/")
                 .path(attachment.getFileId())
                 .toUriString();
+
+        return new ResponseData(attachment.getFileName(),
+                downloadURL,
+                file.getContentType(),
+                file.getSize());
     }
+
+    public ResponseEntity<Resource>
 }
