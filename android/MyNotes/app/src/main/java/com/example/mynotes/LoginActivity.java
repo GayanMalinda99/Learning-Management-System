@@ -89,12 +89,6 @@ public class  LoginActivity extends AppCompatActivity {
             etEmail.setError("Can not be Empty !");
             return false;
         }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches())
-        {
-
-            etEmail.setError("Enter Correct Email");
-            return false;
-        }
 
         else
         {
