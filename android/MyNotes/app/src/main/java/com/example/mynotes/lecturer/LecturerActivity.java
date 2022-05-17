@@ -18,6 +18,7 @@ import java.util.List;
 public class LecturerActivity extends AppCompatActivity {
 
     RecyclerView recyclerView ;
+    LecturerCourseAdapter.RecycleViewClickListnerLecturer listner ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

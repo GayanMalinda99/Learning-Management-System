@@ -21,6 +21,7 @@ public class LecturerCourseAdapter extends RecyclerView.Adapter<LecturerCourseAd
     public LecturerCourseAdapter(Context context, List<String> courses){
         this.context= context ;
         this.courses = courses ;
+
     }
 
     @NonNull
@@ -48,5 +49,7 @@ public class LecturerCourseAdapter extends RecyclerView.Adapter<LecturerCourseAd
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.lecturer_list_item) ;
         }
+
+
     }
 }
