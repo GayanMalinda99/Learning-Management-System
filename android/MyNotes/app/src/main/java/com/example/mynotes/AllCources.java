@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.mynotes.adapters.AllCourseAdapter;
+import com.example.mynotes.dto.CourseEnrollementDto;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.*;
 
@@ -32,27 +33,36 @@ public class AllCources extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycleview1) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
+        Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi allCoursesApi = retrofit.create(CoursesApi.class) ;
-        Call<List<String>> call = allCoursesApi.getCourses() ;
-        call.enqueue(new Callback<List<String>>() {
+        Call<List<CourseEnrollementDto>> call = allCoursesApi.getCourses() ;
+        call.enqueue(new Callback<List<CourseEnrollementDto>>() {
             @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                List<String> courseList = response.body() ;
+            public void onResponse(Call<List<CourseEnrollementDto>> call, Response<List<CourseEnrollementDto>> response) {
+                List<CourseEnrollementDto> courseList = response.body() ;
                 AllCourseAdapter allCourseAdapter = new AllCourseAdapter(AllCources.this, courseList) ;
                 recyclerView.setAdapter(allCourseAdapter);
                 allCourseAdapter.getItemCount() ;
+
+                swipeRefreshLayout = findViewById(R.id.refresh_all_courses) ;
+                swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        allCourseAdapter.notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<List<CourseEnrollementDto>> call, Throwable t) {
                 Log.i("Messege", "Error") ;
             }
-        }) ;*/
+        }) ;
 
         //Call<Response> call = allCoursesApi.addCourse()
 
-        List<String> courses = new ArrayList<>() ;
+       /* List<String> courses = new ArrayList<>() ;
         courses.add("React") ;
         courses.add("Javascript") ;
         courses.add("Kotlin") ;
@@ -60,35 +70,15 @@ public class AllCources extends AppCompatActivity {
         courses.add("Python") ;
         AllCourseAdapter allCourseAdapter = new AllCourseAdapter(this, courses) ;
         recyclerView.setAdapter(allCourseAdapter);
-        allCourseAdapter.getItemCount() ;
+        allCourseAdapter.getItemCount() ;*/
 
         swipeRefreshLayout = findViewById(R.id.refresh_all_courses) ;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                allCourseAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
 
     }
 }
-
-// app:layout_constraintEnd_toStartOf="@+id/imageButton"
-
-/*<ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="55dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_input_add" />*/

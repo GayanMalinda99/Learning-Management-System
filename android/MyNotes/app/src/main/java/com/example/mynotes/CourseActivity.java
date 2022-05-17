@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toolbar;
 
 import com.example.mynotes.adapters.CourseAdapter;
+import com.example.mynotes.dto.CourseEnrollementDto;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.*;
 
@@ -29,7 +30,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CourseActivity extends AppCompatActivity {
-    public static final String COURSE_NAME = "com.example.mynotes.COURSE_NAME" ;
+    public static final String COURSE_CODE = "com.example.mynotes.COURSE_NAME" ;
+    public static  final String STUDENT_ID = "com.example.mynotes.STUDENT_ID" ;
+    public static  final String COURSE_NAME = "com.example.mynotes.COURSE_NAME" ;
+
 
     Toolbar toolbar;
     private RecyclerView recyclerView ;
@@ -50,14 +54,14 @@ public class CourseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Initializing retrofit and getting the course list
-        /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
+        Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi courseApi = retrofit.create(CoursesApi.class) ;
         String id = "1" ;
-        Call<List<String>> call = courseApi.getEnrolledCourses(id) ;
-        call.enqueue(new Callback<List<String>>() {
+        Call<List<CourseEnrollementDto>> call = courseApi.getEnrolledCourses(id) ;
+        call.enqueue(new Callback<List<CourseEnrollementDto>>() {
             @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                List<String> courseList = response.body() ;
+            public void onResponse(Call<List<CourseEnrollementDto>> call, Response<List<CourseEnrollementDto>> response) {
+                List<CourseEnrollementDto> courseList = response.body() ;
 
                 CourseAdapter courseAdapter = new CourseAdapter(CourseActivity.this, courseList, listner) ;
                 recyclerView.setAdapter(courseAdapter);
@@ -67,19 +71,38 @@ public class CourseActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getApplicationContext(), SelectedCourseActivity.class) ;
-                        intent.putExtra(COURSE_NAME, list.get(position)) ;
+                        intent.putExtra(COURSE_CODE, courseList.get(position).getCode()) ;
+                        intent.putExtra(STUDENT_ID, courseList.get(position).getStudentId()) ;
+                        intent.putExtra(COURSE_NAME, courseList.get(position).getCourseName()) ;
                         startActivity(intent);
                     }
                 } ;
+
+                Button button = findViewById(R.id.add_course_button) ;
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openAllCoursesActivity();
+                    }
+                }) ;
+
+                swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
+                swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        courseAdapter.notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<List<CourseEnrollementDto>> call, Throwable t) {
                 Log.i("Messege", "Error") ;
             }
-        });*/
+        });
 
-        List<String> courses = new ArrayList<>() ;
+        /*List<String> courses = new ArrayList<>() ;
         courses.add("Web Development") ;
         courses.add("Mobile Development") ;
         courses.add("Software Architecture") ;
@@ -112,6 +135,15 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 courseAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });*/
+
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //courseAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
