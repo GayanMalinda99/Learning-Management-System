@@ -1,4 +1,5 @@
 import React from "react";
+import GetStudent from "./GetStudent";
 
 function Panal() {
   return (
@@ -46,28 +47,7 @@ function Panal() {
           </div>
         </div>
         <div className="col-3">
-          <table className="table table-hover">
-            <tr>
-              <th>Student Name</th>
-              <th>Student ID</th>
-            </tr>
-            <tr>
-              <td>Student Name</td>
-              <td>Student ID</td>
-            </tr>
-            <tr>
-              <td>Student Name</td>
-              <td>Student ID</td>
-            </tr>
-            <tr>
-              <td>Student Name</td>
-              <td>Student ID</td>
-            </tr>
-            <tr>
-              <td>Student Name</td>
-              <td>Student ID</td>
-            </tr>
-          </table>
+          <GetStudent />
         </div>
       </div>
     </div>
