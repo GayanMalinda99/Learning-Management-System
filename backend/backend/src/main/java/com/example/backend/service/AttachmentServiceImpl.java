@@ -33,4 +33,9 @@ public class AttachmentServiceImpl implements AttachmentService{
             throw new Exception("Could not save file: " + fileName);
         }
     }
+
+    @Override
+    public Attachment getAttachment(String fileId) {
+        return null;
+    }
 }

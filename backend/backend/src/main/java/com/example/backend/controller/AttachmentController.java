@@ -5,10 +5,7 @@ import com.example.backend.filehandling.model.ResponseData;
 import com.example.backend.service.AttachmentService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -38,7 +35,8 @@ public class AttachmentController {
     }
 
     @GetMapping("/download/{fileId}")
-    public ResponseEntity<Resource> downloadFile(){
-
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileId){
+        Attachment attachment = null;
+        attachment = attachmentService.getAttachment(fileId);
     }
 }
