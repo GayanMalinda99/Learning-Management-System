@@ -81,7 +81,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
                     Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                     final CoursesApi deleteCourseApi = retrofit.create(CoursesApi.class) ;
-                    Call<Response> call = deleteCourseApi.dropCourse(allEnrolledCourses.get(position), id) ;
+                    Call<Response> call = deleteCourseApi.dropCourse(
+                            allEnrolledCourses.get(position)
+                    ) ;
                     call.enqueue(new Callback<Response>() {
                         @Override
                         public void onResponse(Call<Response> call, Response<Response> response) {

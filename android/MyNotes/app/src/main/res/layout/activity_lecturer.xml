@@ -30,13 +30,13 @@
             android:layout_marginTop="20dp" />
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="106dp"
-            android:layout_height="37dp"
+            android:id="@+id/lecturer_add_course_button"
+            android:layout_width="184dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/lecturer_recycleview"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="33dp"
-            android:text="Button" />
+            android:layout_marginTop="41dp"
+            android:text="Add new Course" />
     </RelativeLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

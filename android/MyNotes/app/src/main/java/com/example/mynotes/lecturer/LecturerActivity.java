@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.mynotes.R;
+import com.example.mynotes.adapters.LecturerCourseAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +30,10 @@ public class LecturerActivity extends AppCompatActivity {
         courses.add("Software Architecture") ;
         courses.add("Descrete Mathematics") ;
         courses.add("Software Validation") ;
+
+        LecturerCourseAdapter lecturerCourseAdapter =
+                new LecturerCourseAdapter(this,courses) ;
+        recyclerView.setAdapter(lecturerCourseAdapter);
+        lecturerCourseAdapter.getItemCount() ;
     }
 }

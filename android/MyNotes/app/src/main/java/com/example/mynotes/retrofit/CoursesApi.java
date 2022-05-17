@@ -19,7 +19,7 @@ public interface CoursesApi {
     Call<List<CourseEnrollementDto>> getCourses() ;
 
     @DELETE("courses/delete/{course_data}/{id}")
-    Call<Response> dropCourse(@Path("course_data") CourseEnrollementDto course_data, @Path("id") String id) ;
+    Call<Response> dropCourse(@Path("course_data") CourseEnrollementDto course_data) ;
 
     @POST("courses/student/{course_data}/{id}")
     Call<Response> addCourse(@Path("course_data") CourseEnrollementDto course_data, @Path("id") String id) ;
