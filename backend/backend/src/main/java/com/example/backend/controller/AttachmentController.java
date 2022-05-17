@@ -3,7 +3,10 @@ package com.example.backend.controller;
 import com.example.backend.filehandling.Attachment;
 import com.example.backend.filehandling.model.ResponseData;
 import com.example.backend.service.AttachmentService;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,5 +41,11 @@ public class AttachmentController {
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileId) throws Exception {
         Attachment attachment = null;
         attachment = attachmentService.getAttachment(fileId);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(attachment.getFileType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + attachment.getFileName()
+                + "\"")
+                .body(new ByteArrayResource(attachment.getData()));
     }
 }
