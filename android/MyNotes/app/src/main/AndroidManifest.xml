@@ -43,7 +43,8 @@
             android:parentActivityName=".CourseActivity" />
         <activity
             android:name=".CourseActivity"
-            android:exported="false" />
+            android:exported="true" >
+        </activity>
         <activity android:name=".DashboardActivity" />
         <activity android:name=".LoginActivity" />
         <activity

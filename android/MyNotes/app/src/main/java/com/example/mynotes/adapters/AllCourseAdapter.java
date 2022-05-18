@@ -76,15 +76,16 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
 
                     Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                     final CoursesApi addCourseApi = retrofit.create(CoursesApi.class) ;
-                    Call<Response> call = addCourseApi.addCourse(allCourses.get(position), id) ;
-                    call.enqueue(new Callback<Response>() {
+                    Call<CourseEnrollementDto> call = addCourseApi.addCourse(allCourses.get(position)) ;
+                    call.enqueue(new Callback<CourseEnrollementDto>() {
                         @Override
-                        public void onResponse(Call<Response> call, Response<Response> response) {
+                        public void onResponse(Call<CourseEnrollementDto> call,
+                                               Response<CourseEnrollementDto> response) {
                             Log.i("messege", "Success") ;
                         }
 
                         @Override
-                        public void onFailure(Call<Response> call, Throwable t) {
+                        public void onFailure(Call<CourseEnrollementDto> call, Throwable t) {
                             Log.i("Messege", "Error") ;
                         }
                     });
