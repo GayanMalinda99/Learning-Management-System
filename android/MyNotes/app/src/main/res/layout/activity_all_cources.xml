@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refresh_all_courses"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AllCources">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+   <RelativeLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
 
-        app:title="ALL Courses" />
+       <androidx.appcompat.widget.Toolbar
+           android:id="@+id/toolbar3"
+           android:layout_width="409dp"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="20dp"
+           android:background="?attr/colorPrimary"
+           android:minHeight="?attr/actionBarSize"
+           android:theme="?attr/actionBarTheme"
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleview1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar3"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp" />
+           app:title="ALL Courses" />
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/recycleview1"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_below="@id/toolbar3"
+           android:layout_marginStart="50dp"
+           android:layout_marginLeft="50dp" />
+   </RelativeLayout>
 
 
-</RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

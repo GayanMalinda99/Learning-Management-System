@@ -10,4 +10,7 @@ public interface AppUserApi {
 
     @POST("api/v1/registration")
     Call<AppUser> save(@Body AppUser appUser);
+
+    @POST("login")
+    Call<AppUser> login(@Body AppUser appUser);
 }
