@@ -1,21 +1,15 @@
-package com.example.backend.course.model;
+package com.example.backend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class CourseEnrolement {
-    @Id
+public class CourseEnrollmentDTO {
     private int studentId;
     private String code;
     private String course_name;
     private String course_description;
-
 }

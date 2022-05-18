@@ -15,40 +15,38 @@
         android:layout_height="wrap_content">
 
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="822dp"
-                android:background="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
 
-                app:title="@string/course_activity_title"
-                app:titleTextAppearance="@style/Toolbar.TitleText"
-                app:titleTextColor="@color/cardview_light_background" />
+            app:title="ALL Enrolled Courses" />
 
-            <ListView
-                android:id="@+id/courseList"
-                android:layout_width="507dp"
-                android:layout_height="656dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginStart="50dp"
-                android:rotationX="-4"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-                android:layout_marginLeft="100dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/course_recycle_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar2"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="11dp" />
+
+        <Button
+            android:id="@+id/add_course_button"
+            android:layout_width="152dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/course_recycle_view"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="34dp"
+            android:text="Add Courses" />
 
     </RelativeLayout>
-
-
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -14,24 +14,36 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".SelectedCourseActivity"
+            android:name=".AllCources"
             android:exported="false" />
+        <activity
+            android:name=".SelectedCourseActivity"
+            android:exported="false"
+            android:parentActivityName=".CourseActivity"/>
         <activity
             android:name=".CourseActivity"
             android:exported="false" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="true"
-            android:label="@string/DashBoard"
-            android:theme="@style/AppTheme">
+            android:name=".RegisterActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:label="@string/DashBoard"
+            android:theme="@style/AppTheme">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 

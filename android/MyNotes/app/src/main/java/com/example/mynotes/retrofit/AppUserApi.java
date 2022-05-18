@@ -1,15 +1,13 @@
 package com.example.mynotes.retrofit;
 
-import com.example.mynotes.model.Student;
-
-import java.util.List;
+import com.example.mynotes.model.*;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
-public interface StudentApi {
+public interface AppUserApi {
 
     @POST("api/v1/registration")
-    Call<Student> save(@Body Student student);
+    Call<AppUser> save(@Body AppUser appUser);
 }

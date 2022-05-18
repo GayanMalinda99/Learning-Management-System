@@ -3,124 +3,81 @@ package com.example.mynotes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.mynotes.model.Student;
-import com.example.mynotes.retrofit.RetrofitService;
-import com.example.mynotes.retrofit.StudentApi;
+import com.example.mynotes.model.*;
+import com.example.mynotes.retrofit.*;
+import com.example.mynotes.retrofit.RetrofitClientInstance;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText etEmail,etPassword,etName,etLname;
+    EditText etEmail,etPassword,etFirstName, etLastName;
     Button btnRegister;
 
-    final String url_Register =  "http:/" ;
+
+//    final String url_Register =  "http:/" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etName = (EditText) findViewById(R.id.et_name);
-        etLname = (EditText) findViewById(R.id.et_Lname);
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etPassword = (EditText) findViewById(R.id.et_password);
-        btnRegister = (Button) findViewById(R.id.btn_register);
+        etFirstName = findViewById(R.id.etFirstName);
+        etLastName = findViewById(R.id.etLastName);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        btnRegister = findViewById(R.id.btnRegister);
 
         btnRegister.setOnClickListener( new View.OnClickListener()
-                                           {
-                                               @Override
-                                               public void onClick(View v) {
+       {
+           @Override
+           public void onClick(View v) {
+               String firstName = etFirstName.getText().toString();
+               String lastName = etLastName.getText().toString();
+               String email = etEmail.getText().toString();
+               String password =etPassword.getText().toString().trim();
 
-                                                   String Name = etName.getText().toString();
-                                                   String LName = etLname.getText().toString();
-                                                   String Email = etEmail.getText().toString();
-                                                   String Password = etPassword.getText().toString();
 
+               AppUser user = new AppUser(firstName,lastName,email,password);
 
-                                                   new RegisterUser().execute(Name,LName,Email,Password);
-
-                                               }
-                                           });
+               Log.i("btn","this is working");
+               CallRetrofit(user);
+           }
+       });
     }
 
-    public class RegisterUser extends AsyncTask<String,Void,String>
-    {
+    public void CallRetrofit(AppUser user) {
+        Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
 
-        @Override
-        protected String doInBackground(String... strings) {
+        AppUserApi appUserApi = retrofit.create(AppUserApi.class);
+        Call<AppUser> call = appUserApi.save(user);
 
-            String Name = strings[0];
-            String Email = strings[1];
-            String Password = strings[2];
-
-            String finalURL = url_Register + "?user_name = " + Name +
-                    "&user_id= " + Email +
-                    "&user_password = " + Password;
-
-            Request request = new Request.Builder()
-                    .url(finalURL)
-                    .get()
-                    .build();
-
-            Response response = null;
-            OkHttpClient okHttpClient = new OkHttpClient();
-            try {
-
-                response = okHttpClient.newCall(request).execute();
-
-                if (response.isSuccessful())
-                {
-                    String result = response.body().string();
-                    if (result.equalsIgnoreCase("Registered Succesfully"))
-                    {
-                        Toast.makeText(RegisterActivity.this,
-                                "Register succsess",Toast.LENGTH_LONG).show();
-
-                        Intent i = new Intent(RegisterActivity.this,
-                                LoginActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
-                    else if (result.equalsIgnoreCase("User Already Exist"))
-                    {
-                        Toast.makeText(RegisterActivity.this,
-                                "User Already Exist",Toast.LENGTH_LONG).show();
-
-                    }
-                    else
-                    {
-                        Toast.makeText(RegisterActivity.this,
-                                "Try Again !!!",Toast.LENGTH_LONG).show();
-
-                    }
-                }
+        Log.i("call","function called");
+        Intent i = new Intent(RegisterActivity.this,
+                LoginActivity.class);
+        startActivity(i);
+        finish();
+        call.enqueue(new Callback<AppUser>() {
+            @Override
+            public void onResponse(Call<AppUser> call, retrofit2.Response<AppUser> response) {
+                Log.i("save","working");
 
             }
-            catch (Exception e)
-            {
-                e.printStackTrace();
+
+            @Override
+            public void onFailure(Call<AppUser> call, Throwable t) {
+//                Log.i("lost","not save");
             }
-
-
-
-
-            return null;
-        }
+        });
     }
 
     
