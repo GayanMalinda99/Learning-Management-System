@@ -6,7 +6,6 @@ import com.example.backend.course.model.Course;
 import com.example.backend.course.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @CrossOrigin
@@ -30,7 +29,7 @@ public class CourseController {
         courseRepository.save(courseData);
     }
 
-    @PutMapping("/{courseCode}/students/{studentId}")
+    @PutMapping("/student/{courseCode}/{studentId}")
     public Course addStudentToCourse(
             @PathVariable String courseCode,
             @PathVariable Long studentId){
@@ -40,7 +39,7 @@ public class CourseController {
         return courseRepository.save(course);
     }
 
-    @PutMapping("/{courseCode}/lecturer/{lecturerId}")
+    @PutMapping("/lecturer/{courseCode}/{lecturerId}")
     public Course assignLecturerToCourse(
             @PathVariable String courseCode,
             @PathVariable Long lecturerId){
@@ -48,6 +47,18 @@ public class CourseController {
         AppUser lecturer = appUserRepository.findById(lecturerId).get();
         course.setLecturer(lecturer);
         return courseRepository.save(course);
+    }
+
+    @GetMapping("/enrolledcourses/{studentId}")
+    public List<Course> getEnrolledCourses(@PathVariable Long studentId){
+        List<Course> courses = courseRepository.findByEnrolledStudents_id(studentId);
+        return courses;
+    }
+
+    @GetMapping("/getstudents/{courseCode}")
+    public List<Course> getEnrolledStudents(@PathVariable String courseCode){
+        List<Course> students = courseRepository.findByCode(courseCode);
+        return students;
     }
 
 }
