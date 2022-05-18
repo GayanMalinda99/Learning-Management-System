@@ -15,12 +15,13 @@ import java.util.List;
 
 public class LecturerCourseAdapter extends RecyclerView.Adapter<LecturerCourseAdapter.LecturerViewHolder> {
 
-    Context context ;
-    List<String> courses ;
-
-    public LecturerCourseAdapter(Context context, List<String> courses){
+    private Context context ;
+    private List<String> courses ;
+    private CourseClickListner listner ;
+    public LecturerCourseAdapter(Context context, List<String> courses, CourseClickListner listner){
         this.context= context ;
         this.courses = courses ;
+        this.listner = listner ;
 
     }
 
@@ -42,14 +43,24 @@ public class LecturerCourseAdapter extends RecyclerView.Adapter<LecturerCourseAd
         return courses.size() ;
     }
 
-    public class LecturerViewHolder extends RecyclerView.ViewHolder {
+    public class LecturerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textView ;
 
         public LecturerViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.lecturer_list_item) ;
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            listner.onItemClick(view, getAdapterPosition());
+        }
+    }
 
+
+
+    public interface CourseClickListner{
+        void onItemClick(View view, int position) ;
     }
 }

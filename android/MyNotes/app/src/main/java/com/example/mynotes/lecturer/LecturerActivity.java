@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,8 +18,10 @@ import java.util.List;
 
 public class LecturerActivity extends AppCompatActivity {
 
+    public static final String COURSE_NAME = "" ;
+
     RecyclerView recyclerView ;
-    LecturerCourseAdapter.RecycleViewClickListnerLecturer listner ;
+    LecturerCourseAdapter.CourseClickListner listner ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,18 @@ public class LecturerActivity extends AppCompatActivity {
         courses.add("Descrete Mathematics") ;
         courses.add("Software Validation") ;
 
+        listner = new LecturerCourseAdapter.CourseClickListner() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Log.i("Messege", "Working") ;
+                Intent intent = new Intent(getApplicationContext(), LecturerSelectedCourseActivity.class) ;
+                intent.putExtra(COURSE_NAME, courses.get(position) ) ;
+                startActivity(intent);
+            }
+        } ;
+
         LecturerCourseAdapter lecturerCourseAdapter =
-                new LecturerCourseAdapter(this,courses) ;
+                new LecturerCourseAdapter(this,courses, listner) ;
         recyclerView.setAdapter(lecturerCourseAdapter);
         lecturerCourseAdapter.getItemCount() ;
 
