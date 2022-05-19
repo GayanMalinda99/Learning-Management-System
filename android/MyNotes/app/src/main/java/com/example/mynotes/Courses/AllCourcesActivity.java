@@ -1,26 +1,19 @@
-package com.example.mynotes;
+package com.example.mynotes.Courses;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.os.Bundle;
-import android.util.Log;
-
+import com.example.mynotes.R;
 import com.example.mynotes.adapters.AllCourseAdapter;
-import com.example.mynotes.retrofit.CoursesApi;
-import com.example.mynotes.retrofit.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
-public class AllCources extends AppCompatActivity {
+public class AllCourcesActivity extends AppCompatActivity {
 
     SwipeRefreshLayout swipeRefreshLayout ;
 
