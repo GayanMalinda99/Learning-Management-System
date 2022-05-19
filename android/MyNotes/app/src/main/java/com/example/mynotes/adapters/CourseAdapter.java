@@ -30,10 +30,10 @@ import retrofit2.Retrofit;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
 
     Context context ;
-    List<Course> allEnrolledCourses;
+    List<CourseEnrollementDto> allEnrolledCourses;
     private RecycleViewClickListner itemClickListner ;
 
-    public CourseAdapter(Context ct , List<Course> courses, RecycleViewClickListner listner){
+    public CourseAdapter(Context ct , List<CourseEnrollementDto> courses, RecycleViewClickListner listner){
         context = ct;
         allEnrolledCourses = courses ;
         itemClickListner = listner ;
@@ -49,7 +49,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     @Override
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
-        holder.textView.setText(allEnrolledCourses.get(position).title);
+        holder.textView.setText(allEnrolledCourses.get(position).course_name);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     String courseName = textView.getText().toString() ;
                     int position = -1 ;
                     for(int i = 0 ; allEnrolledCourses.size() > i ; i++){
-                        if(courseName==allEnrolledCourses.get(i).title){
+                        if(courseName==allEnrolledCourses.get(i).course_name){
                             position = i ;
                         }
                     }

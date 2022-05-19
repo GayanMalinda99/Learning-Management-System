@@ -15,7 +15,7 @@ import retrofit2.http.Path;
 
 public interface CoursesApi {
     @GET("api/v1/registeredCourses")
-    Call<List<CourseEnrollementDto>> getEnrolledCourses(@Path("id") String id) ;
+    Call<List<CourseEnrollementDto>> getEnrolledCourses() ;
 
     @GET("api/v1/course/getcourse")
     Call <List<Course>> getCourses() ;

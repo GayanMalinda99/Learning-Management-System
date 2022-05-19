@@ -50,6 +50,7 @@ public class CourseActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = findViewById(R.id.add_course_button) ;
+        int studentId = 4 ;
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -57,21 +58,31 @@ public class CourseActivity extends AppCompatActivity {
         Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi coursesApi = retrofit.create(CoursesApi.class) ;
 
-        Call<List<Course>> call = coursesApi.getCourses() ;
-        call.enqueue(new Callback<List<Course>>() {
-            @Override
-            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
-                List<Course> courseList = response.body() ;
+       Call<List<CourseEnrollementDto>> call = coursesApi.getEnrolledCourses() ;
+       call.enqueue(new Callback<List<CourseEnrollementDto>>() {
+           @Override
+           public void onResponse(Call<List<CourseEnrollementDto>> call,
+                                  Response<List<CourseEnrollementDto>> response) {
+               List<CourseEnrollementDto> allEnrolledCourseList = response.body() ;
 
-                CourseAdapter courseAdapter = new CourseAdapter(CourseActivity.this, courseList, listner) ;
-                recyclerView.setAdapter(courseAdapter);
-            }
+               List<CourseEnrollementDto> enrolledCourseList = new ArrayList<>();
 
-            @Override
-            public void onFailure(Call<List<Course>> call, Throwable t) {
+               for(int i=0; allEnrolledCourseList.size()>i; i++){
+                   if(studentId == allEnrolledCourseList.get(i).studentId){
+                       enrolledCourseList.add(allEnrolledCourseList.get(i)) ;
+                   }
+               }
+
+               CourseAdapter courseAdapter =
+                       new CourseAdapter(CourseActivity.this, enrolledCourseList,listner) ;
+               recyclerView.setAdapter(courseAdapter);
+           }
+
+           @Override
+           public void onFailure(Call<List<CourseEnrollementDto>> call, Throwable t) {
                 Log.i("Error", t.toString()) ;
-            }
-        });
+           }
+       });
 
         /*Creating a listner to go to a selected course*/
         listner = new CourseAdapter.RecycleViewClickListner() {
