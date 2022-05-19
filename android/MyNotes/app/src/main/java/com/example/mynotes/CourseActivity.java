@@ -76,6 +76,16 @@ public class CourseActivity extends AppCompatActivity {
                CourseAdapter courseAdapter =
                        new CourseAdapter(CourseActivity.this, enrolledCourseList,listner) ;
                recyclerView.setAdapter(courseAdapter);
+
+               /*Refreshing*/
+               swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
+               swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                   @Override
+                   public void onRefresh() {
+                       courseAdapter.notifyDataSetChanged();
+                       swipeRefreshLayout.setRefreshing(false);
+                   }
+               });
            }
 
            @Override
