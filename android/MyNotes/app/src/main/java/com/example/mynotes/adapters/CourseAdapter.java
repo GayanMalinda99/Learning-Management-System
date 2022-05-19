@@ -60,7 +60,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textView ;
         ImageButton imageButton ;
-        String id = "1" ;
+        int id = 3 ;
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +70,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
            itemView.findViewById(R.id.course_delete_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i(id, textView.getText().toString()) ;
+                    Log.i(Integer.toString(id), textView.getText().toString()) ;
 
                     String courseName = textView.getText().toString() ;
                     int position = -1 ;
@@ -80,7 +80,39 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                         }
                     }
 
-                    /*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+                    Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+                    final CoursesApi dropCourseApi = retrofit.create(CoursesApi.class) ;
+
+                    Call<CourseEnrollementDto> call =
+                            dropCourseApi.dropCourse(allEnrolledCourses.get(position)) ;
+                    call.enqueue(new Callback<CourseEnrollementDto>() {
+                        @Override
+                        public void onResponse(Call<CourseEnrollementDto> call, Response<CourseEnrollementDto> response) {
+                            Log.i("Messege", "done") ;
+                        }
+
+                        @Override
+                        public void onFailure(Call<CourseEnrollementDto> call, Throwable t) {
+                            Log.i("Error", t.toString()) ;
+                        }
+                    });
+
+                }
+            });
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemClickListner.onItemClick(itemView, getAdapterPosition());
+        }
+    }
+
+   public interface RecycleViewClickListner{
+        void onItemClick(View view, int position) ;
+   }
+}
+
+/*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                     final CoursesApi deleteCourseApi = retrofit.create(CoursesApi.class) ;
                     Call<Response> call = deleteCourseApi.dropCourse(
                             allEnrolledCourses.get(position)
@@ -96,17 +128,3 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                             Log.i("Messege", "Error") ;
                         }
                     });*/
-                }
-            });
-        }
-
-        @Override
-        public void onClick(View view) {
-            itemClickListner.onItemClick(itemView, getAdapterPosition());
-        }
-    }
-
-   public interface RecycleViewClickListner{
-        void onItemClick(View view, int position) ;
-   }
-}
