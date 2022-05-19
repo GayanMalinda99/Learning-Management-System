@@ -32,7 +32,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CourseActivity extends AppCompatActivity {
-    public static final String COURSE_CODE = "com.example.mynotes.COURSE_NAME" ;
+    public static final String COURSE_CODE = "com.example.mynotes.COURSE_CODE" ;
     public static  final String STUDENT_ID = "com.example.mynotes.STUDENT_ID" ;
     public static  final String COURSE_NAME = "com.example.mynotes.COURSE_NAME" ;
 
@@ -73,9 +73,21 @@ public class CourseActivity extends AppCompatActivity {
                    }
                }
 
+               /*Creating a listner to go to a selected course*/
+               listner = new CourseAdapter.RecycleViewClickListner() {
+                   @Override
+                   public void onItemClick(View view, int position) {
+                       openSelectedActivity(enrolledCourseList.get(position).course_name,
+                               enrolledCourseList.get(position).code,
+                               Integer.toString(enrolledCourseList.get(position).studentId));
+                   }
+               } ;
+
                CourseAdapter courseAdapter =
                        new CourseAdapter(CourseActivity.this, enrolledCourseList,listner) ;
                recyclerView.setAdapter(courseAdapter);
+
+                /*button.setText(enrolledCourseList.get(0).course_name); /*To check whats wrong*/
 
                /*Refreshing*/
                swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
@@ -91,16 +103,9 @@ public class CourseActivity extends AppCompatActivity {
            @Override
            public void onFailure(Call<List<CourseEnrollementDto>> call, Throwable t) {
                 Log.i("Error", t.toString()) ;
+               //button.setText(t.toString());
            }
        });
-
-        /*Creating a listner to go to a selected course*/
-        listner = new CourseAdapter.RecycleViewClickListner() {
-            @Override
-            public void onItemClick(View view, int position) {
-                openSelectedActivity();
-            }
-        } ;
 
         /*Making Add Course button directs to AllCourseActivity*/
         button.setOnClickListener(new View.OnClickListener() {
@@ -125,8 +130,11 @@ public class CourseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openSelectedActivity(){
+    public void openSelectedActivity(String courseName, String courseCode, String studentId){
         Intent intent = new Intent(getApplicationContext(), SelectedCourseActivity.class) ;
+        intent.putExtra(COURSE_NAME, courseName) ;
+        intent.putExtra(COURSE_CODE, courseCode) ;
+        intent.putExtra(STUDENT_ID, studentId) ;
         startActivity(intent);
     }
 
