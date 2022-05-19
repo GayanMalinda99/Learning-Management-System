@@ -57,8 +57,6 @@
 
         </LinearLayout>
 
-
     </RelativeLayout>
-
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

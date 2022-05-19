@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lecturer.LecturerSelectedCourseActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/course_panel_toolbar"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Course Panel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/add_marks_button"
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course_panel_toolbar"
+        android:layout_marginTop="55dp"
+        android:text="Add Students Marks"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp" />
+
+    <Button
+        android:id="@+id/announcement_button"
+        android:layout_width="271dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_marks_button"
+        android:layout_marginTop="31dp"
+        android:text="Make An Announcement"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"/>
+</RelativeLayout>

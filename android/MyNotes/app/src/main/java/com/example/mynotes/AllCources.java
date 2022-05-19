@@ -7,8 +7,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toolbar;
 
 import com.example.mynotes.adapters.AllCourseAdapter;
+import com.example.mynotes.adapters.CourseAdapter;
+import com.example.mynotes.dto.CourseEnrollementDto;
+import com.example.mynotes.model.Course;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.*;
 
@@ -31,42 +35,34 @@ public class AllCources extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycleview1) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar3) ;
 
-        /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
-        final CoursesApi allCoursesApi = retrofit.create(CoursesApi.class) ;
-        Call<List<String>> call = allCoursesApi.getCourses() ;
-        call.enqueue(new Callback<List<String>>() {
+        Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+        final CoursesApi coursesApi = retrofit.create(CoursesApi.class) ;
+
+        Call<List<Course>> call = coursesApi.getCourses() ;
+        call.enqueue(new Callback<List<Course>>() {
             @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                List<String> courseList = response.body() ;
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                List<Course> courseList = response.body() ;
+
                 AllCourseAdapter allCourseAdapter = new AllCourseAdapter(AllCources.this, courseList) ;
                 recyclerView.setAdapter(allCourseAdapter);
-                allCourseAdapter.getItemCount() ;
+
+                toolbar.setTitle("working");
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
-                Log.i("Messege", "Error") ;
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                Log.i("Error", t.toString()) ;
+                toolbar.setTitle(t.toString());
             }
-        }) ;*/
-
-        //Call<Response> call = allCoursesApi.addCourse()
-
-        List<String> courses = new ArrayList<>() ;
-        courses.add("React") ;
-        courses.add("Javascript") ;
-        courses.add("Kotlin") ;
-        courses.add("Java") ;
-        courses.add("Python") ;
-        AllCourseAdapter allCourseAdapter = new AllCourseAdapter(this, courses) ;
-        recyclerView.setAdapter(allCourseAdapter);
-        allCourseAdapter.getItemCount() ;
+        });
 
         swipeRefreshLayout = findViewById(R.id.refresh_all_courses) ;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                allCourseAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -74,21 +70,41 @@ public class AllCources extends AppCompatActivity {
     }
 }
 
-// app:layout_constraintEnd_toStartOf="@+id/imageButton"
+/*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+        final CoursesApi allCoursesApi = retrofit.create(CoursesApi.class) ;
+        Call<List<CourseEnrollementDto>> call = allCoursesApi.getCourses() ;
+        call.enqueue(new Callback<List<CourseEnrollementDto>>() {
+            @Override
+            public void onResponse(Call<List<CourseEnrollementDto>> call, Response<List<CourseEnrollementDto>> response) {
+                List<CourseEnrollementDto> courseList = response.body() ;
+                AllCourseAdapter allCourseAdapter = new AllCourseAdapter(AllCources.this, courseList) ;
+                recyclerView.setAdapter(allCourseAdapter);
+                allCourseAdapter.getItemCount() ;
 
-/*<ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="55dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_input_add" />*/
+                swipeRefreshLayout = findViewById(R.id.refresh_all_courses) ;
+                swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        allCourseAdapter.notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<CourseEnrollementDto>> call, Throwable t) {
+                Log.i("Messege", "Error") ;
+            }
+        }) ;
+
+        //Call<Response> call = allCoursesApi.addCourse()
+
+       /* List<String> courses = new ArrayList<>() ;
+        courses.add("React") ;
+        courses.add("Javascript") ;
+        courses.add("Kotlin") ;
+        courses.add("Java") ;
+        courses.add("Python") ;
+        AllCourseAdapter allCourseAdapter = new AllCourseAdapter(this, courses) ;
+        recyclerView.setAdapter(allCourseAdapter);
+        allCourseAdapter.getItemCount() ;*/
