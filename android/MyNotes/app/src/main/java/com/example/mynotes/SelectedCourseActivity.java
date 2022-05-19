@@ -35,8 +35,6 @@ public class SelectedCourseActivity extends AppCompatActivity {
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar7);
         toolbar.setTitle(courseName);
 
-        /*String id ="1" ;
-        String marks = "75" ;*/
         TextView textView_2 = findViewById(R.id.textView5) ;
         String marks = "75" ;
 

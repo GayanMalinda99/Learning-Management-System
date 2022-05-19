@@ -7,6 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toolbar;
 
 import com.example.mynotes.adapters.AllCourseAdapter;
 import com.example.mynotes.adapters.CourseAdapter;
@@ -34,6 +35,7 @@ public class AllCources extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycleview1) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar3) ;
 
         Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi coursesApi = retrofit.create(CoursesApi.class) ;
@@ -46,11 +48,14 @@ public class AllCources extends AppCompatActivity {
 
                 AllCourseAdapter allCourseAdapter = new AllCourseAdapter(AllCources.this, courseList) ;
                 recyclerView.setAdapter(allCourseAdapter);
+
+                toolbar.setTitle("working");
             }
 
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
                 Log.i("Error", t.toString()) ;
+                toolbar.setTitle(t.toString());
             }
         });
 

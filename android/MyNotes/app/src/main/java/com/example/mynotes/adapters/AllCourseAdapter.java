@@ -60,7 +60,7 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.textView2) ;
             imageButton = itemView.findViewById(R.id.imageButton2) ;
-            String id = "1" ;
+            int id = 12 ;
 
             itemView.findViewById(R.id.imageButton2).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -73,9 +73,39 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
                         }
                     }
 
-                    Log.i(Integer.toString(position) , textView.getText().toString()) ;
+                    Log.i(Integer.toString(position) , textView.getText().toString() ) ;
 
-                    /*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+                    CourseEnrollementDto couseenrolmentdata = new CourseEnrollementDto() ;
+                    couseenrolmentdata.studentId = id ;
+                    couseenrolmentdata.code= allCourses.get(position).code ;
+                    couseenrolmentdata.course_name = allCourses.get(position).title ;
+                    couseenrolmentdata.course_description = allCourses.get(position).description ;
+
+                    Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+                    final CoursesApi addCourseApi = retrofit.create(CoursesApi.class) ;
+
+                    Call<CourseEnrollementDto> call = addCourseApi.addCourse(couseenrolmentdata) ;
+                    call.enqueue(new Callback<CourseEnrollementDto>() {
+                        @Override
+                        public void onResponse(Call<CourseEnrollementDto> call, Response<CourseEnrollementDto> response) {
+                            Log.i("messege", "done") ;
+                        }
+
+                        @Override
+                        public void onFailure(Call<CourseEnrollementDto> call, Throwable t) {
+                            Log.i("Error", t.toString()) ;
+                        }
+                    });
+
+
+                }
+            });
+
+        }
+    }
+}
+
+/*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                     final CoursesApi addCourseApi = retrofit.create(CoursesApi.class) ;
                     Call<CourseEnrollementDto> call = addCourseApi.addCourse(allCourses.get(position)) ;
                     call.enqueue(new Callback<CourseEnrollementDto>() {
@@ -90,9 +120,25 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
                             Log.i("Messege", "Error") ;
                         }
                     });*/
-                }
-            });
 
+    /*CourseEnrollementDto couseenrolmentdata = new CourseEnrollementDto() ;
+                    couseenrolmentdata.studentId = id ;
+                            couseenrolmentdata.code= allCourses.get(position).code ;
+                            couseenrolmentdata.course_name = allCourses.get(position).title ;
+                            couseenrolmentdata.course_description = allCourses.get(position).description ;
+
+                            Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+final CoursesApi addCourseApi = retrofit.create(CoursesApi.class) ;
+
+        Call<CourseEnrollementDto> call = addCourseApi.addCourse(couseenrolmentdata) ;
+        call.enqueue(new Callback<CourseEnrollementDto>() {
+@Override
+public void onResponse(Call<CourseEnrollementDto> call, Response<CourseEnrollementDto> response) {
+        Log.i("messege", "done") ;
         }
-    }
-}
+
+@Override
+public void onFailure(Call<CourseEnrollementDto> call, Throwable t) {
+        Log.i("Error", t.toString()) ;
+        }
+        });*/
