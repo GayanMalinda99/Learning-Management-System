@@ -14,9 +14,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 class WebSecurityConfigTest {
-    /**
-     * Method under test: {@link WebSecurityConfig#daoAuthenticationProvider()}
-     */
+
     @Test
     void testDaoAuthenticationProvider() {
 
@@ -34,9 +32,7 @@ class WebSecurityConfigTest {
 //        assertFalse(actualDaoAuthenticationProviderResult.isForcePrincipalAsString());
     }
 
-    /**
-     * Method under test: {@link WebSecurityConfig#daoAuthenticationProvider()}
-     */
+
     @Test
     @Disabled("TODO: Complete this test")
     void testDaoAuthenticationProvider2() {

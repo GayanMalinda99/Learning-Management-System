@@ -12,9 +12,7 @@ class PasswordEncoderTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    /**
-     * Method under test: {@link PasswordEncoder#bCryptPasswordEncoder()}
-     */
+
     @Test
     void testBCryptPasswordEncoder() {
 
