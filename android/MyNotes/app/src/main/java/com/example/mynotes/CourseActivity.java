@@ -109,6 +109,15 @@ public class CourseActivity extends AppCompatActivity {
                 openAllCoursesActivity();
             }
         }) ;
+
+        /*Refresh*/
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     public void openAllCoursesActivity(){
