@@ -1,4 +1,5 @@
 import React from "react";
+import AddAnnouncement from "./AddAnnouncement";
 import GetStudent from "./GetStudent";
 
 function Panal() {
@@ -11,41 +12,7 @@ function Panal() {
         </div>
       </div>
       <div className="row">
-        <div className="col-9">
-          <div className="row">
-            <div className="col-1">
-              <button
-                className="btn btn-primary align-start"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseExample"
-                aria-expanded="false"
-                aria-controls="collapseExample"
-              >
-                Announcement
-              </button>
-            </div>
-          </div>
-
-          <div className="collapse" id="collapseExample">
-            <div className="card card-body">
-              <form>
-                <textarea
-                  className="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                ></textarea>
-                <div className="row">
-                  <input
-                    className="btn btn-primary"
-                    type="submit"
-                    value="Send"
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        <AddAnnouncement />
         <div className="col-3">
           <GetStudent />
         </div>
