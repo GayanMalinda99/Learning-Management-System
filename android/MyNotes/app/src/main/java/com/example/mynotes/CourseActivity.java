@@ -64,6 +64,8 @@ public class CourseActivity extends AppCompatActivity {
             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
                 textView.setText("Working");
                 List<Course> courseList = response.body() ;
+                CourseAdapter courseAdapter = new CourseAdapter(CourseActivity.this, courseList, listner) ;
+                recyclerView.setAdapter(courseAdapter);
             }
 
             @Override
