@@ -24,6 +24,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -75,8 +76,22 @@ public class  LoginActivity extends AppCompatActivity {
                 Log.i("btn","this is working");
                 CallRetrofit(user);
 
+                CallLoginService();
+
+
             }
         });
+
+    }
+
+    private void CallLoginService() {
+
+
+            final String email =etEmail.getText().toString();
+            final String password = etPassword.getText().toString();
+
+            AppUserApi appUserApi = RetrofitClientInstance.getRetrofitInstance().create(AppUserApi.class);
+
 
     }
 
