@@ -36,9 +36,7 @@ class AnnouncementControllerTest {
     void getEnrollStudent() {
     }
 
-    /**
-     * Method under test: {@link AnnouncementController#getEnrollStudent()}
-     */
+
     @Test
     void testGetEnrollStudent() throws Exception {
         when(this.studentEnrollRepository.findAll()).thenReturn(new ArrayList<>());
@@ -51,9 +49,7 @@ class AnnouncementControllerTest {
                 .andExpect(MockMvcResultMatchers.content().string("[]"));
     }
 
-    /**
-     * Method under test: {@link AnnouncementController#getEnrollStudent()}
-     */
+
     @Test
     void testGetEnrollStudent2() throws Exception {
         when(this.studentEnrollRepository.findAll()).thenReturn(new ArrayList<>());
