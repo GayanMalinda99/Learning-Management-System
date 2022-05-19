@@ -35,4 +35,19 @@ public class Course {
     @OneToMany(mappedBy = "course")
     Set<Marks> Marks;
 
+
+//    private String course_name;
+//    private String course_description;
+//
+//    @OneToOne
+//    private AppUser lecturer;
+//
+//    @ManyToMany
+//    @JoinTable(name = "course_enrolled_students",
+//            joinColumns = @JoinColumn(name = "course_code", referencedColumnName = "enrolled_students_id"))
+//    private List<AppUser> appUsers = new ArrayList<>();
+
+
+
+
 }
