@@ -23,7 +23,7 @@ public class NewCourseActivity extends AppCompatActivity {
         EditText discription = findViewById(R.id.input_description) ;
         Button submitButton = findViewById(R.id.submit_course_button) ;
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        /*submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("messege", code.getText().toString()+" / "+
@@ -34,6 +34,6 @@ public class NewCourseActivity extends AppCompatActivity {
                         discription.getText().toString()
                 ) ;
             }
-        });
+        });*/
     }
 }

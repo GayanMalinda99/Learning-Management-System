@@ -53,12 +53,28 @@ public class CourseActivity extends AppCompatActivity {
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-        //Initializing retrofit and getting the course list
-        Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+        Button button = findViewById(R.id.add_course_button) ;
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAllCoursesActivity();
+            }
+        }) ;
+    }
+
+    public void openAllCoursesActivity(){
+        Intent intent = new Intent(this, AllCources.class) ;
+        startActivity(intent);
+    }
+
+}
+
+//Initializing retrofit and getting the course list
+        /*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi courseApi = retrofit.create(CoursesApi.class) ;
         String id = "1" ;
         Call<List<CourseEnrollementDto>> call = courseApi.getEnrolledCourses(id) ;
-        call.enqueue(new Callback<List<CourseEnrollementDto>>() {
+        Call.enqueue(new Callback<List<CourseEnrollementDto>>() {
             @Override
             public void onResponse(Call<List<CourseEnrollementDto>> call, Response<List<CourseEnrollementDto>> response) {
                 List<CourseEnrollementDto> courseList = response.body() ;
@@ -102,7 +118,7 @@ public class CourseActivity extends AppCompatActivity {
             }
         });
 
-        /*List<String> courses = new ArrayList<>() ;
+        List<String> courses = new ArrayList<>() ;
         courses.add("Web Development") ;
         courses.add("Mobile Development") ;
         courses.add("Software Architecture") ;
@@ -122,13 +138,7 @@ public class CourseActivity extends AppCompatActivity {
         recyclerView.setAdapter(courseAdapter);
         courseAdapter.getItemCount() ;
 
-        Button button = findViewById(R.id.add_course_button) ;
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openAllCoursesActivity();
-            }
-        }) ;
+
 
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -137,7 +147,7 @@ public class CourseActivity extends AppCompatActivity {
                 courseAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
-        });*/
+        });
 
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -146,15 +156,7 @@ public class CourseActivity extends AppCompatActivity {
                 //courseAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
-        });
-    }
-
-    public void openAllCoursesActivity(){
-        Intent intent = new Intent(this, AllCources.class) ;
-        startActivity(intent);
-    }
-
-}
+        });*/
 
 
 

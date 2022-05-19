@@ -1,10 +1,10 @@
 package com.example.mynotes.dto;
 
 public class CourseEnrollementDto {
-    public int studentId;
+    private int studentId;
     private String code;
     private String course_name;
-    public String course_description;
+    private String course_description;
 
     public String getCourseName(){
         return course_name ;
@@ -16,5 +16,9 @@ public class CourseEnrollementDto {
 
     public String getStudentId(){
         return Integer.toString(studentId) ;
+    }
+
+    public String getCourseDescription(){
+        return course_description ;
     }
 }

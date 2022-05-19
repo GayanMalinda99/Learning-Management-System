@@ -1,6 +1,7 @@
 package com.example.mynotes.retrofit;
 
 import com.example.mynotes.dto.CourseEnrollementDto;
+import com.example.mynotes.model.Course;
 
 import java.util.List;
 
@@ -16,15 +17,18 @@ public interface CoursesApi {
     @GET("api/v1/registeredCourses")
     Call<List<CourseEnrollementDto>> getEnrolledCourses(@Path("id") String id) ;
 
-    @GET("courses/getCourse")
-    Call<List<CourseEnrollementDto>> getCourses() ;
+    @GET("api/v1/course/getcourse")
+    Call <List<Course>> getCourses() ;
 
-    @DELETE("courses/delete")
+    @DELETE("api/v1/api/v1/courses/delete")
     Call<Response> dropCourse(@Body CourseEnrollementDto course_data) ;
 
-    @POST("courses/student/add_course")
+    @POST("api/v1/courses/student/add_course")
     Call<CourseEnrollementDto> addCourse(@Body CourseEnrollementDto course_data) ;
 
-    @GET("courses/marks/{course_code}/{id}")
+    @GET("api/v1/courses/marks/{course_code}/{id}")
     Call<Integer> getMarks(@Path("course_code") String course_code, @Path("id") String id) ;
+
+    @GET("api/v1/test")
+    Call<List<Course>> getTest() ;
  }

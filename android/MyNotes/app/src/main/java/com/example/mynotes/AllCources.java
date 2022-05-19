@@ -33,7 +33,7 @@ public class AllCources extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycleview1) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+        /*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi allCoursesApi = retrofit.create(CoursesApi.class) ;
         Call<List<CourseEnrollementDto>> call = allCoursesApi.getCourses() ;
         call.enqueue(new Callback<List<CourseEnrollementDto>>() {
