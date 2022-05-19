@@ -14,9 +14,7 @@ class EmailValidatorTest {
     @Autowired
     private EmailValidator emailValidator;
 
-    /**
-     * Method under test: {@link EmailValidator#test(String)}
-     */
+
     @Test
     void testTest() {
         String emailAddress = "username@domain.com";
