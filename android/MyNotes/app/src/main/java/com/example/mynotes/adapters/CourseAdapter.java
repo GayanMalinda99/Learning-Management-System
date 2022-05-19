@@ -16,6 +16,7 @@ import com.example.mynotes.AllCources;
 import com.example.mynotes.CourseActivity;
 import com.example.mynotes.R;
 import com.example.mynotes.dto.CourseEnrollementDto;
+import com.example.mynotes.model.Course;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.RetrofitClientInstance;
 
@@ -29,10 +30,10 @@ import retrofit2.Retrofit;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
 
     Context context ;
-    List<CourseEnrollementDto> allEnrolledCourses;
+    List<Course> allEnrolledCourses;
     private RecycleViewClickListner itemClickListner ;
 
-    public CourseAdapter(Context ct , List<CourseEnrollementDto> courses, RecycleViewClickListner listner){
+    public CourseAdapter(Context ct , List<Course> courses, RecycleViewClickListner listner){
         context = ct;
         allEnrolledCourses = courses ;
         itemClickListner = listner ;
@@ -48,7 +49,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     @Override
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
-        holder.textView.setText(allEnrolledCourses.get(position).getCourseName());
+        holder.textView.setText(allEnrolledCourses.get(position).title);
     }
 
     @Override
@@ -74,12 +75,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     String courseName = textView.getText().toString() ;
                     int position = -1 ;
                     for(int i = 0 ; allEnrolledCourses.size() > i ; i++){
-                        if(courseName==allEnrolledCourses.get(i).getCourseName()){
+                        if(courseName==allEnrolledCourses.get(i).title){
                             position = i ;
                         }
                     }
 
-                    Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+                    /*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                     final CoursesApi deleteCourseApi = retrofit.create(CoursesApi.class) ;
                     Call<Response> call = deleteCourseApi.dropCourse(
                             allEnrolledCourses.get(position)
@@ -94,7 +95,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                         public void onFailure(Call<Response> call, Throwable t) {
                             Log.i("Messege", "Error") ;
                         }
-                    });
+                    });*/
                 }
             });
         }

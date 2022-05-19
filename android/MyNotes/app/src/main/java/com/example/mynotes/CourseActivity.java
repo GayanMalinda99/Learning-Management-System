@@ -14,10 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.mynotes.adapters.CourseAdapter;
 import com.example.mynotes.dto.CourseEnrollementDto;
+import com.example.mynotes.model.Course;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.*;
 
@@ -45,15 +47,31 @@ public class CourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
 
-        Log.i("Messege", "Rendered") ;
-
         recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Button button = findViewById(R.id.add_course_button) ;
+        TextView textView = findViewById(R.id.textView) ;
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-        Button button = findViewById(R.id.add_course_button) ;
+        Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+        final CoursesApi coursesApi = retrofit.create(CoursesApi.class) ;
+
+        Call<List<Course>> call = coursesApi.getCourses() ;
+        call.enqueue(new Callback<List<Course>>() {
+            @Override
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                textView.setText("Working");
+                List<Course> courseList = response.body() ;
+            }
+
+            @Override
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                textView.setText(t.toString());
+            }
+        });
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

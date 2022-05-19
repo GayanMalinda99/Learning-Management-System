@@ -57,6 +57,14 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="186dp"
+            android:layout_height="63dp"
+            android:layout_below="@id/add_course_button"
+            android:layout_marginTop="69dp"
+            android:text="TextView" />
+
 
     </RelativeLayout>
 
