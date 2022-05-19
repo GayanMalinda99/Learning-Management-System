@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +53,7 @@ class RegistrationServiceTest {
     void register() {
     }
 
-    /**
-     * Method under test: {@link RegistrationService#confirmToken(String)}
-     */
+
     @Test
     void testConfirmToken() {
         AppUser appUser = new AppUser();
@@ -82,9 +82,7 @@ class RegistrationServiceTest {
         verify(this.confirmationTokenService).getToken((String) any());
     }
 
-    /**
-     * Method under test: {@link RegistrationService#confirmToken(String)}
-     */
+
     @Test
     void testConfirmToken2() {
         AppUser appUser = new AppUser();
@@ -128,9 +126,7 @@ class RegistrationServiceTest {
         verify(confirmationToken).setToken((String) any());
     }
 
-    /**
-     * Method under test: {@link RegistrationService#confirmToken(String)}
-     */
+
     @Test
     void testConfirmToken3() {
         when(this.confirmationTokenService.getToken((String) any())).thenReturn(Optional.empty());
@@ -174,5 +170,13 @@ class RegistrationServiceTest {
 
     @Test
     void confirmToken() {
+    }
+
+    @BeforeEach
+    void setUp() {
+    }
+
+    @AfterEach
+    void tearDown() {
     }
 }
