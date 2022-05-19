@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mynotes.R;
 import com.example.mynotes.dto.CourseEnrollementDto;
+import com.example.mynotes.model.Course;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.RetrofitClientInstance;
 
@@ -26,9 +27,9 @@ import retrofit2.Retrofit;
 public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.CourseViewHolder> {
 
     Context context ;
-    List<CourseEnrollementDto> allCourses;
+    List<Course> allCourses;
 
-    public AllCourseAdapter(Context ct , List<CourseEnrollementDto> courses){
+    public AllCourseAdapter(Context ct , List<Course> courses){
         context = ct;
        allCourses = courses ;
     }
@@ -43,7 +44,7 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
 
     @Override
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
-        holder.textView.setText(allCourses.get(position).getCourseName());
+        holder.textView.setText(allCourses.get(position).title);
     }
 
     @Override
@@ -64,17 +65,17 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
             itemView.findViewById(R.id.imageButton2).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i(id , textView.getText().toString()) ;
-
                     String courseName = textView.getText().toString() ;
                     int position = -1 ;
                     for(int i = 0 ; allCourses.size() > i; i++){
-                        if(courseName == allCourses.get(i).getCourseName()){
+                        if(courseName == allCourses.get(i).title){
                             position = i ;
                         }
                     }
 
-                    Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+                    Log.i(Integer.toString(position) , textView.getText().toString()) ;
+
+                    /*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                     final CoursesApi addCourseApi = retrofit.create(CoursesApi.class) ;
                     Call<CourseEnrollementDto> call = addCourseApi.addCourse(allCourses.get(position)) ;
                     call.enqueue(new Callback<CourseEnrollementDto>() {
@@ -88,7 +89,7 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
                         public void onFailure(Call<CourseEnrollementDto> call, Throwable t) {
                             Log.i("Messege", "Error") ;
                         }
-                    });
+                    });*/
                 }
             });
 

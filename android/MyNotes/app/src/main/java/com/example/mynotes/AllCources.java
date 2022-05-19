@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.mynotes.adapters.AllCourseAdapter;
+import com.example.mynotes.adapters.CourseAdapter;
 import com.example.mynotes.dto.CourseEnrollementDto;
+import com.example.mynotes.model.Course;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.*;
 
@@ -33,7 +35,37 @@ public class AllCources extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycleview1) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        /*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+        Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+        final CoursesApi coursesApi = retrofit.create(CoursesApi.class) ;
+
+        Call<List<Course>> call = coursesApi.getCourses() ;
+        call.enqueue(new Callback<List<Course>>() {
+            @Override
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                List<Course> courseList = response.body() ;
+
+                AllCourseAdapter allCourseAdapter = new AllCourseAdapter(AllCources.this, courseList) ;
+                recyclerView.setAdapter(allCourseAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                Log.i("Error", t.toString()) ;
+            }
+        });
+
+        swipeRefreshLayout = findViewById(R.id.refresh_all_courses) ;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+    }
+}
+
+/*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi allCoursesApi = retrofit.create(CoursesApi.class) ;
         Call<List<CourseEnrollementDto>> call = allCoursesApi.getCourses() ;
         call.enqueue(new Callback<List<CourseEnrollementDto>>() {
@@ -71,14 +103,3 @@ public class AllCources extends AppCompatActivity {
         AllCourseAdapter allCourseAdapter = new AllCourseAdapter(this, courses) ;
         recyclerView.setAdapter(allCourseAdapter);
         allCourseAdapter.getItemCount() ;*/
-
-        swipeRefreshLayout = findViewById(R.id.refresh_all_courses) ;
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-
-    }
-}
