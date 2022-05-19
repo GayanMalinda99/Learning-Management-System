@@ -50,7 +50,6 @@ public class CourseActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = findViewById(R.id.add_course_button) ;
-        TextView textView = findViewById(R.id.textView) ;
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -62,18 +61,27 @@ public class CourseActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Course>>() {
             @Override
             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
-                textView.setText("Working");
                 List<Course> courseList = response.body() ;
+
                 CourseAdapter courseAdapter = new CourseAdapter(CourseActivity.this, courseList, listner) ;
                 recyclerView.setAdapter(courseAdapter);
             }
 
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
-                textView.setText(t.toString());
+                Log.i("Error", t.toString()) ;
             }
         });
 
+        /*Creating a listner to go to a selected course*/
+        listner = new CourseAdapter.RecycleViewClickListner() {
+            @Override
+            public void onItemClick(View view, int position) {
+                openSelectedActivity();
+            }
+        } ;
+
+        /*Making Add Course button directs to AllCourseActivity*/
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +92,11 @@ public class CourseActivity extends AppCompatActivity {
 
     public void openAllCoursesActivity(){
         Intent intent = new Intent(this, AllCources.class) ;
+        startActivity(intent);
+    }
+
+    public void openSelectedActivity(){
+        Intent intent = new Intent(getApplicationContext(), SelectedCourseActivity.class) ;
         startActivity(intent);
     }
 
