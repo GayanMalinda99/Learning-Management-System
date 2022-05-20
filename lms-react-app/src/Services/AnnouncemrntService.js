@@ -5,8 +5,8 @@ class AnnouncemrntService {
   getEnroledStudent() {
     return axios.get(API_BASE_REST_API_URL);
   }
-  /*sendAnnouncement() {
-    return axios.post(API_BASE_REST_API_URL,);
-  }*/
+  sendAnnouncement(announcement) {
+    return axios.post(API_BASE_REST_API_URL, announcement);
+  }
 }
 export default new AnnouncemrntService();
