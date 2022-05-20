@@ -1,7 +1,9 @@
 package com.example.backend.course.controller;
 
 //import com.example.backend.email.EmailService;
+import com.example.backend.course.model.Announcement;
 import com.example.backend.course.model.StudentEnroll;
+import com.example.backend.course.repository.AnnouncementRepository;
 import com.example.backend.course.repository.StudentEnrollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/api/v1/")
 public class AnnouncementController {
 
@@ -17,14 +19,21 @@ public class AnnouncementController {
     @Autowired
     private StudentEnrollRepository studentEnrollRepository;
 
-    @PostMapping("announcement/{announce}")
-    public void getAnnouncement(@PathVariable String announce){
+    @Autowired
+    private AnnouncementRepository announcementRepository;
 
-        System.out.println(announce);
+    @PostMapping("/announcement")
+    public Announcement saveAnnouncement(@RequestBody Announcement announcement){
+        return announcementRepository.save(announcement);
     }
     @GetMapping("/announcement")
     public List<StudentEnroll> getEnrollStudent(){
         return studentEnrollRepository.findAll();
+    }
+
+    @GetMapping("/announcementHistory")
+    public List<Announcement> getAnnouncement(){
+        return announcementRepository.findAll();
     }
 
 }
