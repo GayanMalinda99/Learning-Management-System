@@ -1,4 +1,4 @@
-
+/*
 import emaijs from 'emailjs-com'
 
 const Mailer=()=>{
@@ -67,4 +67,4 @@ backgroundSize:"cover",
 }
 
 
-export default Mailer;
+export default Mailer;*/
