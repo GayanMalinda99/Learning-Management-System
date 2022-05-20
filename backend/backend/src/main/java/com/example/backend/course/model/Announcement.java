@@ -3,10 +3,7 @@ package com.example.backend.course.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -15,15 +12,15 @@ public class Announcement {
     @Id
     private String announcement;
 
-    private String Date;
+    private String date;
 
-    @ManyToOne
-    @JoinColumn(name = "course_code")
-    private Course course;
+    //@ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "code")
+    private String course_code;
 
-    public Course getCourse(){
+    /*public Course getCourse(){
         return course;
-    }
+    }*/
 
 
 }

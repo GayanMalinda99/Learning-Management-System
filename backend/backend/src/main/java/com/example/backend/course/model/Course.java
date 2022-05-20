@@ -1,6 +1,7 @@
 package com.example.backend.course.model;
 
 import com.example.backend.appuser.AppUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,6 +36,16 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     Set<Marks> Marks;
+
+   /* @JsonIgnore
+    @OneToMany(mappedBy = "course")
+    private Set<Announcement> announcements = new HashSet<>();
+
+    public Set<Announcement> getAnnouncement(){
+        return announcements;
+    }*/
+
+
 
 //    private String course_name;
 //    private String course_description;
