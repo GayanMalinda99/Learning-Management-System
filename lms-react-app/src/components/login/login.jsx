@@ -1,6 +1,7 @@
 import React from "react";
 import loginImg from "../../login.svg";
 import axios from "axios";
+import {Navigate} from "react-router-dom";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -10,11 +11,11 @@ export class Login extends React.Component {
 
     this.state = {
       email: "",
-      password: "",
+      userPassword: "",
     };
   }
 
-
+  state = { user: null, error: null };
 
 
 
@@ -26,11 +27,11 @@ export class Login extends React.Component {
     e.preventDefault();
     console.log(this.state);
     axios
-    .post('http://localhost:8080/api/v1/login',this.state)
+    .post('login',this.state)
     .then(response=>{
         console.log(response)
         alert("Login Success!!");
-       
+        this.setState({user})
         
     })
     .catch(error=>{
@@ -44,15 +45,20 @@ export class Login extends React.Component {
 
 
   render() {
-    const { email, password } = this.state;
-
+    const { email, userPassword } = this.state;
+    let { user, error } = this.state;
     return (
+      
       <div className="base-container" ref={this.props.containerRef}>
             <div className="header">Login</div>
         <div className="content">
           
               <div className="image"><img src={loginImg} /> </div>
 
+        {error && <p>{error.message}</p>}
+        {user && (
+          <Navigate to="/dashboard" replace={true} />
+        )}
           <form onSubmit={this.submitHandler} action="/login" method="post">
             <div className="form">
 
@@ -71,9 +77,9 @@ export class Login extends React.Component {
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
-                  name="password"
+                  name="userPassword"
                   placeholder="Password"
-                  value={password}
+                  value={userPassword}
                   onChange={this.changeHandler}
                 />
               </div>
