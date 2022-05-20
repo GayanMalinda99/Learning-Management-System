@@ -1,4 +1,4 @@
-package com.example.backend.controller.login;
+package com.example.backend.controller.loginAndroid;
 
 import com.example.backend.appuser.AppUser;
 import org.springframework.security.core.GrantedAuthority;

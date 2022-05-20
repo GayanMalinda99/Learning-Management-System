@@ -1,10 +1,4 @@
-package com.example.backend.controller.login;
-
-import com.example.backend.appuser.AppUser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+package com.example.backend.controller.loginAndroid;
 
 //public class CustomUserDetailsService implements UserDetailsService {
 

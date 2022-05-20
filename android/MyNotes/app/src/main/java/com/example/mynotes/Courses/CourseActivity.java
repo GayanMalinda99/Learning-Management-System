@@ -1,32 +1,22 @@
-package com.example.mynotes;
+package com.example.mynotes.Courses;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.Toolbar;
-
+import com.example.mynotes.R;
 import com.example.mynotes.adapters.CourseAdapter;
-import com.example.mynotes.retrofit.CoursesApi;
-import com.example.mynotes.retrofit.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class CourseActivity extends AppCompatActivity {
     public static final String COURSE_NAME = "com.example.mynotes.COURSE_NAME" ;
@@ -118,7 +108,7 @@ public class CourseActivity extends AppCompatActivity {
     }
 
     public void openAllCoursesActivity(){
-        Intent intent = new Intent(this, AllCources.class) ;
+        Intent intent = new Intent(this, AllCourcesActivity.class) ;
         startActivity(intent);
     }
 
