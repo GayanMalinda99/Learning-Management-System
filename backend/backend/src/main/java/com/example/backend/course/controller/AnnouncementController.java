@@ -31,4 +31,9 @@ public class AnnouncementController {
         return studentEnrollRepository.findAll();
     }
 
+    @GetMapping("/announcementHistory")
+    public List<Announcement> getAnnouncement(){
+        return announcementRepository.findAll();
+    }
+
 }
