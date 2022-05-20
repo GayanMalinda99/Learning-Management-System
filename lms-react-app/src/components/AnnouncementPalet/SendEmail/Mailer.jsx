@@ -10,6 +10,9 @@ function sendEmail(e) {
         e.target,
         "18N787bwLLxKrb_gs"
         ).then(res=>{
+            if(res.status){
+alert("Message Sent Succesfully!");
+            }
                 console.log(res);
         }).catch(err=>console.log(err));
 }
@@ -26,7 +29,7 @@ backgroundSize:"cover",
 }}>
 
 
-    <h1 style={{marginTop:'25px'}}>Email Form</h1>
+    <h1 style={{marginTop:'25px'}}>Direct Email Message</h1>
 
     <form 
      action=""
@@ -38,13 +41,13 @@ backgroundSize:"cover",
      >
 
 
-            <label htmlFor="" >name</label>
+            <label htmlFor="" >Reciever's Name</label>
             <input className="form-control" type="text" name="name" id="" />
 
-            <label htmlFor="" >email</label>
+            <label htmlFor="" >Recievers Email </label>
             <input className="form-control" type="email" name="user_email" id="" />
 
-            <label htmlFor="">Message</label>
+            <label htmlFor="">Enter Message</label>
             <textarea className="form-control"  name="message" id="" cols="30" rows="10"></textarea>
 
             <input
