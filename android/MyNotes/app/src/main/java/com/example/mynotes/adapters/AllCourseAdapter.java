@@ -12,8 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mynotes.R;
+import com.example.mynotes.dto.CourseEnrollementDto;
+import com.example.mynotes.model.Course;
 import com.example.mynotes.retrofit.CoursesApi;
-import com.example.mynotes.retrofit.RetrofitService;
+import com.example.mynotes.retrofit.RetrofitClientInstance;
 
 import java.util.List;
 
@@ -25,9 +27,9 @@ import retrofit2.Retrofit;
 public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.CourseViewHolder> {
 
     Context context ;
-    List<String> allCourses;
+    List<Course> allCourses;
 
-    public AllCourseAdapter(Context ct , List<String> courses){
+    public AllCourseAdapter(Context ct , List<Course> courses){
         context = ct;
        allCourses = courses ;
     }
@@ -42,7 +44,7 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
 
     @Override
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
-        holder.textView.setText(allCourses.get(position));
+        holder.textView.setText(allCourses.get(position).title);
     }
 
     @Override
@@ -58,29 +60,85 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.textView2) ;
             imageButton = itemView.findViewById(R.id.imageButton2) ;
-            String id = "1" ;
+            int id = 12 ;
 
             itemView.findViewById(R.id.imageButton2).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i(id , textView.getText().toString()) ;
-                    /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
+                    String courseName = textView.getText().toString() ;
+                    int position = -1 ;
+                    for(int i = 0 ; allCourses.size() > i; i++){
+                        if(courseName == allCourses.get(i).title){
+                            position = i ;
+                        }
+                    }
+
+                    Log.i(Integer.toString(position) , textView.getText().toString() ) ;
+
+                    CourseEnrollementDto couseenrolmentdata = new CourseEnrollementDto() ;
+                    couseenrolmentdata.studentId = id ;
+                    couseenrolmentdata.code= allCourses.get(position).code ;
+                    couseenrolmentdata.course_name = allCourses.get(position).title ;
+                    couseenrolmentdata.course_description = allCourses.get(position).description ;
+
+                    Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                     final CoursesApi addCourseApi = retrofit.create(CoursesApi.class) ;
-                    Call<Response> call = addCourseApi.addCourse(id, textView.getText().toString()) ;
-                    call.enqueue(new Callback<Response>() {
+
+                    Call<CourseEnrollementDto> call = addCourseApi.addCourse(couseenrolmentdata) ;
+                    call.enqueue(new Callback<CourseEnrollementDto>() {
                         @Override
-                        public void onResponse(Call<Response> call, Response<Response> response) {
-                            Log.i("messege", "Success") ;
+                        public void onResponse(Call<CourseEnrollementDto> call, Response<CourseEnrollementDto> response) {
+                            Log.i("messege", "done") ;
                         }
 
                         @Override
-                        public void onFailure(Call<Response> call, Throwable t) {
-                            Log.i("Messege", "Error") ;
+                        public void onFailure(Call<CourseEnrollementDto> call, Throwable t) {
+                            Log.i("Error", t.toString()) ;
                         }
-                    });*/
+                    });
+
+
                 }
             });
 
         }
     }
 }
+
+/*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+                    final CoursesApi addCourseApi = retrofit.create(CoursesApi.class) ;
+                    Call<CourseEnrollementDto> call = addCourseApi.addCourse(allCourses.get(position)) ;
+                    call.enqueue(new Callback<CourseEnrollementDto>() {
+                        @Override
+                        public void onResponse(Call<CourseEnrollementDto> call,
+                                               Response<CourseEnrollementDto> response) {
+                            Log.i("messege", "Success") ;
+                        }
+
+                        @Override
+                        public void onFailure(Call<CourseEnrollementDto> call, Throwable t) {
+                            Log.i("Messege", "Error") ;
+                        }
+                    });*/
+
+    /*CourseEnrollementDto couseenrolmentdata = new CourseEnrollementDto() ;
+                    couseenrolmentdata.studentId = id ;
+                            couseenrolmentdata.code= allCourses.get(position).code ;
+                            couseenrolmentdata.course_name = allCourses.get(position).title ;
+                            couseenrolmentdata.course_description = allCourses.get(position).description ;
+
+                            Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+final CoursesApi addCourseApi = retrofit.create(CoursesApi.class) ;
+
+        Call<CourseEnrollementDto> call = addCourseApi.addCourse(couseenrolmentdata) ;
+        call.enqueue(new Callback<CourseEnrollementDto>() {
+@Override
+public void onResponse(Call<CourseEnrollementDto> call, Response<CourseEnrollementDto> response) {
+        Log.i("messege", "done") ;
+        }
+
+@Override
+public void onFailure(Call<CourseEnrollementDto> call, Throwable t) {
+        Log.i("Error", t.toString()) ;
+        }
+        });*/

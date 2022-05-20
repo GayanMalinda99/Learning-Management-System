@@ -29,17 +29,18 @@ public class SelectedCourseActivity extends AppCompatActivity {
 
         Intent intent = getIntent() ;
         String courseName = intent.getStringExtra(CourseActivity.COURSE_NAME) ;
-        String id ="1" ;
-        String marks = "75" ;
+        String courseCode = intent.getStringExtra(CourseActivity.COURSE_CODE) ;
+        String studentId = intent.getStringExtra(CourseActivity.STUDENT_ID) ;
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar7);
         toolbar.setTitle(courseName);
 
         TextView textView_2 = findViewById(R.id.textView5) ;
+        String marks = "75" ;
 
-        /*Retrofit retrofit = new RetrofitService().getRetrofit() ;
+       /* Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi marksCourseApi = retrofit.create(CoursesApi.class) ;
-        Call<Integer> call = marksCourseApi.getMarks(id, courseName) ;
+        Call<Integer> call = marksCourseApi.getMarks(courseCode, studentId) ;
         call.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
