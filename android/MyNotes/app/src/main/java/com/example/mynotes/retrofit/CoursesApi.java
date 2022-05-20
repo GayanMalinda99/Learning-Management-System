@@ -24,9 +24,6 @@ public interface CoursesApi {
     @GET("api/v1/course/getcourse")
     Call <List<Course>> getCourses() ;
 
-    @DELETE("api/v1/dropCourse")
-    Call<CourseEnrollementDto> dropCourse(@Body CourseEnrollementDto course_data) ;
-
     @HTTP(method = "DELETE", path = "api/v1/dropCourse", hasBody = true)
     Call<Boolean> deleteSomething(@Body CourseEnrollementDto dropcourse);
 
@@ -40,9 +37,8 @@ public interface CoursesApi {
     Call<List<Course>> getTest() ;
 
     @POST("api/v1/course/addcourse")
-    
-    Call<Void> addCourse(@Body Course course) ;
+    Call<Response> addNewCourse(@Body Course course) ;
 
     @POST("api/v1/announcement/")
-    Call<Void> announce(@Query("announce") String announce) ;
+    Call<Response> announce(@Query("announce") String announce) ;
  }

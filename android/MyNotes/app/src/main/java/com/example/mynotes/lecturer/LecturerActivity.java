@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.mynotes.R;
+import com.example.mynotes.SelectedCourseActivity;
+import com.example.mynotes.adapters.CourseAdapter;
 import com.example.mynotes.adapters.LecturerCourseAdapter;
 import com.example.mynotes.model.Course;
 import com.example.mynotes.retrofit.CoursesApi;
@@ -26,7 +28,8 @@ import retrofit2.Retrofit;
 
 public class LecturerActivity extends AppCompatActivity {
 
-    public static final String COURSE_NAME = "" ;
+    public static final String COURSE_NAME = "com.example.mynotes.lecturer.COURSE_NAME" ;
+    public static final String COURSE_CODE = "com.example.mynotes.lecturer.COURSE_CODE" ;
 
     RecyclerView recyclerView ;
     LecturerCourseAdapter.CourseClickListner listner ;
@@ -39,6 +42,7 @@ public class LecturerActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.lecturer_recycleview) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = findViewById(R.id.lecturer_add_course_button) ;
+        //int lecturerId = 1 ;
 
         Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi courseApi = retrofit.create(CoursesApi.class) ;
@@ -48,38 +52,33 @@ public class LecturerActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Course>>() {
             @Override
             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                List<Course> courseList = response.body() ;
+
+                //Listner to go to selected course
+                listner = new LecturerCourseAdapter.CourseClickListner() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        openSelectedActivity(courseList.get(position));
+                    }
+                };
+
+                /*Get num of courses to use in creating anew course*/
 
 
-                button.setText("working");
+                LecturerCourseAdapter lecturerCourseAdapter =
+                        new LecturerCourseAdapter(
+                                LecturerActivity.this, courseList,listner) ;
+                recyclerView.setAdapter(lecturerCourseAdapter);
+
+               // button.setText("working"); /*test*/
             }
 
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
                 button.setText(t.toString());
             }
+
         });
-
-        List<String> courses = new ArrayList<>() ;
-        courses.add("Web Development") ;
-        courses.add("Mobile Development") ;
-        courses.add("Software Architecture") ;
-        courses.add("Descrete Mathematics") ;
-        courses.add("Software Validation") ;
-
-        listner = new LecturerCourseAdapter.CourseClickListner() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Log.i("Messege", "Working") ;
-                Intent intent = new Intent(getApplicationContext(), LecturerSelectedCourseActivity.class) ;
-                intent.putExtra(COURSE_NAME, courses.get(position) ) ;
-                startActivity(intent);
-            }
-        } ;
-
-        LecturerCourseAdapter lecturerCourseAdapter =
-                new LecturerCourseAdapter(this,courses, listner) ;
-        recyclerView.setAdapter(lecturerCourseAdapter);
-        lecturerCourseAdapter.getItemCount() ;
 
         Button addCourseButton = (Button)findViewById(R.id.lecturer_add_course_button) ;
         addCourseButton.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +87,15 @@ public class LecturerActivity extends AppCompatActivity {
                 openNewCourseActivity();
             }
         });
+
     }
+    public void openSelectedActivity(Course course){
+        Intent intent = new Intent(getApplicationContext(), LecturerSelectedCourseActivity.class) ;
+        intent.putExtra(COURSE_NAME, course.title) ;
+        intent.putExtra(COURSE_CODE, course.code) ;
+        startActivity(intent) ;
+    }
+
     public void openNewCourseActivity(){
         Intent intent = new Intent(this, NewCourseActivity.class) ;
         startActivity(intent);
