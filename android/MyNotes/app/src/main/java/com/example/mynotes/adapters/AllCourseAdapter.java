@@ -28,10 +28,12 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
 
     Context context ;
     List<Course> allCourses;
+    int id  ;
 
-    public AllCourseAdapter(Context ct , List<Course> courses){
+    public AllCourseAdapter(Context ct , List<Course> courses, int id){
         context = ct;
        allCourses = courses ;
+       this.id = id ;
     }
 
     @NonNull
@@ -60,7 +62,6 @@ public class AllCourseAdapter extends RecyclerView.Adapter<AllCourseAdapter.Cour
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.textView2) ;
             imageButton = itemView.findViewById(R.id.imageButton2) ;
-            int id = 12 ;
 
             itemView.findViewById(R.id.imageButton2).setOnClickListener(new View.OnClickListener() {
                 @Override
