@@ -1,8 +1,10 @@
 import React from "react";
-import "./App.scss";
-import { Login, Register } from "./components/login/index";
+import "../../App.scss";
+import { Login, Register } from "./index";
+// import Login from "./login";
+// import Register from "./register";
 
-class App extends React.Component {
+class EntryPage extends React.Component {
    constructor(props) {
     super(props);
     this.state = {
@@ -76,4 +78,4 @@ const RightSide = (props) => {
   );
 };
 
-export default App;
+export default EntryPage;

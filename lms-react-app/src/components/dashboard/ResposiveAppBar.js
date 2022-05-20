@@ -46,7 +46,6 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -57,7 +56,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            {title}
+            <Link style={{textDecoration: 'none', color: 'white'}} to={"/dashboard"}>{title}</Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -92,7 +91,7 @@ const ResponsiveAppBar = () => {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link style={{textDecoration: 'none', color: 'white'}} to={`/${page.toLowerCase()}`}>{page}</Link>
+                    <Link style={{textDecoration: 'none'}} to={`/${page.toLowerCase()}`}>{page}</Link>
                   </Typography>
                 </MenuItem>
               ))}
@@ -103,7 +102,6 @@ const ResponsiveAppBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },

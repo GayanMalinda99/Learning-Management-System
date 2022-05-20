@@ -31,7 +31,7 @@ export class Login extends React.Component {
     .then(response=>{
         console.log(response)
         alert("Login Success!!");
-        this.setState({user})
+        this.setState({user:response.data.user})
         
     })
     .catch(error=>{

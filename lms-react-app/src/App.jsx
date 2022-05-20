@@ -1,11 +1,14 @@
 import React from "react";
 import "./App.scss";
 import { Login, Register } from "./components/login/index";
-import AddCourse from "./components/course/AddCourse";
-import ResponsiveAppBar from "./components/dashboard/LecturerDashboard";
+
+import ResponsiveAppBar from "./components/dashboard/ResposiveAppBar";
 import ViewCourses from "./components/course/ViewCourses";
-import { Routes, Route } from "react-router";
+import AddCourse from "./components/course/AddCourse";
+import { Routes, Route} from "react-router";
 import Panel from "./components/AnnouncementPalet/Panel";
+import EntryPage from "./components/login/EntryPage";
+import Dashboard from "./components/dashboard/DashBoard";
 
 class App extends React.Component {
   
@@ -14,12 +17,11 @@ class App extends React.Component {
    
     return (
       <div className="App">
-        {}
-        <ResponsiveAppBar />
         <Routes>
-          <Route path="/dashboard" element={<ViewCourses />} />
-          <Route path="/course" element={<AddCourse />} />
-          <Route path="/announcement" element={<Panel />} />
+          <Route exact path="/" element={<EntryPage/>} />
+          <Route exact path="/dashboard" element={<Dashboard/>} />
+          <Route exact path="/course" element={<AddCourse />} />
+          <Route exact path="/announcement" element={<Panel />} />
         </Routes>
       </div>
     );

@@ -1,6 +1,7 @@
 import React from "react";
 import loginImg from "../../login.svg";
 import axios from "axios";
+import Alert from '@mui/material/Alert';
 
 
 export class Register extends React.Component {
@@ -23,12 +24,10 @@ export class Register extends React.Component {
     e.preventDefault();
     console.log(this.state);
     axios
-    .post(`http://localhost:8080/api/v1/registration/`,this.state)
+    .post(`registration`,this.state)
     .then(response=>{
-        console.log(response)
-        alert("Registration Successful! Verify Your Email To Login ");
-       
-        
+        console.log(response);
+        <Alert severity="success">Registration Successful! Verify Your Email To Login</Alert>
     })
     .catch(error=>{
       console.log(error)
