@@ -51,9 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .cors().and()
-
-                .authorizeRequests().antMatchers("/authenticate", "/api/v*/registration/**","/api/v*/**","/addmarks","/login","/","/upload","/authenticate","/download","/marks","/announcement").permitAll()
-            //  .antMatchers("/api/v*/registration/**", "/api/v*/**","/addmarks","/login","/")
+                .authorizeRequests().antMatchers("/api/v*/login", "/api/v*/registration/**").permitAll()
+//                .antMatchers("/api/v*/registration/**", "/api/v*/**","/addmarks","/login","/")
                 .antMatchers(HttpHeaders.ALLOW)
                 .permitAll()
                 .anyRequest()
@@ -66,15 +65,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .formLogin().permitAll();
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
-        //        .authorizeRequests()
-        //        .antMatchers("/api/v*/registration/**", "/api/v*/**","/addmarks","/login","/", "/upload")
-        //        .antMatchers("/api/v*/registration/**", "/api/v*/**","/addmarks","/login","/")
-          //      .permitAll()
-           //     .anyRequest()
-            //    .authenticated().and()
-             //   .formLogin().permitAll();
-
     }
 
 
