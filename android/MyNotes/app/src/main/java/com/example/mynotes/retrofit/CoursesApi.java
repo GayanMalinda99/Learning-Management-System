@@ -9,7 +9,10 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -22,6 +25,9 @@ public interface CoursesApi {
 
     @DELETE("api/v1/dropCourse")
     Call<CourseEnrollementDto> dropCourse(@Body CourseEnrollementDto course_data) ;
+
+    @HTTP(method = "DELETE", path = "api/v1/dropCourse", hasBody = true)
+    Call<Boolean> deleteSomething(@Body CourseEnrollementDto dropcourse);
 
     @POST("api/v1/enrolCourse")
     Call<CourseEnrollementDto> addCourse(@Body CourseEnrollementDto course_data) ;
