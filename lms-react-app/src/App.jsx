@@ -16,9 +16,12 @@ class App extends React.Component {
    
     return (
       <div className="App">
-          <Mailer/>
-        
-
+          <ResponsiveAppBar />
+        <Routes>
+          <Route path="/dashboard" element={<ViewCourses />} />
+          <Route path="/course" element={<AddCourse />} />
+          <Route path="/announcement" element={<Panel />} />
+        </Routes>
 
         
       </div>

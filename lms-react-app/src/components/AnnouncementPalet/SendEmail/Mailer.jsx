@@ -21,7 +21,7 @@ alert("Message Sent Succesfully!");
     return(
 
 <div className="container border" style={{marginTop:"50px",width:'50',
-backgroudImage:`url('https://www.pexels.com/photo/gray-and-white-wallpaper-1103970/')`,
+backgroudImage:`url('')`,
 backgroundPosition:'center',
 backgroundSize:"cover",
 
