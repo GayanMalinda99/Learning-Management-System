@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toolbar;
@@ -33,6 +34,9 @@ public class AllCources extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_cources);
 
+        Intent intent = getIntent() ;
+        int id = Integer.parseInt(intent.getStringExtra(CourseActivity.ID)) ;
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycleview1) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar3) ;
@@ -46,10 +50,10 @@ public class AllCources extends AppCompatActivity {
             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
                 List<Course> courseList = response.body() ;
 
-                AllCourseAdapter allCourseAdapter = new AllCourseAdapter(AllCources.this, courseList) ;
+                AllCourseAdapter allCourseAdapter = new AllCourseAdapter(AllCources.this, courseList, id) ;
                 recyclerView.setAdapter(allCourseAdapter);
 
-                toolbar.setTitle("working");
+                toolbar.setTitle("working");/*Test*/
             }
 
             @Override

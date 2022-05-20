@@ -35,12 +35,12 @@ public class CourseActivity extends AppCompatActivity {
     public static final String COURSE_CODE = "com.example.mynotes.COURSE_CODE" ;
     public static  final String STUDENT_ID = "com.example.mynotes.STUDENT_ID" ;
     public static  final String COURSE_NAME = "com.example.mynotes.COURSE_NAME" ;
-
+    public static final String ID =  "com.example.mynotes.ID";
 
     Toolbar toolbar;
     private RecyclerView recyclerView ;
     private CourseAdapter.RecycleViewClickListner listner ;
-    SwipeRefreshLayout swipeRefreshLayout ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class CourseActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = findViewById(R.id.add_course_button) ;
-        int studentId = 4 ;
+        int studentId = 1 ;
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -90,20 +90,13 @@ public class CourseActivity extends AppCompatActivity {
                 /*button.setText(enrolledCourseList.get(0).course_name); /*To check whats wrong*/
 
                /*Refreshing*/
-               swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
-               swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                   @Override
-                   public void onRefresh() {
-                       courseAdapter.notifyDataSetChanged();
-                       swipeRefreshLayout.setRefreshing(false);
-                   }
-               });
+               refresh(courseAdapter);
            }
 
            @Override
            public void onFailure(Call<List<CourseEnrollementDto>> call, Throwable t) {
                 Log.i("Error", t.toString()) ;
-               //button.setText(t.toString());
+               button.setText(t.toString());
            }
        });
 
@@ -111,23 +104,31 @@ public class CourseActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openAllCoursesActivity();
+                openAllCoursesActivity(studentId);
             }
         }) ;
 
         /*Refresh*/
+
+    }
+
+    public void refresh(CourseAdapter adapter){
+        SwipeRefreshLayout swipeRefreshLayout ;
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
+                adapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
-    public void openAllCoursesActivity(){
+    public void openAllCoursesActivity(int id){
         Intent intent = new Intent(this, AllCources.class) ;
-        startActivity(intent);
+        intent.putExtra(ID, Integer.toString(id)) ;
+        startActivity(intent) ;
     }
 
     public void openSelectedActivity(String courseName, String courseCode, String studentId){
