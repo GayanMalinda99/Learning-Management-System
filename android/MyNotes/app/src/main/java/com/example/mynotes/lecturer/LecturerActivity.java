@@ -12,9 +12,17 @@ import android.widget.Button;
 
 import com.example.mynotes.R;
 import com.example.mynotes.adapters.LecturerCourseAdapter;
+import com.example.mynotes.model.Course;
+import com.example.mynotes.retrofit.CoursesApi;
+import com.example.mynotes.retrofit.RetrofitClientInstance;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LecturerActivity extends AppCompatActivity {
 
@@ -30,6 +38,26 @@ public class LecturerActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView)findViewById(R.id.lecturer_recycleview) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Button button = findViewById(R.id.lecturer_add_course_button) ;
+
+        Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+        final CoursesApi courseApi = retrofit.create(CoursesApi.class) ;
+
+        Call<List<Course>> call = courseApi.getCourses() ;
+
+        call.enqueue(new Callback<List<Course>>() {
+            @Override
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+
+
+                button.setText("working");
+            }
+
+            @Override
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                button.setText(t.toString());
+            }
+        });
 
         List<String> courses = new ArrayList<>() ;
         courses.add("Web Development") ;

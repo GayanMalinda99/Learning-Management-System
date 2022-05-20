@@ -15,6 +15,7 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface CoursesApi {
     @GET("api/v1/registeredCourses")
@@ -37,4 +38,11 @@ public interface CoursesApi {
 
     @GET("api/v1/test")
     Call<List<Course>> getTest() ;
+
+    @POST("api/v1/course/addcourse")
+    
+    Call<Void> addCourse(@Body Course course) ;
+
+    @POST("api/v1/announcement/")
+    Call<Void> announce(@Query("announce") String announce) ;
  }
