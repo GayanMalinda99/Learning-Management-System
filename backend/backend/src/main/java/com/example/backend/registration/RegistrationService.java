@@ -115,9 +115,9 @@ public class RegistrationService {
                 "<img src=\"https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg\" alt=\"\" srcset=\"\"  >\n" +
                 "<h1 style=\"text-align:center\">Email Verified</h1>\n" +
                 "<h4 style=\"text-align:center\">Login To Continue</h4>" +
-                "<button style=\"text-align:center\" onclick=\"window.location.href='https://localhost:3000';\">\n" +
+                "<center><button style=\"text-align:center\" onclick=\"window.location.href='http://localhost:3000';\">\n" +
                 "      Click Here to Login\n" +
-                "    </button>\n" +
+                "    </button></center>\n" +
                 "\n" +
                 "</body>\n" +
                 "</html>\n";
