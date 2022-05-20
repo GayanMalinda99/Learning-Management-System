@@ -30,7 +30,7 @@ const AddAnnouncement = () => {
             aria-expanded="false"
             aria-controls="collapseExample"
           >
-            Announcement
+            Create an Announcement
           </button>
         </div>
       </div>
