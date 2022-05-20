@@ -1,11 +1,22 @@
 import { useState } from "react";
+import AnnouncemrntService from "../../Services/AnnouncemrntService";
 
 const AddAnnouncement = () => {
   const [announcement, setAnnouncement] = useState("");
+  const date = "date";
+  const [course_code, setCourse_code] = useState("");
 
   const saveAnnouncement = (e) => {
     e.preventDefault();
-    console.log(announcement);
+    const announcementTable = { announcement, date, course_code };
+    console.log(announcementTable);
+    AnnouncemrntService.sendAnnouncement(announcementTable)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="col-9">
@@ -27,6 +38,14 @@ const AddAnnouncement = () => {
       <div className="collapse" id="collapseExample">
         <div className="card card-body">
           <form>
+            <b>Enter Course Code:</b>
+            <input
+              type="text"
+              value={course_code}
+              onChange={(e) => setCourse_code(e.target.value)}
+            />
+            <br />
+            <br />
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
