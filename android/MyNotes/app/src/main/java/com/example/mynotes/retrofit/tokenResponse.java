@@ -8,16 +8,16 @@ public class tokenResponse {
     private int id;
 
     @SerializedName("firstName")
-    private int firstName;
+    private String firstName;
 
     @SerializedName("lastName")
-    private int lastName;
+    private String lastName;
 
     @SerializedName("email")
-    private int email;
+    private String email;
 
     @SerializedName("jwtToken")
-    private int jwtToken;
+    private String jwtToken;
 
     public int getId() {
         return id;
@@ -27,35 +27,39 @@ public class tokenResponse {
         this.id = id;
     }
 
-    public int getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(int firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public int getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(int lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public int getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(int email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public int getJwtToken() {
+    public String getJwtToken() {
         return jwtToken;
     }
 
-    public void setJwtToken(int jwtToken) {
+    public void setJwtToken(String jwtToken) {
         this.jwtToken = jwtToken;
+    }
+
+    public String getAccess_token() {
+        return jwtToken;
     }
 }
