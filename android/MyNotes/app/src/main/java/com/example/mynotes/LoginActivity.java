@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.example.mynotes.model.AppUser;
 import com.example.mynotes.retrofit.AppUserApi;
 import com.example.mynotes.retrofit.RetrofitClientInstance;
+import com.example.mynotes.retrofit.tokenResponse;
+import com.google.gson.Gson;
 
 import java.util.regex.Pattern;
 
@@ -23,9 +25,10 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 
@@ -75,8 +78,68 @@ public class  LoginActivity extends AppCompatActivity {
                 Log.i("btn","this is working");
                 CallRetrofit(user);
 
+                CallLoginService();
+
+
             }
         });
+
+    }
+
+    private void CallLoginService() {
+
+try {
+    final String email = etEmail.getText().toString();
+    final String password = etPassword.getText().toString();
+
+    AppUserApi appUserApi = RetrofitClientInstance.getRetrofitInstance().create(AppUserApi.class);
+    Call<ResponseBody> srvLogin = appUserApi.getToken("email","password");
+
+    srvLogin.enqueue(new Callback<ResponseBody>() {
+        @Override
+        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            if (response.isSuccessful())
+            {
+                try {
+                    String ResponseJson = response.body().string();
+                    Gson objGson = new Gson();
+                    tokenResponse objResp = objGson.fromJson(ResponseJson,tokenResponse.class);
+                    Toast.makeText(LoginActivity.this,objResp.getAccess_token(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Sucess",Toast.LENGTH_SHORT).show();
+
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    Toast.makeText(LoginActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            else
+                Toast.makeText(LoginActivity.this,"try Again",Toast.LENGTH_SHORT).show();
+
+
+
+
+        }
+
+        @Override
+        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            Toast.makeText(LoginActivity.this,"error"+t.getMessage(),Toast.LENGTH_SHORT).show();
+
+
+        }
+    });
+}
+catch (Exception e)
+{
+    e.printStackTrace();
+    Toast.makeText(LoginActivity.this,"error",Toast.LENGTH_SHORT).show();
+
+}
 
     }
 
