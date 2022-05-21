@@ -26,12 +26,13 @@
 
     <EditText
         android:id="@+id/textArea_announcement"
-        android:background="@drawable/edit_text_border"
         android:layout_width="378dp"
         android:layout_height="172dp"
         android:layout_below="@id/announcement_toolbar"
         android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="29dp"
+        android:background="@drawable/edit_text_border"
         android:gravity="top|left"
         android:inputType="textMultiLine"
         android:lines="6"
@@ -39,8 +40,17 @@
         android:scrollbarStyle="insideInset"
         android:scrollbars="vertical"
         android:scrollHorizontally="false"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginLeft="20dp" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/announce_button"
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textArea_announcement"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="25dp"
+        android:text="Send" />
 
 
 </RelativeLayout>
