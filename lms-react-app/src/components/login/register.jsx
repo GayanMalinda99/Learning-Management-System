@@ -1,7 +1,8 @@
 import React from "react";
 import loginImg from "../../login.svg";
 import axios from "axios";
-
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 export class Register extends React.Component {
   constructor(props) {
@@ -13,6 +14,9 @@ export class Register extends React.Component {
       email: "",
       password: "",
     };
+    this.state = {
+      alert: false,
+    }
   }
 
   changeHandler = (e) => {
@@ -23,12 +27,11 @@ export class Register extends React.Component {
     e.preventDefault();
     console.log(this.state);
     axios
-    .post(`http://localhost:8080/api/v1/registration/`,this.state)
+    .post(`registration/`,this.state)
     .then(response=>{
-        console.log(response)
-        alert("Registration Successful! Verify Your Email To Login ");
-       
-        
+        console.log(response);
+        // alert("Registration Success!!");
+        this.setState({alert:!this.state.alert})
     })
     .catch(error=>{
       console.log(error)
@@ -39,9 +42,12 @@ export class Register extends React.Component {
 
   render() {
     const { firstName, lastName, email, password } = this.state;
-
+    let a = this.state.alert;
     return (
       <div className="base-container" ref={this.props.containerRef}>
+        {a&&(<Stack sx={{ width: '100%' }} spacing={2}>
+          <Alert severity="success"></Alert>
+        </Stack>)}
         <div className="header">Register</div>
         <div className="content">
           <div className="image">

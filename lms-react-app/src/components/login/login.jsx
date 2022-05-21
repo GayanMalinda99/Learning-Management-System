@@ -1,23 +1,23 @@
 import React from "react";
 import loginImg from "../../login.svg";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 export class Login extends React.Component {
   constructor(props) {
     super(props);
 
-
-
     this.state = {
       email: "",
-      password: "",
+      userPassword: "",
     };
+    this.state = {
+      alert: false,
+    }
+    
   }
-
-
-
-
-
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -26,12 +26,12 @@ export class Login extends React.Component {
     e.preventDefault();
     console.log(this.state);
     axios
-    .post('http://localhost:8080/api/v1/login',this.state)
+    .post('login',this.state)
     .then(response=>{
-        console.log(response)
-        alert("Login Success!!");
-       
-        
+        console.log(response);
+        localStorage.setItem("token",response.data.token);
+        // alert("Login Success!!");
+        this.setState({alert:!this.state.alert})
     })
     .catch(error=>{
       console.log(error)
@@ -44,15 +44,18 @@ export class Login extends React.Component {
 
 
   render() {
-    const { email, password } = this.state;
-
+    const { email, userPassword } = this.state;
+    let a = this.state.alert;
     return (
       <div className="base-container" ref={this.props.containerRef}>
-            <div className="header">Login</div>
-        <div className="content">
-          
-              <div className="image"><img src={loginImg} /> </div>
 
+        {a&&(<Stack sx={{ width: '100%' }} spacing={2}>
+          <Alert severity="success">Login Success!!</Alert>
+        </Stack>)}
+
+            <div className="header">Login</div>
+        <div className="content">  
+          <div className="image"><img src={loginImg} /> </div>
           <form onSubmit={this.submitHandler} action="/login" method="post">
             <div className="form">
 
@@ -71,9 +74,9 @@ export class Login extends React.Component {
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
-                  name="password"
+                  name="userPassword"
                   placeholder="Password"
-                  value={password}
+                  value={userPassword}
                   onChange={this.changeHandler}
                 />
               </div>
