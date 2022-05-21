@@ -47,8 +47,8 @@ public class AppUser implements UserDetails {
     @ManyToMany(mappedBy="enrolledStudents")
     private Set<Course> course = new HashSet<>();
 
-    @OneToMany(mappedBy = "student")
-    Set<Marks> marks;
+    /*@OneToMany(mappedBy = "student")
+    Set<Marks> marks;*/
 
 
     public AppUser(String firstName,

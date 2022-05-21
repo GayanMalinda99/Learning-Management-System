@@ -34,8 +34,8 @@ public class Course {
     public
     Set<AppUser> enrolledStudents = new HashSet<>();
 
-    @OneToMany(mappedBy = "course")
-    Set<Marks> Marks;
+    /*@OneToMany(mappedBy = "course")
+    Set<Marks> Marks;*/
 
    /* @JsonIgnore
     @OneToMany(mappedBy = "course")
