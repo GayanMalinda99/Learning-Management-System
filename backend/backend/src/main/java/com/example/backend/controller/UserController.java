@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     AppUserRepository appUserRepository;
 
-    @GetMapping("/getuser")
+    @GetMapping("/getalluser")
     public List<AppUser> getUser(){
 
         return appUserRepository.findAll();
