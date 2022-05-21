@@ -6,6 +6,7 @@ import com.example.backend.course.model.StudentEnroll;
 import com.example.backend.course.repository.AnnouncementRepository;
 import com.example.backend.course.repository.StudentEnrollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,9 +32,16 @@ public class AnnouncementController {
         return studentEnrollRepository.findAll();
     }
 
-    @GetMapping("/announcementHistory")
+    /*@GetMapping("/announcementHistory")
     public List<Announcement> getAnnouncement(){
         return announcementRepository.findAll();
+    }*/
+
+    @GetMapping("/announcement/{Id}")
+    public List<Announcement> getAnnouncemnt(@PathVariable int Id){
+        return announcementRepository.getAnnouncementByStudentID(Id);
     }
+
+
 
 }
