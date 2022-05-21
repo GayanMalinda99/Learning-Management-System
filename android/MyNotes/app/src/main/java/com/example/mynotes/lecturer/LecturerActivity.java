@@ -70,7 +70,7 @@ public class LecturerActivity extends AppCompatActivity {
                                 LecturerActivity.this, courseList,listner) ;
                 recyclerView.setAdapter(lecturerCourseAdapter);
 
-               // button.setText("working"); /*test*/
+                // button.setText("working"); /*test*/
             }
 
             @Override
@@ -101,3 +101,21 @@ public class LecturerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+/*
+*/
+
+/*Call<String> call = courseApi.getTest() ;
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String msg = response.body() ;
+                button.setText(msg);
+                //Log.i("messege", response.body()) ;
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                button.setText(t.toString());
+            }
+        });*/

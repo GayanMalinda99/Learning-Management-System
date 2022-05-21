@@ -22,7 +22,6 @@ public class AnnouncementActivity extends AppCompatActivity {
         Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi api = retrofit.create(CoursesApi.class) ;
 
-        Call<Response> call = api.announce("Helloo") ;
 
     }
 }
