@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import AnnouncemrntService from "../../Services/AnnouncemrntService";
 
 const StudentView = () => {
+  const student_id = 1;
   const [announcements, setAnnouncements] = useState([]);
   useEffect(() => {
-    AnnouncemrntService.getAnnouncement()
+    AnnouncemrntService.getAnnouncement(student_id)
       .then((respons) => {
         setAnnouncements(respons.data);
         console.log(respons.data);
