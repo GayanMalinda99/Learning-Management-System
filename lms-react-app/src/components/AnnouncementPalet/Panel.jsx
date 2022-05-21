@@ -4,10 +4,10 @@ import GetStudent from "./GetStudent";
 import StudentView from "./StudentView";
 
 function Panal() {
-  let member = "STUDENT";
+  let member = sessionStorage.getItem("roll");
   let component;
 
-  if (member == "STUDENT") {
+  if (member == "STU") {
     component = (
       <div>
         <StudentView />

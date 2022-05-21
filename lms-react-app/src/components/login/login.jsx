@@ -1,9 +1,10 @@
 import React from "react";
 import loginImg from "../../login.svg";
 import axios from "axios";
-import {Navigate} from "react-router-dom";
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
+import { Navigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+import findRoll from "../../Services/findRoll";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -15,11 +16,10 @@ export class Login extends React.Component {
     };
     this.state = {
       alert: false,
-    }
+    };
     this.state = {
       isLoggedIn: false,
-    }
-    
+    };
   }
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -29,38 +29,44 @@ export class Login extends React.Component {
     e.preventDefault();
     console.log(this.state);
     axios
-    .post('login',this.state)
-    .then(response=>{
+      .post("login", this.state)
+      .then((response) => {
         console.log(response);
-        localStorage.setItem("token",response.data.token);
+        localStorage.setItem("token", response.data.token);
         // alert("Login Success!!");
-        this.setState({isLoggedIn: !this.state.isLoggedIn});
-        this.setState({alert:!this.state.alert})
-    })
-    .catch(error=>{
-      console.log(error)
-    })
-
-
+        this.setState({ isLoggedIn: !this.state.isLoggedIn });
+        this.setState({ alert: !this.state.alert });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
     const { email, userPassword } = this.state;
+
+    //put email in session storage
+    sessionStorage.setItem("email", email);
+    const TempEmail = sessionStorage.getItem("email");
+    findRoll(TempEmail);
+
     let a = this.state.alert;
     let isloggedIn = this.state.isLoggedIn;
     return (
       <div className="base-container" ref={this.props.containerRef}>
+        {a && (
+          <Stack sx={{ width: "100%" }} spacing={2}>
+            <Alert severity="success">Login Success!!</Alert>
+          </Stack>
+        )}
 
-        {a&&(<Stack sx={{ width: '100%' }} spacing={2}>
-          <Alert severity="success">Login Success!!</Alert>
-        </Stack>)}
-
-            <div className="header">Login</div>
-        <div className="content">  
-          <div className="image"><img src={loginImg} /> </div>
+        <div className="header">Login</div>
+        <div className="content">
+          <div className="image">
+            <img src={loginImg} />{" "}
+          </div>
           <form onSubmit={this.submitHandler} action="/login" method="post">
             <div className="form">
-
               <div className="form-group">
                 <label htmlFor="username">Email</label>
                 <input
@@ -88,12 +94,11 @@ export class Login extends React.Component {
                   Login
                 </button>
               </div>
-
             </div>
           </form>
         </div>
         {/* {isloggedIn && navigate('/dashboard')} */}
-        {isloggedIn?<Navigate to="/dashboard" />:null}
+        {isloggedIn ? <Navigate to="/dashboard" /> : null}
       </div>
     );
   }
