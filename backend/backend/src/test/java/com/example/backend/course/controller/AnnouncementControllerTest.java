@@ -72,4 +72,12 @@ class AnnouncementControllerTest {
     @AfterEach
     void tearDown() {
     }
+
+    @Test
+    void testGetAnnouncement() {
+    }
+
+    @Test
+    void testGetEnrollStudent1() {
+    }
 }
