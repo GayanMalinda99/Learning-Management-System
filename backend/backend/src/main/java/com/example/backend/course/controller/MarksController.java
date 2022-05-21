@@ -9,6 +9,8 @@ import com.example.backend.course.repository.MarksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/")
@@ -40,6 +42,11 @@ public class MarksController {
     @PostMapping("/marks")
     public Marks saveMarks(@RequestBody Marks marks){
         return marksRepository.save(marks);
+    }
+
+    @GetMapping("/marks/{student_id}")
+    public List<Marks> getMarksByStudentId(@PathVariable long student_id){
+        return marksRepository.findByStudentid(student_id);
     }
 
 }
