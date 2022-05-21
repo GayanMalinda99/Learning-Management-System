@@ -3,7 +3,7 @@ import AnnouncemrntService from "../../Services/AnnouncemrntService";
 
 const AddAnnouncement = () => {
   const [announcement, setAnnouncement] = useState("");
-  const date = "date";
+  const date = Date();
   const [course_code, setCourse_code] = useState("");
 
   const saveAnnouncement = (e) => {

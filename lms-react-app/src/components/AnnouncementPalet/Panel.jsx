@@ -4,7 +4,7 @@ import GetStudent from "./GetStudent";
 import StudentView from "./StudentView";
 
 function Panal() {
-  let member = "STUDENT";
+  let member = "STUDEN";
   let component;
 
   if (member == "STUDENT") {
