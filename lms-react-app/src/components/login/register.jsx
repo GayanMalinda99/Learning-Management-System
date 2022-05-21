@@ -46,7 +46,7 @@ export class Register extends React.Component {
     return (
       <div className="base-container" ref={this.props.containerRef}>
         {a&&(<Stack sx={{ width: '100%' }} spacing={2}>
-          <Alert severity="success"></Alert>
+          <Alert severity="success">Registration Success!!</Alert>
         </Stack>)}
         <div className="header">Register</div>
         <div className="content">
