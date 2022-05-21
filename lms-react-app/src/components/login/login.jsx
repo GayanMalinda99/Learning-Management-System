@@ -1,7 +1,7 @@
 import React from "react";
 import loginImg from "../../login.svg";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
@@ -15,6 +15,9 @@ export class Login extends React.Component {
     };
     this.state = {
       alert: false,
+    }
+    this.state = {
+      isLoggedIn: false,
     }
     
   }
@@ -31,6 +34,7 @@ export class Login extends React.Component {
         console.log(response);
         localStorage.setItem("token",response.data.token);
         // alert("Login Success!!");
+        this.setState({isLoggedIn: !this.state.isLoggedIn});
         this.setState({alert:!this.state.alert})
     })
     .catch(error=>{
@@ -40,12 +44,10 @@ export class Login extends React.Component {
 
   };
 
-
-
-
   render() {
     const { email, userPassword } = this.state;
     let a = this.state.alert;
+    let isloggedIn = this.state.isLoggedIn;
     return (
       <div className="base-container" ref={this.props.containerRef}>
 
@@ -90,6 +92,8 @@ export class Login extends React.Component {
             </div>
           </form>
         </div>
+        {/* {isloggedIn && navigate('/dashboard')} */}
+        {isloggedIn?<Navigate to="/dashboard" />:null}
       </div>
     );
   }

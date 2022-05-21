@@ -18,8 +18,9 @@ class App extends React.Component {
       <div className="App">
         <Routes>
             <Route exact path="/" element={<EntryPage/>} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
             <Route element={<RequiredAuth />}> 
-              <Route exact path="/dashboard" element={<Dashboard />} />
+              
               <Route exact path="/course" element={<AddCourse />} />
               <Route exact path="/announcement" element={<Panel />} />
             </Route>
