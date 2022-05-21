@@ -19,49 +19,47 @@ const AddAnnouncement = () => {
       });
   };
   return (
-    <div className="col-9">
-      <div className="row">
-        <div className="col-1">
-          <button
-            className="btn btn-primary align-start"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseExample"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-          >
-            Create an Announcement
-          </button>
-        </div>
-      </div>
+    <div className="col-8">
+      <div className="container">
+        <div className="row">
+          <div className="card col-md-6 offset-md-3">
+            <h2 className="text-center">Create Announcement</h2>
+            <div className="card-body">
+              <form>
+                <div className="form-group mb-2">
+                  <label className="form-label">COURSE CODE:</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Course Code"
+                    name="firstName"
+                    className="form-control"
+                    value={course_code}
+                    onChange={(e) => setCourse_code(e.target.value)}
+                  ></input>
+                </div>
+                <div className="form-group mb-2">
+                  <label className="form-label">STUDENT ID:</label>
+                  <textarea
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    value={announcement}
+                    onChange={(e) => setAnnouncement(e.target.value)}
+                  ></textarea>
+                </div>
 
-      <div className="collapse" id="collapseExample">
-        <div className="card card-body">
-          <form>
-            <b>Enter Course Code:</b>
-            <input
-              type="text"
-              value={course_code}
-              onChange={(e) => setCourse_code(e.target.value)}
-            />
-            <br />
-            <br />
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-              value={announcement}
-              onChange={(e) => setAnnouncement(e.target.value)}
-            ></textarea>
-            <div className="row">
-              <button
-                className="btn btn-primary"
-                onClick={(e) => saveAnnouncement(e)}
-              >
-                Send
-              </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={(e) => {
+                    saveAnnouncement(e);
+                    alert("Announcement Sent");
+                  }}
+                >
+                  Send
+                </button>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

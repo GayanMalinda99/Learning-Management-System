@@ -4,7 +4,7 @@ import GetStudent from "./GetStudent";
 import StudentView from "./StudentView";
 
 function Panal() {
-  let member = "STUDEN";
+  let member = "STUDENT";
   let component;
 
   if (member == "STUDENT") {
@@ -16,10 +16,8 @@ function Panal() {
   } else {
     component = (
       <div className="row">
+        <div className="col-4"></div>
         <AddAnnouncement />
-        <div className="col-3">
-          <GetStudent />
-        </div>
       </div>
     );
   }
@@ -28,7 +26,7 @@ function Panal() {
       <br />
       <div className="row">
         <div className="p-3 mb-2 bg-primary bg-gradient text-white">
-          <h1 className="display-4">Announcements</h1>
+          <h1 className="display-4 text-center">ANNOUNCEMENTS</h1>
         </div>
       </div>
       {component}
