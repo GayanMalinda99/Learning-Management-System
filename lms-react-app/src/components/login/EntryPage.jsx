@@ -1,5 +1,5 @@
 import React from "react";
-import "../../App.scss";
+import "./style.scss";
 import { Login, Register } from "./index";
 // import Login from "./login";
 // import Register from "./register";
