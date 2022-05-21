@@ -33,12 +33,13 @@ public interface CoursesApi {
     @GET("api/v1/courses/marks/{course_code}/{id}")
     Call<Integer> getMarks(@Path("course_code") String course_code, @Path("id") String id) ;
 
-    @GET("api/v1/test")
-    Call<List<Course>> getTest() ;
+    @POST("api/v1/coursecourse/test")
+    Call<String> getTest(@Body Course c) ;
 
     @POST("api/v1/course/addcourse")
     Call<Response> addNewCourse(@Body Course course) ;
 
-    @POST("api/v1/announcement/")
-    Call<Response> announce(@Query("announce") String announce) ;
+    @FormUrlEncoded
+    @POST("api/v1/announcement")
+    Call<Response> announce(@Field("announce") String announce) ;
  }

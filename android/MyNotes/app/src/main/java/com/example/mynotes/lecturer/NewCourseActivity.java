@@ -45,7 +45,18 @@ public class NewCourseActivity extends AppCompatActivity {
                 Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                 final CoursesApi coursesApi = retrofit.create(CoursesApi.class) ;
 
-                Call<Response> call = coursesApi.addNewCourse(newCourse) ;
+                Call<String> call = coursesApi.getTest(newCourse) ;
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        submitButton.setText(response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        submitButton.setText(t.toString());
+                    }
+                });
 
             }
         });
