@@ -5,7 +5,7 @@ import "./App.scss";
 import { Login, Register } from "./components/login/index";
 import AddCourse from "./components/course/AddCourse";
 import ResponsiveAppBar from "./components/dashboard/LecturerDashboard";
-import ViewCourses from "./components/course/ViewCourses";
+import ViewCourses from "./components/course/ViewCourses.student";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Panel from "./components/AnnouncementPalet/Panel";
 import EntryPage from "./components/login/EntryPage";
@@ -13,6 +13,7 @@ import Dashboard from "./components/dashboard/DashBoard";
 import RequiredAuth from "./components/RequireAuth";
 import Mark from "./components/Marks/Mark";
 import findRoll from "./Services/findRoll";
+import ViewCourses_lecturer from "./components/course/ViewCourses.lecturer";
 
 class App extends React.Component {
   render() {
@@ -22,7 +23,8 @@ class App extends React.Component {
           <Route exact path="/" element={<EntryPage />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="lecturer-dashboard" element={<ResponsiveAppBar />} />
-          <Route path="course" element={<AddCourse />} />
+          <Route path="add-course" element={<AddCourse />} />
+          <Route path="Course" element={<ViewCourses_lecturer />} />
           <Route path="marks" element={<Mark />} />
           <Route path="announcement" element={<Panel />} />
         </Routes>

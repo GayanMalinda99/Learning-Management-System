@@ -23,8 +23,9 @@ export default function AddCourse() {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const URL =`http://localhost:8080/api/v1/course/addcourse`;
+  const URL =`course/addcourse`;
 
+  const lecture_id = localStorage.getItem('id');
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,8 +42,15 @@ export default function AddCourse() {
     // console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
-      Axios.post(URL, formValues)
-      .then(res =>console.log(res)).catch(err => console.log(err));
+      const config = {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    }
+      Axios.post(URL, formValues,config)
+      .then(res =>console.log(res),
+      Axios.put(`course/lecturer/${formValues.code}/${lecture_id}`,{},config)
+      ).catch(err => console.log(err));
     }
   }, [formErrors]);
 

@@ -12,24 +12,24 @@ export default class Dashboard extends React.Component {
         }
     }
 
-    componentDidMount() {
-        const config = {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
-        }
+    // componentDidMount() {
+    //     const config = {
+    //         headers: {
+    //             'Authorization': 'Bearer ' + localStorage.getItem('token')
+    //         }
+    //     }
 
-        axios.get('appuser',config).then(
-            response => {
-                console.log(response.data);
-                console.log(response.data.firstName);
-                this.setState({userName: response.data.firstName, userId: response.data.id}); 
-            },
-            error => {
-                console.log(error);
-            }
-        )
-    }
+    //     axios.get('appuser',config).then(
+    //         response => {
+    //             console.log(response.data);
+    //             console.log(response.data.firstName);
+    //             this.setState({userName: response.data.firstName, userId: response.data.id}); 
+    //         },
+    //         error => {
+    //             console.log(error);
+    //         }
+    //     )
+    // }
 
 
     render() {

@@ -4,19 +4,15 @@ import img from '../../image/img.jpg'
 import Axios from 'axios';
 import React, { useState } from 'react';
 
-function enrollment(){
-    let courseCode = "fwrgwrg";
-    let studentId = "fwrgwrg";
-
-    var params = {
-        courseCode: courseCode,
-        StudentId: studentId
+function enrollment(params){
+    const student_id = localStorage.getItem('id');
+    const config = {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
     }
-
-    console.log(params);
-    // Axios.put('http://localhost:8080/api/v1/course/',{
-    //     params: params
-    // }).then(res => console.log(res)).catch(err => console.log(err));
+    Axios.put(`course/student/${params}/${student_id}`,{},config)
+    .then(res => console.log(res)).catch(err => console.log(err));
 }
 
 const CourseCard = ({ courseData }) => {
@@ -29,9 +25,8 @@ const CourseCard = ({ courseData }) => {
                 <div>{courseData.code}</div>
                 <div>{courseData.description}</div>
                 <div>{courseData.lecture_id}</div>
-                
             </div>
-            <Button variant="contained" color="primary" className="card__btn" onClick={enrollment}>
+            <Button variant="contained" color="primary" className="card__btn" onClick={()=>{enrollment(courseData.code)}}>
                 Enroll
             </Button>
         </div>

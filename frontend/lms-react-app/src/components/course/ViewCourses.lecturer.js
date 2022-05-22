@@ -9,7 +9,12 @@ function ViewCourses() {
     const [Courses, setCourses] = useState([]);
   
     useEffect(() => {
-      axios.get('http://localhost:8080/api/v1/course/getcourse')
+      const config = {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      }
+      axios.get(`course/lecturer/${localStorage.getItem("id")}`,config)
       .then(res =>
         {
         setAllCourses(res.data);

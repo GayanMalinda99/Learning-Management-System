@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 const pages = ["Dashboard", "Course", "Marks", "Announcement"];
 const settings = ["Logout"];
 const title = "LMS";
+const userName = localStorage.getItem("userName");
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -36,6 +37,11 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  function logout() {
+    localStorage.clear();
+    window.location.href = "/";
+  }
 
   return (
     <AppBar position="static">
@@ -145,7 +151,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Virat" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={userName} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -166,7 +172,7 @@ const ResponsiveAppBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center" onClick={logout}>{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>

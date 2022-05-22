@@ -34,6 +34,9 @@ export class Login extends React.Component {
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("id", response.data.user.id);
+        localStorage.setItem("userName", response.data.user.firstName);
+        console.log(response.data.user.firstName);
         // alert("Login Success!!");
         // if(response.data.user.)
         if(response.data.user.appUserRole === 'STUDENT'){
