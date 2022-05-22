@@ -47,4 +47,9 @@ public class AppUserController {
         String  email = json.getString("sub");
         return email;
     }
+
+    @GetMapping(value = "/getUser/{email}")
+    public AppUser getUserByEmail(@PathVariable String email){
+        return appUserRepository.findByemail(email);
+    }
 }
