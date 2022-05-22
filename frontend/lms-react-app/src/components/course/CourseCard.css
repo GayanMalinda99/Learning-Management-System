@@ -1,5 +1,5 @@
 .card {
-    margin: 2rem 0 2rem 0;
+    margin: 2rem 2rem 2rem 0;
     padding: 1.5rem;
     width: 20rem;
     box-shadow: 0 0 28px 4px rgba(0,0,0,0.1);
@@ -22,7 +22,7 @@
     justify-content: center;
 }
 .card__image img {
-    width: 20rem;
+    width: 100%;
     border-radius: 3px;
 }
 

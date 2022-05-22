@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import CourseCard from "./CourseCard";
+import CourseCard from "./CourseCard.lecturer";
 import './ViewCourses.css';
 import axios from "axios";
 
@@ -14,7 +14,7 @@ function ViewCourses() {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
       }
-      axios.get(`course/lecturer/${localStorage.getItem("id")}`,config)
+      axios.get(`course/mycourses/${localStorage.getItem("id")}`,config)
       .then(res =>
         {
         setAllCourses(res.data);
