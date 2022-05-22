@@ -47,46 +47,18 @@ public class LecturerActivity extends AppCompatActivity {
         Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi courseApi = retrofit.create(CoursesApi.class) ;
 
-        Call<List<Course>> call = courseApi.getCourses() ;
+       Call<String> call = courseApi.getTest() ;
+       call.enqueue(new Callback<String>() {
+           @Override
+           public void onResponse(Call<String> call, Response<String> response) {
+               button.setText(response.body());
+           }
 
-        call.enqueue(new Callback<List<Course>>() {
-            @Override
-            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
-                List<Course> courseList = response.body() ;
-
-                //Listner to go to selected course
-                listner = new LecturerCourseAdapter.CourseClickListner() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        openSelectedActivity(courseList.get(position));
-                    }
-                };
-
-                /*Get num of courses to use in creating anew course*/
-
-
-                LecturerCourseAdapter lecturerCourseAdapter =
-                        new LecturerCourseAdapter(
-                                LecturerActivity.this, courseList,listner) ;
-                recyclerView.setAdapter(lecturerCourseAdapter);
-
-                // button.setText("working"); /*test*/
-            }
-
-            @Override
-            public void onFailure(Call<List<Course>> call, Throwable t) {
+           @Override
+           public void onFailure(Call<String> call, Throwable t) {
                 button.setText(t.toString());
-            }
-
-        });
-
-        Button addCourseButton = (Button)findViewById(R.id.lecturer_add_course_button) ;
-        addCourseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNewCourseActivity();
-            }
-        });
+           }
+       });
 
     }
     public void openSelectedActivity(Course course){
@@ -119,3 +91,5 @@ public class LecturerActivity extends AppCompatActivity {
                 button.setText(t.toString());
             }
         });*/
+
+/**/
