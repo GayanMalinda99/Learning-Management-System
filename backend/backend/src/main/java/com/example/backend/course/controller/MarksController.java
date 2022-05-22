@@ -7,6 +7,7 @@ import com.example.backend.course.model.Marks;
 import com.example.backend.course.repository.CourseRepository;
 import com.example.backend.course.repository.MarksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,11 +41,13 @@ public class MarksController {
 //        marksRepository.save(marksData);
 //    }
     @PostMapping("/marks")
+    @PreAuthorize("hasRole('LECTURER')")
     public Marks saveMarks(@RequestBody Marks marks){
         return marksRepository.save(marks);
     }
 
     @GetMapping("/marks/{student_id}")
+    @PreAuthorize("hasRole('STUDENT')")
     public List<Marks> getMarksByStudentId(@PathVariable long student_id){
         return marksRepository.findByStudentid(student_id);
     }

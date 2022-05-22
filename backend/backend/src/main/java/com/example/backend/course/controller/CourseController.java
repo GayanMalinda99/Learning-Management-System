@@ -22,6 +22,7 @@ public class CourseController {
     private AppUserRepository appUserRepository;
 
     @GetMapping("/getcourse")
+    @PreAuthorize("hasRole('STUDENT')")
     public List<Course> getCourses(){
         return courseRepository.findAll();
     }
@@ -60,6 +61,12 @@ public class CourseController {
         List<Course> courses = courseRepository.findByEnrolledStudents_id(studentId);
         return courses;
     }
+
+//    @GetMapping("/getcourses")
+//    @PreAuthorize("hasRole('STUDENT')")
+//    public List<Course> getUnenrolledCourses(){
+//
+//    }
 
     @GetMapping("/getstudents/{courseCode}")
     @PreAuthorize("hasRole('LECTURER')")
