@@ -47,10 +47,13 @@ public class CourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
 
+        //Getting data from parent
+        Intent intent  = getIntent() ;
+        int studentId = Integer.parseInt(intent.getStringExtra("id")) ;
+
         recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = findViewById(R.id.add_course_button) ;
-        int studentId = 1 ;
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);

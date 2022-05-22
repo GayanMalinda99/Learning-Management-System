@@ -1,6 +1,7 @@
 package com.example.mynotes.retrofit;
 
 import com.example.mynotes.dto.CourseEnrollementDto;
+import com.example.mynotes.model.Announcement;
 import com.example.mynotes.model.Course;
 import com.example.mynotes.model.Marks;
 
@@ -41,7 +42,7 @@ public interface CoursesApi {
     Call<Response> addNewCourse(@Body Course course) ;
 
     @POST("api/v1/announcement/")
-    Call<Response> announce(@Query("announce") String announce) ;
+    Call<Response> announce(@Query("announce") Announcement announce) ;
 
     @GET("api/v1/course/enrolledcourses/")
     Call<List<Course>> getEnrolledStudents(@Query("courseCode") String courseCode) ;

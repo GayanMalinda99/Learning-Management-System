@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.example.mynotes.lecturer.LecturerActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import static com.example.mynotes.R.string.navigation_drawer_open;
@@ -59,7 +60,12 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_courses :
-                        openCourseActivity() ;
+                        int id  = 1 ;
+                        if(id == 1){
+                            openCourseActivity(id) ;
+                        }else{
+                            openLecturerActivity(id);
+                        }
                         /*Toast.makeText(getApplicationContext(),"Call Panel is Open",Toast.LENGTH_LONG).show();
                         drawerLayout.closeDrawer(GravityCompat.START);*/
                         break;
@@ -76,8 +82,14 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
-    public void openCourseActivity(){
+    public void openCourseActivity(int id){
         Intent intent = new Intent(this, CourseActivity.class) ;
+        intent.putExtra("id", 1) ;
+        startActivity(intent);
+    }
+    public void openLecturerActivity(int id){
+        Intent intent = new Intent(this, LecturerActivity.class) ;
+        intent.putExtra("id", id) ;
         startActivity(intent);
     }
 }

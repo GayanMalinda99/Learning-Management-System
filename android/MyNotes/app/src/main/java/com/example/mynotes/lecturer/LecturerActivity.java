@@ -39,10 +39,13 @@ public class LecturerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecturer);
 
+        //Get data from parent
+        Intent intent = getIntent() ;
+        int lecturerId = Integer.parseInt(intent.getStringExtra("id")) ;
+
         recyclerView = (RecyclerView)findViewById(R.id.lecturer_recycleview) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = findViewById(R.id.lecturer_add_course_button) ;
-        int lecturerId = 1 ;
 
         Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi courseApi = retrofit.create(CoursesApi.class) ;

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.mynotes.R;
+import com.example.mynotes.model.Announcement;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.RetrofitClientInstance;
 
@@ -36,7 +37,10 @@ public class AnnouncementActivity extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String announcement = announcementEdittext.getText().toString() ;
+                Announcement announcement = new Announcement() ;
+                announcement.announcement = announcementEdittext.getText().toString() ;
+                announcement.date = "5/22/2022" ;
+                announcement.course_code = courseCode ;
 
                 Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                 final CoursesApi api = retrofit.create(CoursesApi.class) ;
