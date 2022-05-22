@@ -64,4 +64,20 @@ class RegistrationRequestTest {
     @Test
     void testHashCode() {
     }
+
+    @Test
+    void testGetFirstName() {
+    }
+
+    @Test
+    void testGetLastName() {
+    }
+
+    @Test
+    void testGetEmail() {
+    }
+
+    @Test
+    void testGetPassword() {
+    }
 }
