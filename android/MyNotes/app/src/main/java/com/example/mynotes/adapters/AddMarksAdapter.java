@@ -82,7 +82,7 @@ public class AddMarksAdapter extends RecyclerView.Adapter<AddMarksAdapter.AddMar
 
                     //Creating a marks object
                     Marks studentMarks = new Marks() ;
-                    studentMarks.id = position ;
+                    studentMarks.id = position+ students.size() ;
                     studentMarks.course_code = courseCode ;
                     studentMarks.student_id = new Long(textView.getText().toString()) ;
                     studentMarks.marks = marks ;
