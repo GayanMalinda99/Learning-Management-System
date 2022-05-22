@@ -21,6 +21,7 @@ public class LecturerSelectedCourseActivity extends AppCompatActivity {
         Button announcementButton = findViewById(R.id.announcement_button) ;
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.course_panel_toolbar);
 
+        //Get data from parent activity
         Intent intent = getIntent() ;
         String courseName = intent.getStringExtra(LecturerActivity.COURSE_NAME) ;
         String courseCode = intent.getStringExtra(LecturerActivity.COURSE_CODE) ;

@@ -2,6 +2,7 @@ package com.example.mynotes.retrofit;
 
 import com.example.mynotes.dto.CourseEnrollementDto;
 import com.example.mynotes.model.Course;
+import com.example.mynotes.model.Marks;
 
 import java.util.List;
 
@@ -44,4 +45,7 @@ public interface CoursesApi {
 
     @GET("api/v1/course/enrolledcourses/")
     Call<List<Course>> getEnrolledStudents(@Query("courseCode") String courseCode) ;
+
+    @POST("api/v1/marks")
+    Call<Marks> saveMarks(@Body Marks marks) ;
  }

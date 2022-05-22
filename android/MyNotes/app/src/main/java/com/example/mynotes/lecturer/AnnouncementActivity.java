@@ -28,6 +28,7 @@ public class AnnouncementActivity extends AppCompatActivity {
         EditText announcementEdittext = findViewById(R.id.textArea_announcement) ;
         Button sendButton = findViewById(R.id.announcement_button) ;
 
+        //Get data from parent activity
         Intent intent = getIntent() ;
         String courseName = intent.getStringExtra("course_name") ;
         String courseCode = intent.getStringExtra("course_code") ;

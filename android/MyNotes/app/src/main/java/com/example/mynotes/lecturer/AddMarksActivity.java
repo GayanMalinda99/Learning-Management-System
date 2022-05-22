@@ -29,10 +29,10 @@ public class AddMarksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_marks);
 
-
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.add_marks_list) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //Get data from parent activity
         Intent intent = getIntent() ;
         String courseName = intent.getStringExtra("course_name") ;
         String courseCode = intent.getStringExtra("course_code") ;
@@ -50,8 +50,11 @@ public class AddMarksActivity extends AppCompatActivity {
                 for(int i =0 ; i <courseList.size(); i++ ){
                     if(courseCode == courseList.get(i).code){
 
-                        List<AppUser> enrolledStudents = new ArrayList<>(courseList.get(i).enrolledStudents) ;
-                        AddMarksAdapter addMarksAdapter = new AddMarksAdapter(AddMarksActivity.this, enrolledStudents) ;
+                        List<AppUser> enrolledStudents =
+                                new ArrayList<>(courseList.get(i).enrolledStudents) ;
+                        AddMarksAdapter addMarksAdapter =
+                                new AddMarksAdapter(AddMarksActivity.this, enrolledStudents,
+                                         courseCode) ;
                         recyclerView.setAdapter(addMarksAdapter);
 
                     }
