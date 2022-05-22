@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import AnnouncemrntService from "../../Services/AnnouncemrntService";
+import LoginService from "../../Services/LoginService";
+import GetLoginInfo from "../login/GetLoginInfo";
 
 const StudentView = () => {
-  const student_id = 1;
+  GetLoginInfo.getLoginInfo();
+
+  //console.log(sessionStorage.getItem("appUser"));
+
+  const student_id = sessionStorage.getItem("appUser");
   const [announcements, setAnnouncements] = useState([]);
   useEffect(() => {
     AnnouncemrntService.getAnnouncement(student_id)
