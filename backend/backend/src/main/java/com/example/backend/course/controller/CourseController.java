@@ -71,7 +71,7 @@ public class CourseController {
     @GetMapping("/mycourses/{lecturerId}")
     @PreAuthorize("hasRole('LECTURER')")
     public List<Course> getMyCourses(@PathVariable Long lecturerId){
-        return courseRepository.findByLecturer(Long.valueOf(lecturerId));
+        return courseRepository.findByLecturer_id(Long.valueOf(lecturerId));
     }
 
 }
