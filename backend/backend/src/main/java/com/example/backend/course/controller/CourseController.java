@@ -5,8 +5,10 @@ import com.example.backend.appuser.AppUserRepository;
 import com.example.backend.course.model.Course;
 import com.example.backend.course.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -25,11 +27,13 @@ public class CourseController {
     }
 
     @PostMapping("/addcourse")
+    @PreAuthorize("hasRole('LECTURER')")
     public void addCourse(@RequestBody Course courseData) {
         courseRepository.save(courseData);
     }
 
     @PutMapping("/student/{courseCode}/{studentId}")
+    @PreAuthorize("hasRole('STUDENT')")
     public Course addStudentToCourse(
             @PathVariable String courseCode,
             @PathVariable Long studentId){
@@ -40,6 +44,7 @@ public class CourseController {
     }
 
     @PutMapping("/lecturer/{courseCode}/{lecturerId}")
+    @PreAuthorize("hasRole('LECTURER')")
     public Course assignLecturerToCourse(
             @PathVariable String courseCode,
             @PathVariable Long lecturerId){
@@ -50,15 +55,23 @@ public class CourseController {
     }
 
     @GetMapping("/enrolledcourses/{studentId}")
+    @PreAuthorize("hasRole('STUDENT')")
     public List<Course> getEnrolledCourses(@PathVariable Long studentId){
         List<Course> courses = courseRepository.findByEnrolledStudents_id(studentId);
         return courses;
     }
 
     @GetMapping("/getstudents/{courseCode}")
+    @PreAuthorize("hasRole('LECTURER')")
     public List<Course> getEnrolledStudents(@PathVariable String courseCode){
         List<Course> students = courseRepository.findByCode(courseCode);
         return students;
+    }
+
+    @GetMapping("/mycourses/{lecturerId}")
+    @PreAuthorize("hasRole('LECTURER')")
+    public List<Course> getMyCourses(@PathVariable Long lecturerId){
+        return courseRepository.findByLecturer(Long.valueOf(lecturerId));
     }
 
 }

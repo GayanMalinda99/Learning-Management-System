@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, String> {
     List<Course> findByEnrolledStudents_id(Long id);
 
     List<Course> findByCode(String code);
+
+    List<Course> findByLecturer(Long id);
 }
