@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.example.mynotes.model.Marks;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.*;
 
@@ -30,7 +31,9 @@ public class SelectedCourseActivity extends AppCompatActivity {
         Intent intent = getIntent() ;
         String courseName = intent.getStringExtra(CourseActivity.COURSE_NAME) ;
         String courseCode = intent.getStringExtra(CourseActivity.COURSE_CODE) ;
-        String studentId = intent.getStringExtra(CourseActivity.STUDENT_ID) ;
+        String studentIdString = intent.getStringExtra(CourseActivity.STUDENT_ID) ;
+
+        Long studentId = new Long(Integer.parseInt(studentIdString)) ;
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar7);
         toolbar.setTitle(courseName);
@@ -38,21 +41,26 @@ public class SelectedCourseActivity extends AppCompatActivity {
         TextView textView_2 = findViewById(R.id.textView5) ;
         String marks = "75" ;
 
-       /* Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
-        final CoursesApi marksCourseApi = retrofit.create(CoursesApi.class) ;
-        Call<Integer> call = marksCourseApi.getMarks(courseCode, studentId) ;
-        call.enqueue(new Callback<Integer>() {
-            @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-                int marks = response.body() ;
-                textView_2.setText(marks);
-            }
+       Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
+       final CoursesApi api = retrofit.create(CoursesApi.class) ;
 
-            @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
+       Call<List<Marks>> call = api.getMarks(studentId) ;
+       call.enqueue(new Callback<List<Marks>>() {
+           @Override
+           public void onResponse(Call<List<Marks>> call, Response<List<Marks>> response) {
+               List<Marks> markslist = response.body() ;
+               for(int i = 0 ; i < markslist.size() ; i++){
+                   if(courseCode == markslist.get(i).course_code){
+                       textView_2.setText(Long.toString(markslist.get(i).marks));
+                   }
+               }
+           }
 
-            }
-        });*/
+           @Override
+           public void onFailure(Call<List<Marks>> call, Throwable t) {
+                Log.i("Error", t.toString()) ;
+           }
+       });
 
         textView_2.setText(marks);
     }

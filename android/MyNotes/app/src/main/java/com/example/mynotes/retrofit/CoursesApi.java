@@ -31,8 +31,8 @@ public interface CoursesApi {
     @POST("api/v1/enrolCourse")
     Call<CourseEnrollementDto> addCourse(@Body CourseEnrollementDto course_data) ;
 
-    @GET("api/v1/courses/marks/{course_code}/{id}")
-    Call<Integer> getMarks(@Path("course_code") String course_code, @Path("id") String id) ;
+    @GET("api/v1/courses/marks/")
+    Call<List<Marks>> getMarks(@Path("student_id") long student_id) ;
 
     @POST("api/v1/course/test")
     Call<String> getTest(/*@Body Course c*/) ;
