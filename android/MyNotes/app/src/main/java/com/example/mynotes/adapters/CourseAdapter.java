@@ -34,7 +34,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     private RecycleViewClickListner itemClickListner ;
     int position = -1 ;
 
-    public CourseAdapter(Context ct , List<CourseEnrollementDto> courses, RecycleViewClickListner listner){
+    public CourseAdapter(Context ct , List<CourseEnrollementDto> courses,
+                         RecycleViewClickListner listner){
         context = ct;
         allEnrolledCourses = courses ;
         itemClickListner = listner ;
