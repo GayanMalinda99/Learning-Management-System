@@ -32,8 +32,8 @@ public interface CoursesApi {
     @POST("api/v1/enrolCourse")
     Call<CourseEnrollementDto> addCourse(@Body CourseEnrollementDto course_data) ;
 
-    @GET("api/v1/courses/marks/")
-    Call<List<Marks>> getMarks(@Path("student_id") long student_id) ;
+    @GET("api/v1/courses/marks")
+    Call<List<Marks>> getMarks(@Query("student_id") long student_id) ;
 
     @POST("api/v1/course/test")
     Call<String> getTest(/*@Body Course c*/) ;
@@ -41,10 +41,10 @@ public interface CoursesApi {
     @POST("api/v1/course/addcourse")
     Call<Response> addNewCourse(@Body Course course) ;
 
-    @POST("api/v1/announcement/")
+    @POST("api/v1/announcement")
     Call<Response> announce(@Query("announce") Announcement announce) ;
 
-    @GET("api/v1/course/enrolledcourses/")
+    @GET("api/v1/course/enrolledcourses")
     Call<List<Course>> getEnrolledStudents(@Query("courseCode") String courseCode) ;
 
     @POST("api/v1/marks")

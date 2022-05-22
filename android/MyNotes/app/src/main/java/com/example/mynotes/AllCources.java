@@ -53,13 +53,11 @@ public class AllCources extends AppCompatActivity {
                 AllCourseAdapter allCourseAdapter = new AllCourseAdapter(AllCources.this, courseList, id) ;
                 recyclerView.setAdapter(allCourseAdapter);
 
-                toolbar.setTitle("working");/*Test*/
             }
 
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
                 Log.i("Error", t.toString()) ;
-                toolbar.setTitle(t.toString());
             }
         });
 
