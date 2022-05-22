@@ -21,6 +21,7 @@ public class LecturerSelectedCourseActivity extends AppCompatActivity {
         Button announcementButton = findViewById(R.id.announcement_button) ;
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.course_panel_toolbar);
 
+        //Get data from parent activity
         Intent intent = getIntent() ;
         String courseName = intent.getStringExtra(LecturerActivity.COURSE_NAME) ;
         String courseCode = intent.getStringExtra(LecturerActivity.COURSE_CODE) ;
@@ -31,6 +32,8 @@ public class LecturerSelectedCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddMarksActivity.class) ;
+                intent.putExtra("course_name", courseName) ;
+                intent.putExtra("course_code", courseCode) ;
                 startActivity(intent);
             }
         });
@@ -39,6 +42,8 @@ public class LecturerSelectedCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AnnouncementActivity.class) ;
+                intent.putExtra("course_name", courseName) ;
+                intent.putExtra("course_code", courseCode) ;
                 startActivity(intent);
             }
         });

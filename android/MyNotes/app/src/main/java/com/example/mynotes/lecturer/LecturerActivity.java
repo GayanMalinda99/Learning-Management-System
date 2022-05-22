@@ -42,23 +42,43 @@ public class LecturerActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.lecturer_recycleview) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = findViewById(R.id.lecturer_add_course_button) ;
-        //int lecturerId = 1 ;
+        int lecturerId = 1 ;
 
         Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi courseApi = retrofit.create(CoursesApi.class) ;
 
-       Call<String> call = courseApi.getTest() ;
-       call.enqueue(new Callback<String>() {
+       Call<List<Course>> call = courseApi.getCourses() ;
+
+       call.enqueue(new Callback<List<Course>>() {
            @Override
-           public void onResponse(Call<String> call, Response<String> response) {
-               button.setText(response.body());
+           public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+               List<Course> allCouses = response.body() ;
+               List<Course> lecturerCourses = new ArrayList<>();
+
+               for(int i=0; i < allCouses.size(); i++){
+                   if(lecturerId == allCouses.get(i).lecturer.getId()){
+                       lecturerCourses.add((allCouses.get(i))) ;
+                   }
+               }
+
+               listner = new LecturerCourseAdapter.CourseClickListner() {
+                   @Override
+                   public void onItemClick(View view, int position) {
+                       openSelectedActivity(lecturerCourses.get(position));
+                   }
+               } ;
+
+               LecturerCourseAdapter adapter = new
+                       LecturerCourseAdapter(LecturerActivity.this, lecturerCourses, listner);
+               recyclerView.setAdapter(adapter);
            }
 
            @Override
-           public void onFailure(Call<String> call, Throwable t) {
-                button.setText(t.toString());
+           public void onFailure(Call<List<Course>> call, Throwable t) {
+
            }
        });
+
 
     }
     public void openSelectedActivity(Course course){

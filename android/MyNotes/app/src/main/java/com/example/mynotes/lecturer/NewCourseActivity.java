@@ -43,7 +43,20 @@ public class NewCourseActivity extends AppCompatActivity {
                 Log.i(newCourse.code+newCourse.title, newCourse.description) ;
 
                 Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
-                final CoursesApi coursesApi = retrofit.create(CoursesApi.class) ;
+                final CoursesApi newCoursesApi = retrofit.create(CoursesApi.class) ;
+
+                Call<Response> call = newCoursesApi.addNewCourse(newCourse) ;
+                call.enqueue(new Callback<Response>() {
+                    @Override
+                    public void onResponse(Call<Response> call, Response<Response> response) {
+                        Log.i("Messege", "Working") ;
+                    }
+
+                    @Override
+                    public void onFailure(Call<Response> call, Throwable t) {
+                        Log.i("Error", t.toString()) ;
+                    }
+                });
 
                 /*Call<String> call = coursesApi.getTest(newCourse) ;
                 call.enqueue(new Callback<String>() {
