@@ -52,4 +52,16 @@ class RegistrationRequestTest {
 
 
     }
+
+    @Test
+    void testEquals1() {
+    }
+
+    @Test
+    void testCanEqual() {
+    }
+
+    @Test
+    void testHashCode() {
+    }
 }
