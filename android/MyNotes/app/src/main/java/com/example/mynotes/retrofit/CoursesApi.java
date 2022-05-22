@@ -15,6 +15,7 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface CoursesApi {
     @GET("api/v1/registeredCourses")
@@ -22,9 +23,6 @@ public interface CoursesApi {
 
     @GET("api/v1/course/getcourse")
     Call <List<Course>> getCourses() ;
-
-    @DELETE("api/v1/dropCourse")
-    Call<CourseEnrollementDto> dropCourse(@Body CourseEnrollementDto course_data) ;
 
     @HTTP(method = "DELETE", path = "api/v1/dropCourse", hasBody = true)
     Call<Boolean> deleteSomething(@Body CourseEnrollementDto dropcourse);
@@ -35,6 +33,13 @@ public interface CoursesApi {
     @GET("api/v1/courses/marks/{course_code}/{id}")
     Call<Integer> getMarks(@Path("course_code") String course_code, @Path("id") String id) ;
 
-    @GET("api/v1/test")
-    Call<List<Course>> getTest() ;
+    @POST("api/v1/course/test")
+    Call<String> getTest(/*@Body Course c*/) ;
+
+    @POST("api/v1/course/addcourse")
+    Call<Response> addNewCourse(@Body Course course) ;
+
+    @FormUrlEncoded
+    @POST("api/v1/announcement")
+    Call<Response> announce(@Field("announce") String announce) ;
  }

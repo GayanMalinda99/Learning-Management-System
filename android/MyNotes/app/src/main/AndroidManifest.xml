@@ -18,13 +18,21 @@
             android:exported="false" />
         <activity
             android:name=".lecturer.AddMarksActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".lecturer.LecturerSelectedCourseActivity"
-            android:exported="false" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".lecturer.NewCourseActivity"
-            android:exported="false" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".lecturer.LecturerActivity"
             android:exported="true">
@@ -39,11 +47,6 @@
         <activity
             android:name=".CourseActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".DashboardActivity" />
         <activity android:name=".LoginActivity"

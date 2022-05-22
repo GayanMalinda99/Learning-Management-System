@@ -34,7 +34,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     private RecycleViewClickListner itemClickListner ;
     int position = -1 ;
 
-    public CourseAdapter(Context ct , List<CourseEnrollementDto> courses, RecycleViewClickListner listner){
+    public CourseAdapter(Context ct , List<CourseEnrollementDto> courses,
+                         RecycleViewClickListner listner){
         context = ct;
         allEnrolledCourses = courses ;
         itemClickListner = listner ;
@@ -68,7 +69,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             textView = (TextView) itemView.findViewById(R.id.course_text) ;
             imageButton = itemView.findViewById(R.id.course_delete_button) ;
            itemView.setOnClickListener(this);
-           itemView.findViewById(R.id.course_delete_button).setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.course_delete_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.i(Integer.toString(id), textView.getText().toString()) ;
@@ -100,6 +101,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
                 }
             });
+
         }
 
         @Override
@@ -112,4 +114,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         void onItemClick(View view, int position) ;
    }
 }
+
+/*
+*/
+
+/**/
 

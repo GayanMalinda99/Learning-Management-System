@@ -18,7 +18,6 @@ public class RetrofitClientInstance {
         return httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     }
 
-
     public static Retrofit getRetrofitInstance() {
 
         if (retrofit == null) {
