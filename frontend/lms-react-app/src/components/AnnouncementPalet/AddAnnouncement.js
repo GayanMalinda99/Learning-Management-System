@@ -38,7 +38,7 @@ const AddAnnouncement = () => {
                   ></input>
                 </div>
                 <div className="form-group mb-2">
-                  <label className="form-label">STUDENT ID:</label>
+                  <label className="form-label">ANNOUNCEMENT:</label>
                   <textarea
                     className="form-control"
                     id="exampleFormControlTextarea1"
