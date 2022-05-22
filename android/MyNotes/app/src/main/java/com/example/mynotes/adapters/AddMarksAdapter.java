@@ -12,14 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mynotes.R;
+import com.example.mynotes.model.AppUser;
 
 import java.util.List;
 
 public class AddMarksAdapter extends RecyclerView.Adapter<AddMarksAdapter.AddMarksViewHolder> {
     private Context context ;
-    private List<String> students ;
+    private List<AppUser> students ;
 
-    public AddMarksAdapter(Context context, List<String> students){
+    public AddMarksAdapter(Context context, List<AppUser> students){
         this.context = context ;
         this.students = students ;
     }
@@ -34,7 +35,7 @@ public class AddMarksAdapter extends RecyclerView.Adapter<AddMarksAdapter.AddMar
 
     @Override
     public void onBindViewHolder(@NonNull AddMarksViewHolder holder, int position) {
-        holder.textView.setText(students.get(position));
+        holder.textView.setText(students.get(position).getStudentId());
     }
 
     @Override

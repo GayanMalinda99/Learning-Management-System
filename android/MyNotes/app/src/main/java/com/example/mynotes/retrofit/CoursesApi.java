@@ -39,7 +39,9 @@ public interface CoursesApi {
     @POST("api/v1/course/addcourse")
     Call<Response> addNewCourse(@Body Course course) ;
 
-    @FormUrlEncoded
-    @POST("api/v1/announcement")
-    Call<Response> announce(@Field("announce") String announce) ;
+    @POST("api/v1/announcement/")
+    Call<Response> announce(@Query("announce") String announce) ;
+
+    @GET("api/v1/course/enrolledcourses/")
+    Call<List<Course>> getEnrolledStudents(@Query("courseCode") String courseCode) ;
  }
