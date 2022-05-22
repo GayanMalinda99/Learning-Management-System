@@ -2,6 +2,7 @@ package com.example.mynotes.lecturer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,10 @@ public class AnnouncementActivity extends AppCompatActivity {
         EditText announcementEdittext = findViewById(R.id.textArea_announcement) ;
         Button sendButton = findViewById(R.id.announcement_button) ;
 
+        Intent intent = getIntent() ;
+        String courseName = intent.getStringExtra("course_name") ;
+        String courseCode = intent.getStringExtra("course_code") ;
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +49,7 @@ public class AnnouncementActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Response> call, Throwable t) {
-
+                        Log.i("Messege", t.toString()) ;
                     }
                 });
             }

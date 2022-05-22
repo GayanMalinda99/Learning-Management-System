@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mynotes.R;
@@ -28,10 +29,14 @@ public class AddMarksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_marks);
 
-        String courseCode = "1" ;
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.add_marks_list) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Intent intent = getIntent() ;
+        String courseName = intent.getStringExtra("course_name") ;
+        String courseCode = intent.getStringExtra("course_code") ;
+
 
         Retrofit retrofit  = new RetrofitClientInstance().getRetrofitInstance() ;
         final CoursesApi coursesApi = retrofit.create(CoursesApi.class) ;

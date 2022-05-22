@@ -7,7 +7,9 @@ public class Course {
     public String code;
     public String title;
     public String description;
+    public AppUser lecturer ;
 
     public Set<AppUser> enrolledStudents ;
+
 }
 

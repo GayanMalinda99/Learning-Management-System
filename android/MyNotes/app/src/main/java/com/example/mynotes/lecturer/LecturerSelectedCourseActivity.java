@@ -31,6 +31,8 @@ public class LecturerSelectedCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddMarksActivity.class) ;
+                intent.putExtra("course_name", courseName) ;
+                intent.putExtra("course_code", courseCode) ;
                 startActivity(intent);
             }
         });
@@ -39,6 +41,8 @@ public class LecturerSelectedCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AnnouncementActivity.class) ;
+                intent.putExtra("course_name", courseName) ;
+                intent.putExtra("course_code", courseCode) ;
                 startActivity(intent);
             }
         });
