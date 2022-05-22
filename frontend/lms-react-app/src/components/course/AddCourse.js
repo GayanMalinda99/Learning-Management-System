@@ -38,7 +38,7 @@ export default function AddCourse() {
     setIsSubmit(true);
   };
 
-  useEffect(() => {
+  useEffect( () => {
     // console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
@@ -48,9 +48,13 @@ export default function AddCourse() {
         }
     }
       Axios.post(URL, formValues,config)
-      .then(res =>console.log(res),
-      Axios.put(`course/lecturer/${formValues.code}/${lecture_id}`,{},config)
-      ).catch(err => console.log(err));
+      .then(res =>{
+        console.log(res);
+        res.status=== 200 ? Axios.put(`course/lecturer/${formValues.code}/${lecture_id}`,{},config) : alert("Course already exists");
+      }
+        ).catch(err => console.log(err));
+      
+      
     }
   }, [formErrors]);
 
