@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import MarksService from "../../Services/MarksService";
+import GetLoginInfo from "../login/GetLoginInfo";
 
 const StudentView = () => {
-  const student_id = 1;
+  GetLoginInfo.getLoginInfo();
+
+  //console.log(sessionStorage.getItem("appUser"));
+
+  const student_id = sessionStorage.getItem("appUser");
   const [marks, setMarks] = useState([]);
   useEffect(() => {
     MarksService.getMarks(student_id)
