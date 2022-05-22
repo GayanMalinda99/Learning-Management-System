@@ -11,13 +11,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://192.168.1.103:8080/";   //  http://192.168.8.102:8080/
+    private static final String BASE_URL = "http://192.168.1.3:8080/";   //  http://192.168.8.102:8080/
     static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 
     public static HttpLoggingInterceptor getHttpLoggingInterceptor() {
         return httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     }
-
 
     public static Retrofit getRetrofitInstance() {
 

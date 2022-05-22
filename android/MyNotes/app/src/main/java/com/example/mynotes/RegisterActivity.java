@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Log.i("call","function called");
         Intent i = new Intent(RegisterActivity.this,
-                LoginActivity.class);
+                loginActivity2.class);
         startActivity(i);
         finish();
         call.enqueue(new Callback<AppUser>() {

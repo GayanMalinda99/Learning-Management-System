@@ -10,15 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mynotes.R;
+import com.example.mynotes.model.Course;
 
 import java.util.List;
 
 public class LecturerCourseAdapter extends RecyclerView.Adapter<LecturerCourseAdapter.LecturerViewHolder> {
 
     private Context context ;
-    private List<String> courses ;
+    private List<Course> courses ;
     private CourseClickListner listner ;
-    public LecturerCourseAdapter(Context context, List<String> courses, CourseClickListner listner){
+    public LecturerCourseAdapter(Context context, List<Course> courses, CourseClickListner listner){
         this.context= context ;
         this.courses = courses ;
         this.listner = listner ;
@@ -35,7 +36,7 @@ public class LecturerCourseAdapter extends RecyclerView.Adapter<LecturerCourseAd
 
     @Override
     public void onBindViewHolder(@NonNull LecturerViewHolder holder, int position) {
-        holder.textView.setText(courses.get(position));
+        holder.textView.setText(courses.get(position).title);
     }
 
     @Override
@@ -50,11 +51,12 @@ public class LecturerCourseAdapter extends RecyclerView.Adapter<LecturerCourseAd
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.lecturer_list_item) ;
             itemView.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View view) {
-            listner.onItemClick(view, getAdapterPosition());
+            listner.onItemClick(itemView, getAdapterPosition());
         }
     }
 

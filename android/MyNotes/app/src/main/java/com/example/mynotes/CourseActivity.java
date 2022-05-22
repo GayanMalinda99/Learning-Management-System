@@ -12,19 +12,28 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.mynotes.adapters.CourseAdapter;
 import com.example.mynotes.dto.CourseEnrollementDto;
+import com.example.mynotes.lecturer.LecturerActivity;
 import com.example.mynotes.model.Course;
 import com.example.mynotes.retrofit.CoursesApi;
 import com.example.mynotes.retrofit.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,12 +44,16 @@ public class CourseActivity extends AppCompatActivity {
     public static final String COURSE_CODE = "com.example.mynotes.COURSE_CODE" ;
     public static  final String STUDENT_ID = "com.example.mynotes.STUDENT_ID" ;
     public static  final String COURSE_NAME = "com.example.mynotes.COURSE_NAME" ;
+    public static final String ID =  "com.example.mynotes.ID";
 
+    Button btnLogin;
+    EditText etEmail,etPassword;
+    TextView tvReg;
 
     Toolbar toolbar;
     private RecyclerView recyclerView ;
     private CourseAdapter.RecycleViewClickListner listner ;
-    SwipeRefreshLayout swipeRefreshLayout ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +63,7 @@ public class CourseActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.course_recycle_view) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = findViewById(R.id.add_course_button) ;
-        int studentId = 4 ;
+        int studentId = 1 ;
 
         androidx.appcompat.widget.Toolbar toolbar=(androidx.appcompat.widget.Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -90,20 +103,13 @@ public class CourseActivity extends AppCompatActivity {
                 /*button.setText(enrolledCourseList.get(0).course_name); /*To check whats wrong*/
 
                /*Refreshing*/
-               swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
-               swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                   @Override
-                   public void onRefresh() {
-                       courseAdapter.notifyDataSetChanged();
-                       swipeRefreshLayout.setRefreshing(false);
-                   }
-               });
+               refresh(courseAdapter);
            }
 
            @Override
            public void onFailure(Call<List<CourseEnrollementDto>> call, Throwable t) {
                 Log.i("Error", t.toString()) ;
-               //button.setText(t.toString());
+               button.setText(t.toString());
            }
        });
 
@@ -111,23 +117,33 @@ public class CourseActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openAllCoursesActivity();
+                openAllCoursesActivity(studentId);
             }
         }) ;
 
         /*Refresh*/
+
+    }
+
+
+
+    public void refresh(CourseAdapter adapter){
+        SwipeRefreshLayout swipeRefreshLayout ;
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout) ;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
+                adapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
-    public void openAllCoursesActivity(){
+    public void openAllCoursesActivity(int id){
         Intent intent = new Intent(this, AllCources.class) ;
-        startActivity(intent);
+        intent.putExtra(ID, Integer.toString(id)) ;
+        startActivity(intent) ;
     }
 
     public void openSelectedActivity(String courseName, String courseCode, String studentId){

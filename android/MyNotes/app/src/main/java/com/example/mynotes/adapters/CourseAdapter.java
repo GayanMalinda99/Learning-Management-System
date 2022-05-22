@@ -32,8 +32,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     Context context ;
     List<CourseEnrollementDto> allEnrolledCourses;
     private RecycleViewClickListner itemClickListner ;
+    int position = -1 ;
 
-    public CourseAdapter(Context ct , List<CourseEnrollementDto> courses, RecycleViewClickListner listner){
+    public CourseAdapter(Context ct , List<CourseEnrollementDto> courses,
+                         RecycleViewClickListner listner){
         context = ct;
         allEnrolledCourses = courses ;
         itemClickListner = listner ;
@@ -67,13 +69,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             textView = (TextView) itemView.findViewById(R.id.course_text) ;
             imageButton = itemView.findViewById(R.id.course_delete_button) ;
            itemView.setOnClickListener(this);
-           itemView.findViewById(R.id.course_delete_button).setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.course_delete_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.i(Integer.toString(id), textView.getText().toString()) ;
 
                     String courseName = textView.getText().toString() ;
-                    int position = -1 ;
+
                     for(int i = 0 ; allEnrolledCourses.size() > i ; i++){
                         if(courseName==allEnrolledCourses.get(i).course_name){
                             position = i ;
@@ -83,22 +85,23 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
                     final CoursesApi dropCourseApi = retrofit.create(CoursesApi.class) ;
 
-                    Call<CourseEnrollementDto> call =
-                            dropCourseApi.dropCourse(allEnrolledCourses.get(position)) ;
-                    call.enqueue(new Callback<CourseEnrollementDto>() {
+                    Call<Boolean> call =
+                            dropCourseApi.deleteSomething(allEnrolledCourses.get(position)) ;
+                    call.enqueue(new Callback<Boolean>() {
                         @Override
-                        public void onResponse(Call<CourseEnrollementDto> call, Response<CourseEnrollementDto> response) {
-                            Log.i("Messege", "done") ;
+                        public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                            Log.i("Messege", allEnrolledCourses.get(position).course_name) ;
                         }
 
                         @Override
-                        public void onFailure(Call<CourseEnrollementDto> call, Throwable t) {
+                        public void onFailure(Call<Boolean> call, Throwable t) {
                             Log.i("Error", t.toString()) ;
                         }
                     });
 
                 }
             });
+
         }
 
         @Override
@@ -112,19 +115,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
    }
 }
 
-/*Retrofit retrofit = new RetrofitClientInstance().getRetrofitInstance() ;
-                    final CoursesApi deleteCourseApi = retrofit.create(CoursesApi.class) ;
-                    Call<Response> call = deleteCourseApi.dropCourse(
-                            allEnrolledCourses.get(position)
-                    ) ;
-                    call.enqueue(new Callback<Response>() {
-                        @Override
-                        public void onResponse(Call<Response> call, Response<Response> response) {
-                            Log.i("messege", "Success") ;
-                        }
+/*
+*/
 
-                        @Override
-                        public void onFailure(Call<Response> call, Throwable t) {
-                            Log.i("Messege", "Error") ;
-                        }
-                    });*/
+/**/
+
